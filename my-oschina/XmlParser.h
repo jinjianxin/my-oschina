@@ -10,6 +10,7 @@
 #import "TBXML.h"
 #import "SingleNews.h"
 #import "BlogDetails.h"
+#import "CommentMsgDetails.h"
 
 @interface XmlParser : NSObject
 
@@ -23,4 +24,5 @@
 
 + (BlogDetails*) blogDetailParser:(NSString *)response;
 
++ (NSMutableArray*) commentsDetailParser:(NSString *)response;
 @end

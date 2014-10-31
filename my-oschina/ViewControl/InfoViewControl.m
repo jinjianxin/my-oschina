@@ -189,6 +189,7 @@
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
     commentDetail.msgDetail = msg;
+    commentDetail.newsCategory = [self newsCategory];
     
     
     ShareDetail *shareDetail = [[ShareDetail alloc] init];

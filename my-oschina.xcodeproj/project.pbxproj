@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		742597C81A03A5E20046300A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742597C71A03A5E20046300A /* Images.xcassets */; };
+		742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 742597CA1A03BA670046300A /* CommentMsgDetails.m */; };
 		747EC7991A00B2870087B269 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7981A00B2870087B269 /* main.m */; };
 		747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79B1A00B2870087B269 /* AppDelegate.m */; };
 		747EC79F1A00B2870087B269 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79E1A00B2870087B269 /* ViewController.m */; };
@@ -104,6 +106,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		742597C71A03A5E20046300A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		742597C91A03BA670046300A /* CommentMsgDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentMsgDetails.h; path = MsgContent/CommentMsgDetails.h; sourceTree = "<group>"; };
+		742597CA1A03BA670046300A /* CommentMsgDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentMsgDetails.m; path = MsgContent/CommentMsgDetails.m; sourceTree = "<group>"; };
 		747EC7931A00B2870087B269 /* my-oschina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "my-oschina.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		747EC7971A00B2870087B269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747EC7981A00B2870087B269 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -295,6 +300,7 @@
 		747EC7951A00B2870087B269 /* my-oschina */ = {
 			isa = PBXGroup;
 			children = (
+				742597C71A03A5E20046300A /* Images.xcassets */,
 				74E1E4171A01C4F9001BEE9B /* prefix_define.h */,
 				74E91EEB1A011F5C00087136 /* TabelCell */,
 				74E91EE71A01163000087136 /* MsgContent */,
@@ -557,6 +563,8 @@
 				74F658DF1A032E2A0011A664 /* SingleNews.m */,
 				74F658E11A0356030011A664 /* BlogDetails.h */,
 				74F658E21A0356030011A664 /* BlogDetails.m */,
+				742597C91A03BA670046300A /* CommentMsgDetails.h */,
+				742597CA1A03BA670046300A /* CommentMsgDetails.m */,
 			);
 			name = MsgContent;
 			sourceTree = "<group>";
@@ -661,6 +669,7 @@
 				747EC8081A00D0110087B269 /* grayArrow.png in Resources */,
 				747EC7D31A00C1B60087B269 /* microcomment.png in Resources */,
 				747EC8071A00D0110087B269 /* blueArrow@2x.png in Resources */,
+				742597C81A03A5E20046300A /* Images.xcassets in Resources */,
 				747EC7C01A00B8F50087B269 /* info@2x.png in Resources */,
 				747EC7E71A00C90F0087B269 /* rating@2x.png in Resources */,
 				74F658DD1A03228A0011A664 /* commentlist@2x.png in Resources */,
@@ -704,6 +713,7 @@
 				747EC7CA1A00BB300087B269 /* InfoViewControl.m in Sources */,
 				747EC8481A00DBF70087B269 /* ASIHTTPRequest.m in Sources */,
 				747EC8561A00DBF70087B269 /* ASIS3ObjectRequest.m in Sources */,
+				742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */,
 				747EC79F1A00B2870087B269 /* ViewController.m in Sources */,
 				747EC8491A00DBF70087B269 /* ASIInputStream.m in Sources */,
 				747EC84D1A00DBF70087B269 /* ASICloudFilesContainer.m in Sources */,
@@ -864,7 +874,6 @@
 		747EC7B71A00B2870087B269 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -880,7 +889,6 @@
 		747EC7B81A00B2870087B269 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "my-oschina/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;

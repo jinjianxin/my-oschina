@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D749F632-CB90-4EA6-B27C-47BDD2C663BD</string>
+	<key>IDESourceControlProjectName</key>
+	<string>my-oschina</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3CA215CAF50086EE54A874060BE172AE098E0B8D</key>
+		<string>https://github.com/jinjianxin/my-oschina.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>my-oschina.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3CA215CAF50086EE54A874060BE172AE098E0B8D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jinjianxin/my-oschina.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3CA215CAF50086EE54A874060BE172AE098E0B8D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3CA215CAF50086EE54A874060BE172AE098E0B8D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>oschina</string>
+		</dict>
+	</array>
+</dict>
+</plist>

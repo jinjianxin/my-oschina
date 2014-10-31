@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MsgDetail.h"
+#import "PullTableView.h"
+#import "ASIHTTPRequest.h"
+#import "prefix_define.h"
+#import "XmlParser.h"
+#import "CommentsDetail.h"
 
-@interface CommentsDetail : UIViewController
+@interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,weak) MsgDetail *msgDetail;
+@property (nonatomic ,strong) PullTableView *pullTabView;
+@property int newsCategory;
+@property (nonatomic,strong) NSArray *commentArray;
 
 @end

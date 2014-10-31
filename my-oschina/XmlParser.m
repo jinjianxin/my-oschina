@@ -281,5 +281,58 @@
 
 }
 
++ (NSMutableArray *) commentsDetailParser:(NSString *)response
+{
+    
+    NSMutableArray *commentArray = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
+    TBXMLElement *root = xml.rootXMLElement;
+    TBXMLElement *blog = [TBXML childElementNamed:@"comments" parentElement:root];
+    if (blog == nil) {
+        return nil;
+    }
+    
+    TBXMLElement *first = [TBXML childElementNamed:@"comment" parentElement:blog];
+    
+    while (first!=nil) {
+        
+        TBXMLElement *_id = [TBXML childElementNamed:@"id" parentElement:first];
+        TBXMLElement *_portrait = [TBXML childElementNamed:@"portrait" parentElement:first];
+        TBXMLElement *_author = [TBXML childElementNamed:@"author" parentElement:first];
+        TBXMLElement *_authorid = [TBXML childElementNamed:@"authorid" parentElement:first];
+        TBXMLElement *_content = [TBXML childElementNamed:@"content" parentElement:first];
+        TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
+        TBXMLElement *_appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
+        TBXMLElement *_refers = [TBXML childElementNamed:@"refers" parentElement:first];
+        
+        TBXMLElement *_refersChild = [TBXML childElementNamed:@"refer" parentElement:_refers];
+        
+        NSMutableArray *referenceArray = [[NSMutableArray alloc] initWithCapacity:2];
+        
+        while (_refersChild!=nil) {
+            
+            TBXMLElement *_refertitle = [TBXML childElementNamed:@"refertitle" parentElement:_refersChild];
+            TBXMLElement *_referbody = [TBXML childElementNamed:@"referbody" parentElement:_refersChild];
+    
+            ReferenceMsg *msg = [[ReferenceMsg alloc] initWithContent:[TBXML textForElement:_referbody] andrefertitle:[TBXML textForElement:_refertitle]];
+            
+            [referenceArray addObject:msg];
+            
+             _refersChild = [TBXML nextSiblingNamed:@"refer" searchFromElement:_refersChild];
+        }
+    
+        CommentMsgDetails *news = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:[TBXML textForElement:_appclient] andRefers:[TBXML textForElement:_refers]];
+        
+        news.refrenceArray = referenceArray;
+        
+        [commentArray addObject:news];
+        
+        first = [TBXML nextSiblingNamed:@"comment" searchFromElement:first];
+    }
+    
+    
+    return commentArray;
+}
 
 @end
