@@ -20,9 +20,16 @@
 @property (nonatomic,copy) NSString *cAppClient;
 @property (nonatomic,copy) NSString *cRefers;
 @property (nonatomic,strong) NSArray *refrenceArray;
+@property float height;
 
 
 - (id) initWithContent:(NSString *) nId andPortrait:(NSString *)nPortrait andAuthor:(NSString *)nAuthor andAuthorid:(NSString *)nauthorId andContent:(NSString *)nContent andPubDate:(NSString *)npubDate andAppClent:(NSString *)nAppClent andRefers:(NSString*)nRefers;
+
+/**
+ *  根据回复的内容计算高度
+ */
+- (void) calculateHeight;
+
 
 @end
 

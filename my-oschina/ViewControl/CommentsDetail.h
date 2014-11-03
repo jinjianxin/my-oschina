@@ -13,6 +13,7 @@
 #import "prefix_define.h"
 #import "XmlParser.h"
 #import "CommentsDetail.h"
+#import "CommentCell.h"
 
 @interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource>
 

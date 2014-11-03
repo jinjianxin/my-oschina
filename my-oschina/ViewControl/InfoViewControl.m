@@ -22,7 +22,7 @@
 - (void)loadView {
   [super loadView];
 
-  newsCategory = 0;
+  newsCategory = 1;
   pageIndex = 0;
 }
 
@@ -47,23 +47,20 @@
 
   pageIndex = (int)[newsArray count] / 20;
 
-  if (newsCategory == 0) {
+  if (newsCategory == 1) {
     NSLog(@"%d", pageIndex);
 
     str = [NSString stringWithFormat:@"%@catalog=%d&pageIndex=%d&pageSize=%d",
                                      new_url, 1, pageIndex, 20];
     NSLog(@"pageIndex = %d", pageIndex);
-  } else if (newsCategory == 1) {
+  } else if (newsCategory == 2) {
     str = [NSString stringWithFormat:@"%@type=latest&pageIndex=%d&pageSize=%d",
                                      blog_url, pageIndex, 20];
-  } else if (newsCategory == 2) {
+  } else if (newsCategory == 3) {
     str = [NSString stringWithFormat:@"%@type=recommend&pageIndex=%d&pageSize=%d",
                                    blog_url, pageIndex, 20];
   }
 
-    
-    NSLog(@"%@",str);
-    
   NSURL *url = [NSURL URLWithString:str];
 
   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
@@ -86,16 +83,16 @@
 - (void)requestFinished:(ASIHTTPRequest *)request {
   NSString *responseString = [request responseString];
 
-  if (newsCategory == 0) {
+  if (newsCategory == 1) {
     NSMutableArray *array = [XmlParser newsParser:responseString];
 
     [newsArray addObjectsFromArray:array];
-  } else if (newsCategory == 1) {
+  } else if (newsCategory == 2) {
     NSMutableArray *array = [XmlParser blogParser:responseString];
 
     [newsArray addObjectsFromArray:array];
 
-  } else if (newsCategory == 2) {
+  } else if (newsCategory == 3) {
       
       NSMutableArray *array = [XmlParser blogParser:responseString];
       
@@ -162,7 +159,7 @@
   UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
   NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
 
-  newsCategory = (int)selectedSegment;
+  newsCategory = (int)selectedSegment+1;
 
   [self clear];
   [self loadContent];

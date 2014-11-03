@@ -34,10 +34,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //    http://www.oschina.net/action/api/comment_list?catalog=1&id=56627&pageIndex=0&pageSize=20
-    /*NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,msgDetail.ids,0,20];*/
-    
-    NSString *str = @"http://www.oschina.net/action/api/comment_list?catalog=1&id=56627&pageIndex=0&pageSize=20";
+    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,msgDetail.ids,0,20];
+
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -45,9 +43,7 @@
     
     [request setDelegate:self];
     [request startAsynchronous];
-    
 
-    
 }
 
 
@@ -76,6 +72,13 @@
     
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CommentMsgDetails *msg  = [commentArray objectAtIndex:[indexPath row]];
+    
+    return msg.height;
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [commentArray count];
@@ -85,17 +88,19 @@
 {
     
     static NSString *tag = @"cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
+   
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
     
     if(cell ==nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
+        cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
     }
+    
     
     CommentMsgDetails *msg = [commentArray objectAtIndex:[indexPath row]];
     
-    cell.textLabel.text = msg.cContent;
+    [cell setContent:msg];
+
     
     return cell;
 }

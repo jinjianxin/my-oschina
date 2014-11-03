@@ -325,6 +325,9 @@
         CommentMsgDetails *news = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:[TBXML textForElement:_appclient] andRefers:[TBXML textForElement:_refers]];
         
         news.refrenceArray = referenceArray;
+        [news calculateHeight];
+        
+        
         
         [commentArray addObject:news];
         

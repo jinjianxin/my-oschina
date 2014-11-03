@@ -33,11 +33,11 @@
 {
     NSString *str ;
     
-    if(newsCategory ==0)
+    if(newsCategory ==1)
     {
         str = [NSString stringWithFormat:@"%@id=%@",new_detail,msgDetail.ids];
     }
-    else if(newsCategory ==1 || newsCategory ==2)
+    else if(newsCategory ==2 || newsCategory ==3)
     {
         str = [NSString stringWithFormat:@"%@id=%@",blog_detail,msgDetail.ids];
     }
@@ -57,7 +57,7 @@
     
     NSString *html ;
     
-    if(newsCategory ==0)
+    if(newsCategory ==1)
     {
     
     SingleNews *singleNews = [XmlParser singleNewParser:responseString];
@@ -72,7 +72,7 @@
     
     html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@%@</body>",HTML_Style, singleNews.title,author_str, singleNews.body,software,[XmlParser generateRelativeNewsString:singleNews.relativies],HTML_Bottom];
     }
-    else if(newsCategory ==1 || newsCategory ==2)
+    else if(newsCategory ==2 || newsCategory ==3)
     {
         BlogDetails *blogDetails = [XmlParser blogDetailParser:responseString];
         

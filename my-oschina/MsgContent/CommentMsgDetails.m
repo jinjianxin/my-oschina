@@ -19,6 +19,7 @@
 @synthesize  cAppClient;
 @synthesize  cRefers;
 @synthesize refrenceArray;
+@synthesize height;
 
 
 - (id) initWithContent:(NSString *)nId andPortrait:(NSString *)nPortrait andAuthor:(NSString *)nAuthor andAuthorid:(NSString *)nauthorId andContent:(NSString *)nContent andPubDate:(NSString *)npubDate andAppClent:(NSString *)nAppClent andRefers:(NSString *)nRefers
@@ -30,12 +31,23 @@
     news.cAuthor = nAuthor;
     news.cAuthorid = nauthorId;
     news.cContent = nContent;
-    news.cPortrait = npubDate;
+    news.cPubDate= npubDate;
     news.cAppClient = nAppClent;
     news.cRefers = nRefers;
+
     
     
     return news;
+}
+
+- (void) calculateHeight
+{
+    if (self.refrenceArray>0) {
+        height =62+40*[self.refrenceArray count];
+    }
+    else{
+        height = 62;
+    }
 }
 
 @end
