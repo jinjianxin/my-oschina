@@ -95,6 +95,7 @@
 		74F658E01A032E2A0011A664 /* SingleNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F658DF1A032E2A0011A664 /* SingleNews.m */; };
 		74F658E31A0356030011A664 /* BlogDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F658E21A0356030011A664 /* BlogDetails.m */; };
 		74FF0B031A074CED00239B09 /* big_avatar_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 74FF0B021A074CED00239B09 /* big_avatar_loading.png */; };
+		74FF0B061A07BCCF00239B09 /* ReplyCiewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FF0B051A07BCCF00239B09 /* ReplyCiewControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +252,8 @@
 		74F658E11A0356030011A664 /* BlogDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlogDetails.h; path = MsgContent/BlogDetails.h; sourceTree = "<group>"; };
 		74F658E21A0356030011A664 /* BlogDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlogDetails.m; path = MsgContent/BlogDetails.m; sourceTree = "<group>"; };
 		74FF0B021A074CED00239B09 /* big_avatar_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_avatar_loading.png; sourceTree = "<group>"; };
+		74FF0B041A07BCCF00239B09 /* ReplyCiewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReplyCiewControl.h; path = ViewControl/ReplyCiewControl.h; sourceTree = "<group>"; };
+		74FF0B051A07BCCF00239B09 /* ReplyCiewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReplyCiewControl.m; path = ViewControl/ReplyCiewControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +401,8 @@
 				74F658D31A0320660011A664 /* CommentsDetail.m */,
 				74F658D51A0321670011A664 /* ShareDetail.h */,
 				74F658D61A0321670011A664 /* ShareDetail.m */,
+				74FF0B041A07BCCF00239B09 /* ReplyCiewControl.h */,
+				74FF0B051A07BCCF00239B09 /* ReplyCiewControl.m */,
 			);
 			name = ViewControl;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 				74F658D71A0321670011A664 /* ShareDetail.m in Sources */,
 				747EC8521A00DBF70087B269 /* ASICloudFilesRequest.m in Sources */,
 				747EC8541A00DBF70087B269 /* ASIS3BucketObject.m in Sources */,
+				74FF0B061A07BCCF00239B09 /* ReplyCiewControl.m in Sources */,
 				747EC7991A00B2870087B269 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -86,9 +86,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *tag = @"cell";
-   
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
     
     if(cell ==nil)
@@ -96,13 +94,23 @@
         cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
     }
     
-    
     CommentMsgDetails *msg = [commentArray objectAtIndex:[indexPath row]];
-    
     [cell setContent:msg];
 
-    
     return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ReplyCiewControl *repleControl = [[ReplyCiewControl alloc] init];
+    repleControl.view.backgroundColor = [UIColor whiteColor];
+   
+    int index = (int)[indexPath row];
+    CommentMsgDetails *msg  = [commentArray objectAtIndex:index];
+    repleControl.msg = msg;
+    
+    
+    [self.navigationController pushViewController:repleControl animated:YES];
 }
 
 @end
