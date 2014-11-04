@@ -11,6 +11,7 @@
 #import "SingleNews.h"
 #import "BlogDetails.h"
 #import "CommentMsgDetails.h"
+#import "QuestionMsg.h"
 
 @interface XmlParser : NSObject
 
@@ -25,4 +26,7 @@
 + (BlogDetails*) blogDetailParser:(NSString *)response;
 
 + (NSMutableArray*) commentsDetailParser:(NSString *)response;
+
++ (NSMutableArray*) questionNewParser:(NSString *)response;
+
 @end

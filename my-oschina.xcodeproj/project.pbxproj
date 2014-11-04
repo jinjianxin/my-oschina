@@ -14,6 +14,9 @@
 		744844BE1A089CD000FAC42E /* share_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BA1A089CD000FAC42E /* share_tencent.png */; };
 		744844BF1A089CD000FAC42E /* share_weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BB1A089CD000FAC42E /* share_weixin.png */; };
 		744844C01A089CD000FAC42E /* share_weixinFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BC1A089CD000FAC42E /* share_weixinFriend.png */; };
+		745A48CF1A08FAC100957748 /* RefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48CE1A08FAC100957748 /* RefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		745A48D51A08FC8300957748 /* QuestionViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48D41A08FC8300957748 /* QuestionViewControl.m */; };
+		745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48D71A090E7E00957748 /* QuestionMsg.m */; };
 		747EC7991A00B2870087B269 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7981A00B2870087B269 /* main.m */; };
 		747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79B1A00B2870087B269 /* AppDelegate.m */; };
 		747EC79F1A00B2870087B269 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79E1A00B2870087B269 /* ViewController.m */; };
@@ -28,7 +31,6 @@
 		747EC7C61A00B9B30087B269 /* active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747EC7C51A00B9B30087B269 /* active@2x.png */; };
 		747EC7CA1A00BB300087B269 /* InfoViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7C91A00BB300087B269 /* InfoViewControl.m */; };
 		747EC7CC1A00BF560087B269 /* searchBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747EC7CB1A00BF560087B269 /* searchBlue@2x.png */; };
-		747EC7CF1A00BFA60087B269 /* QuestionCiewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7CE1A00BFA60087B269 /* QuestionCiewControl.m */; };
 		747EC7D11A00C0F10087B269 /* questionBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747EC7D01A00C0F10087B269 /* questionBlue@2x.png */; };
 		747EC7D31A00C1B60087B269 /* microcomment.png in Resources */ = {isa = PBXBuildFile; fileRef = 747EC7D21A00C1B60087B269 /* microcomment.png */; };
 		747EC7D51A00C5E60087B269 /* account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747EC7D41A00C5E60087B269 /* account@2x.png */; };
@@ -123,6 +125,12 @@
 		744844BA1A089CD000FAC42E /* share_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_tencent.png; sourceTree = "<group>"; };
 		744844BB1A089CD000FAC42E /* share_weixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_weixin.png; sourceTree = "<group>"; };
 		744844BC1A089CD000FAC42E /* share_weixinFriend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_weixinFriend.png; sourceTree = "<group>"; };
+		745A48CD1A08FAC100957748 /* RefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTableHeaderView.h; sourceTree = "<group>"; };
+		745A48CE1A08FAC100957748 /* RefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTableHeaderView.m; sourceTree = "<group>"; };
+		745A48D31A08FC8300957748 /* QuestionViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionViewControl.h; path = ViewControl/QuestionViewControl.h; sourceTree = "<group>"; };
+		745A48D41A08FC8300957748 /* QuestionViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionViewControl.m; path = ViewControl/QuestionViewControl.m; sourceTree = "<group>"; };
+		745A48D61A090E7E00957748 /* QuestionMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionMsg.h; path = MsgContent/QuestionMsg.h; sourceTree = "<group>"; };
+		745A48D71A090E7E00957748 /* QuestionMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionMsg.m; path = MsgContent/QuestionMsg.m; sourceTree = "<group>"; };
 		747EC7931A00B2870087B269 /* my-oschina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "my-oschina.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		747EC7971A00B2870087B269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747EC7981A00B2870087B269 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -144,8 +152,6 @@
 		747EC7C81A00BB300087B269 /* InfoViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewControl.h; path = ViewControl/InfoViewControl.h; sourceTree = "<group>"; };
 		747EC7C91A00BB300087B269 /* InfoViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewControl.m; path = ViewControl/InfoViewControl.m; sourceTree = "<group>"; };
 		747EC7CB1A00BF560087B269 /* searchBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBlue@2x.png"; sourceTree = "<group>"; };
-		747EC7CD1A00BFA60087B269 /* QuestionCiewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionCiewControl.h; path = ViewControl/QuestionCiewControl.h; sourceTree = "<group>"; };
-		747EC7CE1A00BFA60087B269 /* QuestionCiewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionCiewControl.m; path = ViewControl/QuestionCiewControl.m; sourceTree = "<group>"; };
 		747EC7D01A00C0F10087B269 /* questionBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "questionBlue@2x.png"; sourceTree = "<group>"; };
 		747EC7D21A00C1B60087B269 /* microcomment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = microcomment.png; sourceTree = "<group>"; };
 		747EC7D41A00C5E60087B269 /* account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account@2x.png"; sourceTree = "<group>"; };
@@ -300,6 +306,15 @@
 			name = ImageDownloader;
 			sourceTree = "<group>";
 		};
+		745A48CC1A08FA9400957748 /* RefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				745A48CD1A08FAC100957748 /* RefreshTableHeaderView.h */,
+				745A48CE1A08FAC100957748 /* RefreshTableHeaderView.m */,
+			);
+			name = RefreshTableHeaderView;
+			sourceTree = "<group>";
+		};
 		747EC78A1A00B2870087B269 = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +343,7 @@
 		747EC7951A00B2870087B269 /* my-oschina */ = {
 			isa = PBXGroup;
 			children = (
+				745A48CC1A08FA9400957748 /* RefreshTableHeaderView */,
 				744844B51A08980300FAC42E /* ImageDownloader */,
 				742597C71A03A5E20046300A /* Images.xcassets */,
 				74E1E4171A01C4F9001BEE9B /* prefix_define.h */,
@@ -416,8 +432,6 @@
 			children = (
 				747EC7C81A00BB300087B269 /* InfoViewControl.h */,
 				747EC7C91A00BB300087B269 /* InfoViewControl.m */,
-				747EC7CD1A00BFA60087B269 /* QuestionCiewControl.h */,
-				747EC7CE1A00BFA60087B269 /* QuestionCiewControl.m */,
 				74EFB7E11A02682400358F0D /* NewDetail.h */,
 				74EFB7E21A02682400358F0D /* NewDetail.m */,
 				74EFB7E41A026C4F00358F0D /* NewDetailsControl.h */,
@@ -428,6 +442,8 @@
 				74F658D61A0321670011A664 /* ShareDetail.m */,
 				74FF0B041A07BCCF00239B09 /* ReplyCiewControl.h */,
 				74FF0B051A07BCCF00239B09 /* ReplyCiewControl.m */,
+				745A48D31A08FC8300957748 /* QuestionViewControl.h */,
+				745A48D41A08FC8300957748 /* QuestionViewControl.m */,
 			);
 			name = ViewControl;
 			sourceTree = "<group>";
@@ -601,6 +617,8 @@
 				74F658E21A0356030011A664 /* BlogDetails.m */,
 				742597C91A03BA670046300A /* CommentMsgDetails.h */,
 				742597CA1A03BA670046300A /* CommentMsgDetails.m */,
+				745A48D61A090E7E00957748 /* QuestionMsg.h */,
+				745A48D71A090E7E00957748 /* QuestionMsg.m */,
 			);
 			name = MsgContent;
 			sourceTree = "<group>";
@@ -765,15 +783,16 @@
 				747EC84C1A00DBF70087B269 /* ASICloudFilesCDNRequest.m in Sources */,
 				747EC84E1A00DBF70087B269 /* ASICloudFilesContainerRequest.m in Sources */,
 				747EC7F91A00CFF70087B269 /* MessageInterceptor.m in Sources */,
+				745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */,
 				74E91EEF1A011F9400087136 /* MsgCell.m in Sources */,
 				747EC8581A00DBF70087B269 /* ASIS3ServiceRequest.m in Sources */,
+				745A48CF1A08FAC100957748 /* RefreshTableHeaderView.m in Sources */,
 				747EC8571A00DBF70087B269 /* ASIS3Request.m in Sources */,
 				747EC7FA1A00CFF70087B269 /* PullTableView.m in Sources */,
 				747EC8531A00DBF70087B269 /* ASIS3Bucket.m in Sources */,
 				74B1985F1A0663A700A42963 /* CommentCell.m in Sources */,
 				74F658E01A032E2A0011A664 /* SingleNews.m in Sources */,
 				747EC8451A00DBF70087B269 /* ASIDataDecompressor.m in Sources */,
-				747EC7CF1A00BFA60087B269 /* QuestionCiewControl.m in Sources */,
 				74EFB7E31A02682400358F0D /* NewDetail.m in Sources */,
 				747EC8471A00DBF70087B269 /* ASIFormDataRequest.m in Sources */,
 				747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */,
@@ -798,6 +817,7 @@
 				74F658D71A0321670011A664 /* ShareDetail.m in Sources */,
 				747EC8521A00DBF70087B269 /* ASICloudFilesRequest.m in Sources */,
 				747EC8541A00DBF70087B269 /* ASIS3BucketObject.m in Sources */,
+				745A48D51A08FC8300957748 /* QuestionViewControl.m in Sources */,
 				74FF0B061A07BCCF00239B09 /* ReplyCiewControl.m in Sources */,
 				747EC7991A00B2870087B269 /* main.m in Sources */,
 			);
@@ -926,6 +946,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "my-oschina/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -936,6 +957,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "my-oschina/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

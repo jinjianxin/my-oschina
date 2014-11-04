@@ -18,7 +18,7 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-
+    
     shareSina = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     shareSina.frame = CGRectMake(15, 150, 348, 63);
     [shareSina setBackgroundImage:[UIImage imageNamed:@"share_sina"] forState:UIControlStateNormal];

@@ -36,6 +36,8 @@
 
   newsArray = [[NSMutableArray alloc] initWithCapacity:10];
 
+    
+
   [self loadContent];
 }
 
@@ -171,7 +173,7 @@
     MsgDetail *msg  = [newsArray objectAtIndex:[indexPath row]];
     
     UITabBarController *newTab = [[UITabBarController alloc] init];
-    newTab.title = @"咨询详情";
+    // newTab.title = @"咨询详情";
     
     NewDetail *newDetail = [[NewDetail alloc] init];
     newDetail.view.backgroundColor = [UIColor whiteColor];

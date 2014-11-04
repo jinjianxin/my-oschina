@@ -338,4 +338,53 @@
     return commentArray;
 }
 
++ (NSMutableArray *) questionNewParser:(NSString *)response
+{
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    
+    TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
+    TBXMLElement *root = xml.rootXMLElement;
+    TBXMLElement *blog = [TBXML childElementNamed:@"posts" parentElement:root];
+    if (blog == nil) {
+        return nil;
+    }
+    
+    TBXMLElement *first = [TBXML childElementNamed:@"post" parentElement:blog];
+    
+    while (first!=nil) {
+        
+        TBXMLElement *_id = [TBXML childElementNamed:@"id" parentElement:first];
+        TBXMLElement *_portrait = [TBXML childElementNamed:@"portrait" parentElement:first];
+        TBXMLElement *_author = [TBXML childElementNamed:@"author" parentElement:first];
+        TBXMLElement *_authorid = [TBXML childElementNamed:@"authorid" parentElement:first];
+        TBXMLElement *_title = [TBXML childElementNamed:@"title" parentElement:first];
+        TBXMLElement *_answerCount = [TBXML childElementNamed:@"answerCount" parentElement:first];
+        TBXMLElement *_viewCount = [TBXML childElementNamed:@"viewCount" parentElement:first];
+        TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
+        TBXMLElement *_answer = [TBXML childElementNamed:@"answer" parentElement:first];
+        TBXMLElement *_name = nil;
+        if(_answer!=nil)
+        {
+            _name = [TBXML childElementNamed:@"name" parentElement:_answer];
+        }
+        
+    
+        QuestionMsg *msg = [[QuestionMsg alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andTitle:[TBXML textForElement:_title] andAnswerCount:[TBXML textForElement:_answerCount] andViewCount:[TBXML textForElement:_viewCount] andPubDate:[TBXML textForElement:_pubDate] andName:nil];
+        
+        if(_name!=nil)
+        {
+            msg.name = [TBXML textForElement:_name];
+        }
+        
+        [array addObject:msg];
+        
+        first = [TBXML nextSiblingNamed:@"post" searchFromElement:first];
+    }
+    
+
+    
+    return array;
+}
+
 @end

@@ -21,6 +21,7 @@
 {
     [super loadView];
     
+
     CGRect rect = self.view.bounds;
 
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
