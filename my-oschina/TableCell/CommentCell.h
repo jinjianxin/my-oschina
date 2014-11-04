@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CommentMsgDetails.h"
 #import "XmlParser.h"
+#import "AsyncImageView.h"
 
 @interface CommentCell : UITableViewCell
 

@@ -18,12 +18,18 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIBarButtonItem *_btnPub = [[UIBarButtonItem alloc] initWithTitle:@"回复" style:UIBarButtonItemStyleDone target:self action:@selector(clickReply:)];
+    self.navigationItem.rightBarButtonItem = _btnPub;
 
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    
+    
+    
     
     author = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 360, 50)];
     author.font = [UIFont fontWithName:@"Arial" size:18];
@@ -41,13 +47,29 @@
     replyTextView.text = @"点此输入内容";
     replyTextView.textColor = [UIColor lightGrayColor];
     
-     [replyTextView setDelegate:self];
+    [replyTextView setDelegate:self];
 
     
     [self.view addSubview:author];
     [self.view addSubview:content];
     [self.view addSubview:replyTextView];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+
 }
+
+- (IBAction)clickReply:(id)sender
+{
+
+}
+
+- (void) dismissKeyboard
+{
+    [replyTextView resignFirstResponder];
+}
+
 
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textField
@@ -75,3 +97,4 @@
 }
 
 @end
+

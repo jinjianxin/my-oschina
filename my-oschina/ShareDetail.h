@@ -12,6 +12,9 @@
 
 @interface ShareDetail : UIViewController
 
-@property (nonatomic,weak) MsgDetail *msgDetail;
+@property (strong,nonatomic) UIButton  *shareSina;
+@property (strong,nonatomic) UIButton  *shareTent;
+@property (strong,nonatomic) UIButton  *shareRenren;
+@property (strong,nonatomic) UIButton  *shareWeichat;
 
 @end

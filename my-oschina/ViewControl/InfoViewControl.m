@@ -193,7 +193,6 @@
     shareDetail.tabBarItem.title=@"分享";
     shareDetail.view.backgroundColor = [UIColor whiteColor];
     shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
-    shareDetail.msgDetail = msg;
     
     
     newTab.viewControllers = [NSArray arrayWithObjects:newDetail,commentDetail,shareDetail, nil];

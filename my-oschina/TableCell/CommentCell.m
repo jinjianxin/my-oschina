@@ -36,6 +36,7 @@
     
     if(self.avatarImage)
     {
+        [[AsyncImageLoader sharedLoader] cancelLoadingImagesForTarget:avatarImage];
         [self.avatarImage removeFromSuperview];
     }
     
@@ -57,15 +58,16 @@
     avatarImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50, 50)];
     avatarImage.image = [UIImage imageNamed:@"big_avatar_loading"];
     
+    avatarImage.imageURL = [NSURL URLWithString:msg.cPortrait];
+    
+    
     authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 10, 360, 30)];
     NSString *str = [NSString stringWithFormat:@"%@  发表于%@ ",msg.cAuthor,[XmlParser intervalSinceNow:msg.cPubDate]];
     authorLabel.text = str;
     authorLabel.font = [UIFont fontWithName:@"Arial" size:14];
     
     myView = [[UIView alloc] initWithFrame:CGRectMake(80, 20, 360, 100)];
-    
-    int index = 0;
-    
+   
     for (int i =0; i<msg.refrenceArray.count; i++) {
         ReferenceMsg *ref = [msg.refrenceArray objectAtIndex:i];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,20+i*40,200,15)];

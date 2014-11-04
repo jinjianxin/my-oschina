@@ -30,12 +30,24 @@
     pullTabView.delegate = self;
     pullTabView.dataSource = self;
     
+    self.pullTabView.pullDelegate = self;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,msgDetail.ids,0,20];
+    [super viewDidAppear:animated];
+    
+    [self loadContent];
 
+}
+
+- (void) loadContent
+{
+    int count = (int)[commentArray count];
+    
+    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,msgDetail.ids,count/20,20];
+    
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -43,19 +55,30 @@
     
     [request setDelegate:self];
     [request startAsynchronous];
-
-}
-
-
-- (void) pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView
-{
     
 }
 
-- (void) pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
-{
-    
+- (void)refreshTable {
+    self.pullTabView.pullLastRefreshDate = [NSDate date];
+    self.pullTabView.pullTableIsRefreshing = NO;
 }
+
+- (void)loadMoreDataToTable {
+    self.pullTabView.pullTableIsLoadingMore = NO;
+    
+    [self loadContent];
+}
+
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+    [self performSelector:@selector(loadMoreDataToTable)
+               withObject:nil
+               afterDelay:0.2f];
+}
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.2f];
+}
+
 
 - (void) requestFinished:(ASIHTTPRequest *)request
 {
@@ -108,7 +131,6 @@
     int index = (int)[indexPath row];
     CommentMsgDetails *msg  = [commentArray objectAtIndex:index];
     repleControl.msg = msg;
-    
     
     [self.navigationController pushViewController:repleControl animated:YES];
 }
