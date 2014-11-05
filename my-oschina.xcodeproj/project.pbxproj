@@ -18,6 +18,7 @@
 		745A48CF1A08FAC100957748 /* RefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48CE1A08FAC100957748 /* RefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745A48D51A08FC8300957748 /* QuestionViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48D41A08FC8300957748 /* QuestionViewControl.m */; };
 		745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48D71A090E7E00957748 /* QuestionMsg.m */; };
+		746B620E1A0A665000A1C9BE /* TweetViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 746B620D1A0A665000A1C9BE /* TweetViewControl.m */; };
 		747EC7991A00B2870087B269 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7981A00B2870087B269 /* main.m */; };
 		747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79B1A00B2870087B269 /* AppDelegate.m */; };
 		747EC79F1A00B2870087B269 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79E1A00B2870087B269 /* ViewController.m */; };
@@ -91,6 +92,9 @@
 		747EC8D61A0114F70087B269 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D31A0114F70087B269 /* TBXML+Compression.m */; };
 		747EC8D71A0114F70087B269 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D41A0114F70087B269 /* TBXML+HTTP.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		74B1985F1A0663A700A42963 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B1985E1A0663A700A42963 /* CommentCell.m */; };
+		74C6475C1A0A581D004F0DD7 /* PostDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C6475B1A0A581D004F0DD7 /* PostDetails.m */; };
+		74C6475F1A0A5A5A004F0DD7 /* PostMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C6475E1A0A5A5A004F0DD7 /* PostMsg.m */; };
+		74C647621A0A6110004F0DD7 /* ReportViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C647611A0A6110004F0DD7 /* ReportViewControl.m */; };
 		74E91EEA1A01196B00087136 /* MsgDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E91EE91A01196B00087136 /* MsgDetail.m */; };
 		74E91EEF1A011F9400087136 /* MsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E91EEE1A011F9400087136 /* MsgCell.m */; };
 		74EFB7E31A02682400358F0D /* NewDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFB7E21A02682400358F0D /* NewDetail.m */; };
@@ -134,6 +138,8 @@
 		745A48D41A08FC8300957748 /* QuestionViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionViewControl.m; path = ViewControl/QuestionViewControl.m; sourceTree = "<group>"; };
 		745A48D61A090E7E00957748 /* QuestionMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionMsg.h; path = MsgContent/QuestionMsg.h; sourceTree = "<group>"; };
 		745A48D71A090E7E00957748 /* QuestionMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionMsg.m; path = MsgContent/QuestionMsg.m; sourceTree = "<group>"; };
+		746B620C1A0A665000A1C9BE /* TweetViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetViewControl.h; path = ViewControl/TweetViewControl.h; sourceTree = "<group>"; };
+		746B620D1A0A665000A1C9BE /* TweetViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetViewControl.m; path = ViewControl/TweetViewControl.m; sourceTree = "<group>"; };
 		747EC7931A00B2870087B269 /* my-oschina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "my-oschina.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		747EC7971A00B2870087B269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747EC7981A00B2870087B269 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -251,6 +257,12 @@
 		747EC8DA1A0115020087B269 /* TBXML+HTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
 		74B1985D1A0663A700A42963 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentCell.h; path = TableCell/CommentCell.h; sourceTree = "<group>"; };
 		74B1985E1A0663A700A42963 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentCell.m; path = TableCell/CommentCell.m; sourceTree = "<group>"; };
+		74C6475A1A0A581D004F0DD7 /* PostDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostDetails.h; path = ViewControl/PostDetails.h; sourceTree = "<group>"; };
+		74C6475B1A0A581D004F0DD7 /* PostDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostDetails.m; path = ViewControl/PostDetails.m; sourceTree = "<group>"; };
+		74C6475D1A0A5A5A004F0DD7 /* PostMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostMsg.h; path = MsgContent/PostMsg.h; sourceTree = "<group>"; };
+		74C6475E1A0A5A5A004F0DD7 /* PostMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostMsg.m; path = MsgContent/PostMsg.m; sourceTree = "<group>"; };
+		74C647601A0A6110004F0DD7 /* ReportViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReportViewControl.h; path = ViewControl/ReportViewControl.h; sourceTree = "<group>"; };
+		74C647611A0A6110004F0DD7 /* ReportViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportViewControl.m; path = ViewControl/ReportViewControl.m; sourceTree = "<group>"; };
 		74E1E4171A01C4F9001BEE9B /* prefix_define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_define.h; sourceTree = "<group>"; };
 		74E91EE81A01196B00087136 /* MsgDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MsgDetail.h; path = MsgContent/MsgDetail.h; sourceTree = "<group>"; };
 		74E91EE91A01196B00087136 /* MsgDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MsgDetail.m; path = MsgContent/MsgDetail.m; sourceTree = "<group>"; };
@@ -447,6 +459,12 @@
 				74FF0B051A07BCCF00239B09 /* ReplyCiewControl.m */,
 				745A48D31A08FC8300957748 /* QuestionViewControl.h */,
 				745A48D41A08FC8300957748 /* QuestionViewControl.m */,
+				74C6475A1A0A581D004F0DD7 /* PostDetails.h */,
+				74C6475B1A0A581D004F0DD7 /* PostDetails.m */,
+				74C647601A0A6110004F0DD7 /* ReportViewControl.h */,
+				74C647611A0A6110004F0DD7 /* ReportViewControl.m */,
+				746B620C1A0A665000A1C9BE /* TweetViewControl.h */,
+				746B620D1A0A665000A1C9BE /* TweetViewControl.m */,
 			);
 			name = ViewControl;
 			sourceTree = "<group>";
@@ -622,6 +640,8 @@
 				742597CA1A03BA670046300A /* CommentMsgDetails.m */,
 				745A48D61A090E7E00957748 /* QuestionMsg.h */,
 				745A48D71A090E7E00957748 /* QuestionMsg.m */,
+				74C6475D1A0A5A5A004F0DD7 /* PostMsg.h */,
+				74C6475E1A0A5A5A004F0DD7 /* PostMsg.m */,
 			);
 			name = MsgContent;
 			sourceTree = "<group>";
@@ -790,6 +810,7 @@
 				747EC7F91A00CFF70087B269 /* MessageInterceptor.m in Sources */,
 				745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */,
 				74E91EEF1A011F9400087136 /* MsgCell.m in Sources */,
+				74C6475F1A0A5A5A004F0DD7 /* PostMsg.m in Sources */,
 				747EC8581A00DBF70087B269 /* ASIS3ServiceRequest.m in Sources */,
 				745A48CF1A08FAC100957748 /* RefreshTableHeaderView.m in Sources */,
 				747EC8571A00DBF70087B269 /* ASIS3Request.m in Sources */,
@@ -797,12 +818,14 @@
 				747EC8531A00DBF70087B269 /* ASIS3Bucket.m in Sources */,
 				74B1985F1A0663A700A42963 /* CommentCell.m in Sources */,
 				74F658E01A032E2A0011A664 /* SingleNews.m in Sources */,
+				746B620E1A0A665000A1C9BE /* TweetViewControl.m in Sources */,
 				747EC8451A00DBF70087B269 /* ASIDataDecompressor.m in Sources */,
 				74EFB7E31A02682400358F0D /* NewDetail.m in Sources */,
 				747EC8471A00DBF70087B269 /* ASIFormDataRequest.m in Sources */,
 				747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */,
 				7438FF941A09B501009481FA /* QuestionCell.m in Sources */,
 				747EC8431A00DBF70087B269 /* ASIAuthenticationDialog.m in Sources */,
+				74C6475C1A0A581D004F0DD7 /* PostDetails.m in Sources */,
 				747EC8D61A0114F70087B269 /* TBXML+Compression.m in Sources */,
 				74EFB7E61A026C4F00358F0D /* NewDetailsControl.m in Sources */,
 				747EC84F1A00DBF70087B269 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
@@ -823,6 +846,7 @@
 				74F658D71A0321670011A664 /* ShareDetail.m in Sources */,
 				747EC8521A00DBF70087B269 /* ASICloudFilesRequest.m in Sources */,
 				747EC8541A00DBF70087B269 /* ASIS3BucketObject.m in Sources */,
+				74C647621A0A6110004F0DD7 /* ReportViewControl.m in Sources */,
 				745A48D51A08FC8300957748 /* QuestionViewControl.m in Sources */,
 				74FF0B061A07BCCF00239B09 /* ReplyCiewControl.m in Sources */,
 				747EC7991A00B2870087B269 /* main.m in Sources */,

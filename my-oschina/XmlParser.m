@@ -387,4 +387,49 @@
     return array;
 }
 
++ (PostMsg*) postNewParser:(NSString *)response
+{
+    TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
+    TBXMLElement *root = xml.rootXMLElement;
+    TBXMLElement *post = [TBXML childElementNamed:@"post" parentElement:root];
+    if (post == nil) {
+        return nil;
+    }
+    TBXMLElement *_id = [TBXML childElementNamed:@"id" parentElement:post];
+    TBXMLElement *title = [TBXML childElementNamed:@"title" parentElement:post];
+    TBXMLElement *url = [TBXML childElementNamed:@"url" parentElement:post];
+    TBXMLElement *portrait = [TBXML childElementNamed:@"portrait" parentElement:post];
+    TBXMLElement *body = [TBXML childElementNamed:@"body" parentElement:post];
+    TBXMLElement *author = [TBXML childElementNamed:@"author" parentElement:post];
+    TBXMLElement *authorid = [TBXML childElementNamed:@"authorid" parentElement:post];
+    TBXMLElement *answerCount = [TBXML childElementNamed:@"answerCount" parentElement:post];
+    TBXMLElement *viewCount = [TBXML childElementNamed:@"viewCount" parentElement:post];
+    TBXMLElement *pubDate = [TBXML childElementNamed:@"pubDate" parentElement:post];
+    TBXMLElement *fav = [TBXML childElementNamed:@"favorite" parentElement:post];
+    
+    NSMutableArray *_tags = [[NSMutableArray alloc] initWithCapacity:0];
+    TBXMLElement *tags = [TBXML childElementNamed:@"tags" parentElement:post];
+    if (tags != nil) {
+        TBXMLElement *tag = [TBXML childElementNamed:@"tag" parentElement:tags];
+        if (tag != nil) {
+            [_tags addObject:[TBXML textForElement:tag]];
+            while (tag != nil) {
+                tag = [TBXML nextSiblingNamed:@"tag" searchFromElement:tag];
+                if (tag != nil) {
+                    [_tags addObject:[TBXML textForElement:tag]];
+                }
+                else
+                    break;
+            }
+        }
+    }
+
+    PostMsg *msg = [[PostMsg alloc] initWithContent:[TBXML textForElement:_id] andTitle:[TBXML textForElement:title] andUrl:[TBXML textForElement:url] andPortrait:[TBXML textForElement:portrait] andBody:[TBXML textForElement:body] andAuthor:[TBXML textForElement:author] andAuthorID:[TBXML textForElement:authorid] andAnswer:[TBXML textForElement:answerCount] andView:[TBXML textForElement:viewCount] andPubDate:[TBXML textForElement:pubDate] andFavorite:[TBXML textForElement:fav] andTags:_tags];
+    
+    
+    return msg;
+    
+    
+}
+
 @end

@@ -15,6 +15,7 @@
 @synthesize authorLabel;
 @synthesize answerTitle;
 @synthesize answerCount;
+@synthesize tag;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -75,13 +76,20 @@
     authorLabel.font = [UIFont fontWithName:@"" size:10];
     authorLabel.textColor = [UIColor blueColor];
     
-    answerCount = [[UILabel alloc] initWithFrame:CGRectMake(320, 10, 40, 30)];
+    answerCount = [[UILabel alloc] initWithFrame:CGRectMake(330, 10, 40, 30)];
     answerCount.text = msg.answerCount;
-    authorLabel.font = [UIFont fontWithName:@"" size:10];
+    answerCount.font = [UIFont fontWithName:@"" size:10];
+    answerTitle.textAlignment =NSTextAlignmentCenter;
 
-    answerTitle = [[UILabel alloc] initWithFrame:CGRectMake(310, 30, 40, 30)];
-    answerTitle.text = @"回答";
-    authorLabel.font = [UIFont fontWithName:@"" size:10];
+    answerTitle = [[UILabel alloc] initWithFrame:CGRectMake(320, 30, 40, 30)];
+    if(tag ==1)
+    {
+        answerTitle.text = @"回答";
+    }
+    else{
+        answerTitle.text = @"回帖";
+    }
+    answerTitle.font = [UIFont fontWithName:@"" size:10];
     
     [self addSubview:avatorView];
     [self addSubview:titleLable];

@@ -21,6 +21,7 @@
 
 @property (nonatomic,weak) MsgDetail *msgDetail;
 @property (nonatomic ,strong) PullTableView *pullTabView;
+@property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
 @property (nonatomic,strong) NSArray *commentArray;
 

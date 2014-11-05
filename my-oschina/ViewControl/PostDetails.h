@@ -1,8 +1,8 @@
 //
-//  NewDetail.h
+//  PostDetails.h
 //  my-oschina
 //
-//  Created by jjx on 14/10/30.
+//  Created by jjx on 14/11/5.
 //  Copyright (c) 2014年 jjx. All rights reserved.
 //
 
@@ -13,17 +13,11 @@
 #import "prefix_define.h"
 #import "XmlParser.h"
 
-
-@interface NewDetail : UIViewController <ASIHTTPRequestDelegate>
-{
-  //  MsgDetail *msgDetail;
-}
-
+@interface PostDetails : UIViewController <ASIHTTPRequestDelegate>
 
 @property (strong,nonatomic) UIWebView *webView;
 
 @property (strong, nonatomic) IBOutlet UIView *myView;
-@property (nonatomic,strong) MsgDetail *msgDetail;
 @property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
 

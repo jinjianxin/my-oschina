@@ -17,6 +17,8 @@
 @property (strong,nonatomic) UILabel *authorLabel;
 @property (strong ,nonatomic) UILabel *answerTitle;
 @property (strong,nonatomic) UILabel *answerCount;
+@property int tag; //分类
+
 
 - (void)setContent:(QuestionMsg *)msg;
 

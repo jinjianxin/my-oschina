@@ -16,7 +16,7 @@
 
 @interface InfoViewControl : UITableViewController <PullTableViewDelegate,ASIHTTPRequestDelegate>
 {
-    PullTableView *pullTableView;
+   // PullTableView *pullTableView;
 }
 
 

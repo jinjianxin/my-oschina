@@ -16,6 +16,7 @@
 @synthesize msgDetail;
 @synthesize webView;
 @synthesize newsCategory;
+@synthesize ids;
 
 - (void) loadView
 {
@@ -36,11 +37,11 @@
     
     if(newsCategory ==1)
     {
-        str = [NSString stringWithFormat:@"%@id=%@",new_detail,msgDetail.ids];
+        str = [NSString stringWithFormat:@"%@id=%@",new_detail,ids];
     }
     else if(newsCategory ==2 || newsCategory ==3)
     {
-        str = [NSString stringWithFormat:@"%@id=%@",blog_detail,msgDetail.ids];
+        str = [NSString stringWithFormat:@"%@id=%@",blog_detail,ids];
     }
 
     NSURL *url = [NSURL URLWithString:str];

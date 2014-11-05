@@ -14,6 +14,7 @@
 @synthesize pullTabView;
 @synthesize newsCategory;
 @synthesize commentArray;
+@synthesize ids;
 
 - (void) viewDidLoad
 {
@@ -46,7 +47,7 @@
 {
     int count = (int)[commentArray count];
     
-    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,msgDetail.ids,count/20,20];
+    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count/20,20];
     
     
     NSURL *url = [NSURL URLWithString:str];

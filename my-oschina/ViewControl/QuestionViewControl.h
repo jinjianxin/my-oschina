@@ -12,15 +12,21 @@
 #import "prefix_define.h"
 #import "XmlParser.h"
 #import "QuestionCell.h"
+#import "PullTableView.h"
+#import "NewDetail.h"
+#import "CommentsDetail.h"
+#import "ShareDetail.h"
+#import "PostDetails.h"
+#import "ReportViewControl.h"
 
 
-@interface QuestionViewControl : UITableViewController <RefreshTableHeaderDelegate,ASIHTTPRequestDelegate>
+@interface QuestionViewControl : UITableViewController <PullTableViewDelegate,ASIHTTPRequestDelegate>
 {
-    RefreshTableHeaderView *_refreshHeaderView;
+  //  RefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
 }
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet PullTableView *pullTableView;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *questionSeg;
 - (IBAction)questionSelect:(id)sender;

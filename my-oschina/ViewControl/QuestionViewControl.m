@@ -18,17 +18,11 @@
 {
     [super viewDidLoad];
     
-    
-    if (_refreshHeaderView == nil) {
-        
-        RefreshTableHeaderView *view = [[RefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
-        view.delegate = self;
-        [self.tableView addSubview:view];
-        _refreshHeaderView = view;
-    }
-    
-    //  update the last update date
-    [_refreshHeaderView refreshLastUpdatedDate];
+    self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+    self.pullTableView.pullBackgroundColor = [UIColor whiteColor];
+    self.pullTableView.pullTextColor = [UIColor blackColor];
+    self.pullTableView.pullDelegate = self;
+
     
     newsArray = [[NSMutableArray alloc] initWithCapacity:2];
     
@@ -45,6 +39,28 @@
     
     [self loadContent];
     
+}
+
+
+- (void)refreshTable {
+    self.pullTableView.pullLastRefreshDate = [NSDate date];
+    self.pullTableView.pullTableIsRefreshing = NO;
+}
+
+- (void)loadMoreDataToTable {
+    self.pullTableView.pullTableIsLoadingMore = NO;
+    
+    [self loadContent];
+}
+
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+    [self performSelector:@selector(loadMoreDataToTable)
+               withObject:nil
+               afterDelay:0.2f];
+}
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.2f];
 }
 
 - (void) loadContent
@@ -85,58 +101,6 @@
     
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-    
-}
-
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(RefreshTableHeaderView*)view{
-    
-    [self reloadTableViewDataSource];
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
-    
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(RefreshTableHeaderView*)view{
-    
-    return _reloading; // should return if data source model is reloading
-    
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(RefreshTableHeaderView*)view{
-    
-    return [NSDate date]; // should return date data source was last changed
-    
-}
-
-- (void)reloadTableViewDataSource{
-    
-    //  should be calling your tableviews data source model to reload
-    //  put here just for demo
-    _reloading = YES;
-    
-}
-
-- (void)doneLoadingTableViewData{
-    
-    //  model should call this when its done loading
-    _reloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-    
-}
-
-
 - (IBAction)questionSelect:(id)sender {    
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
@@ -168,10 +132,50 @@
     
     int index = (int)[indexPath row];
     QuestionMsg *msg = [newsArray objectAtIndex:index];
+    cell.tag = [self newsCategory];
    
     [cell setContent:msg];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    QuestionMsg *msg  = [newsArray objectAtIndex:[indexPath row]];
+    
+    UITabBarController *newTab = [[UITabBarController alloc] init];
+    
+    
+    PostDetails *postDetail = [[PostDetails alloc] init];
+    postDetail.view.backgroundColor = [UIColor whiteColor];
+    postDetail.tabBarItem.title = @"详情";
+    postDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
+    postDetail.ids = msg.ids ;
+    
+
+    CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
+    commentDetail.tabBarItem.title = @"评论";
+    commentDetail.view.backgroundColor = [UIColor whiteColor];
+    commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    commentDetail.ids = msg.ids;
+    commentDetail.newsCategory = 2;
+
+    
+    ShareDetail *shareDetail = [[ShareDetail alloc] init];
+    shareDetail.tabBarItem.title=@"分享";
+    shareDetail.view.backgroundColor = [UIColor whiteColor];
+    shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+    
+    ReportViewControl *reportView = [[ReportViewControl alloc] init];
+    reportView.tabBarItem.title=@"举报";
+    reportView.view.backgroundColor = [UIColor whiteColor];
+    reportView.tabBarItem.image = [UIImage imageNamed:@"share"];
+    
+    
+    
+    newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];
+    newTab.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:newTab animated:YES];
 }
 
 @end
