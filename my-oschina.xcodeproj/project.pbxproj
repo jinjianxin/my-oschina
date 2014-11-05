@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		742597C81A03A5E20046300A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742597C71A03A5E20046300A /* Images.xcassets */; };
 		742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 742597CA1A03BA670046300A /* CommentMsgDetails.m */; };
+		7438FF941A09B501009481FA /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7438FF931A09B501009481FA /* QuestionCell.m */; };
 		744844B81A08983A00FAC42E /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744844B71A08983A00FAC42E /* AsyncImageView.m */; };
 		744844BD1A089CD000FAC42E /* share_sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844B91A089CD000FAC42E /* share_sina.png */; };
 		744844BE1A089CD000FAC42E /* share_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BA1A089CD000FAC42E /* share_tencent.png */; };
@@ -119,6 +120,8 @@
 		742597C71A03A5E20046300A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		742597C91A03BA670046300A /* CommentMsgDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentMsgDetails.h; path = MsgContent/CommentMsgDetails.h; sourceTree = "<group>"; };
 		742597CA1A03BA670046300A /* CommentMsgDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentMsgDetails.m; path = MsgContent/CommentMsgDetails.m; sourceTree = "<group>"; };
+		7438FF921A09B501009481FA /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionCell.h; path = MsgContent/QuestionCell.h; sourceTree = "<group>"; };
+		7438FF931A09B501009481FA /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionCell.m; path = MsgContent/QuestionCell.m; sourceTree = "<group>"; };
 		744844B61A08983A00FAC42E /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		744844B71A08983A00FAC42E /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		744844B91A089CD000FAC42E /* share_sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_sina.png; sourceTree = "<group>"; };
@@ -630,6 +633,8 @@
 				74E91EEE1A011F9400087136 /* MsgCell.m */,
 				74B1985D1A0663A700A42963 /* CommentCell.h */,
 				74B1985E1A0663A700A42963 /* CommentCell.m */,
+				7438FF921A09B501009481FA /* QuestionCell.h */,
+				7438FF931A09B501009481FA /* QuestionCell.m */,
 			);
 			name = TabelCell;
 			sourceTree = "<group>";
@@ -796,6 +801,7 @@
 				74EFB7E31A02682400358F0D /* NewDetail.m in Sources */,
 				747EC8471A00DBF70087B269 /* ASIFormDataRequest.m in Sources */,
 				747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */,
+				7438FF941A09B501009481FA /* QuestionCell.m in Sources */,
 				747EC8431A00DBF70087B269 /* ASIAuthenticationDialog.m in Sources */,
 				747EC8D61A0114F70087B269 /* TBXML+Compression.m in Sources */,
 				74EFB7E61A026C4F00358F0D /* NewDetailsControl.m in Sources */,

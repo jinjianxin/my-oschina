@@ -31,6 +31,12 @@
     [_refreshHeaderView refreshLastUpdatedDate];
     
     newsArray = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        self.parentViewController.edgesForExtendedLayout = UIRectEdgeNone;
+        self.parentViewController.automaticallyAdjustsScrollViewInsets = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,7 +104,7 @@
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(RefreshTableHeaderView*)view{
     
     [self reloadTableViewDataSource];
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
     
 }
 
@@ -153,14 +159,17 @@
 {
     static NSString *tag = @"tag";
     
-    UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:tag];
+    QuestionCell *cell  = [tableView dequeueReusableCellWithIdentifier:tag];
     
     if(cell ==nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
+        cell = [[QuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
     }
     
-    cell.textLabel.text = @"test";
+    int index = (int)[indexPath row];
+    QuestionMsg *msg = [newsArray objectAtIndex:index];
+   
+    [cell setContent:msg];
     
     return cell;
 }

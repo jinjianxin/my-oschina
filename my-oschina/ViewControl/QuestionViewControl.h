@@ -11,6 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "prefix_define.h"
 #import "XmlParser.h"
+#import "QuestionCell.h"
 
 
 @interface QuestionViewControl : UITableViewController <RefreshTableHeaderDelegate,ASIHTTPRequestDelegate>
