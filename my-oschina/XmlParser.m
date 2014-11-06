@@ -428,8 +428,43 @@
     
     
     return msg;
+}
+
++ (NSMutableArray *) tweetNewParser:(NSString *)response
+{
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    TBXML *xml = [[TBXML alloc] initWithXMLString:response error:nil];
+    TBXMLElement *root = xml.rootXMLElement;
+    TBXMLElement *blog = [TBXML childElementNamed:@"tweets" parentElement:root];
+    if (blog == nil) {
+        return nil;
+    }
+    
+    TBXMLElement *first = [TBXML childElementNamed:@"tweet" parentElement:blog];
+    
+    while (first!=nil) {
+        
+        TBXMLElement *_id = [TBXML childElementNamed:@"id" parentElement:first];
+        TBXMLElement *_portrait = [TBXML childElementNamed:@"portrait" parentElement:first];
+        TBXMLElement *_author = [TBXML childElementNamed:@"author" parentElement:first];
+        TBXMLElement *_authorid = [TBXML childElementNamed:@"authorid" parentElement:first];
+        TBXMLElement *_body = [TBXML childElementNamed:@"body" parentElement:first];
+        TBXMLElement *_appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
+        TBXMLElement *_commentCount = [TBXML childElementNamed:@"commentCount" parentElement:first];
+        TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
+    
+        TweetMsg *msg = [[TweetMsg alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andBody:[TBXML textForElement:_body] andAppclient:[TBXML textForElement:_appclient] andCommentCount:[TBXML textForElement:_commentCount] andPullDate:[TBXML textForElement:_pubDate]];
+        
+        [array addObject:msg];
+        
+        first = [TBXML nextSiblingNamed:@"tweet" searchFromElement:first];
+    }
     
     
+    
+    return array;
+
 }
 
 @end

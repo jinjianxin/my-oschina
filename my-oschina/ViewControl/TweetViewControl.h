@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "PullTableView.h"
+#import "prefix_define.h"
+#import "ASIHTTPRequest.h"
+#import "XmlParser.h"
+#import "TweetCell.h"
 
-@interface TweetViewControl : UIViewController <PullTableViewDelegate>
+@interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate>
 
 @property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
 
-
 - (IBAction)segSender:(id)sender;
+@property int m_uid;
+@property NSMutableArray *m_newsArray;
+
+
 @end

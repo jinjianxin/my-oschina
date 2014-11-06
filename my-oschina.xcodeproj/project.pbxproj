@@ -10,6 +10,9 @@
 		742597C81A03A5E20046300A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742597C71A03A5E20046300A /* Images.xcassets */; };
 		742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 742597CA1A03BA670046300A /* CommentMsgDetails.m */; };
 		7438FF941A09B501009481FA /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7438FF931A09B501009481FA /* QuestionCell.m */; };
+		743F2FD51A0BAEFE002D020A /* TweetMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F2FD41A0BAEFE002D020A /* TweetMsg.m */; };
+		743F2FD81A0BB5A8002D020A /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F2FD71A0BB5A8002D020A /* TweetCell.m */; };
+		743F2FDA1A0BC248002D020A /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 743F2FD91A0BC248002D020A /* comment.png */; };
 		744844B81A08983A00FAC42E /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744844B71A08983A00FAC42E /* AsyncImageView.m */; };
 		744844BD1A089CD000FAC42E /* share_sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844B91A089CD000FAC42E /* share_sina.png */; };
 		744844BE1A089CD000FAC42E /* share_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BA1A089CD000FAC42E /* share_tencent.png */; };
@@ -126,6 +129,11 @@
 		742597CA1A03BA670046300A /* CommentMsgDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentMsgDetails.m; path = MsgContent/CommentMsgDetails.m; sourceTree = "<group>"; };
 		7438FF921A09B501009481FA /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionCell.h; path = MsgContent/QuestionCell.h; sourceTree = "<group>"; };
 		7438FF931A09B501009481FA /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionCell.m; path = MsgContent/QuestionCell.m; sourceTree = "<group>"; };
+		743F2FD31A0BAEFE002D020A /* TweetMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetMsg.h; path = MsgContent/TweetMsg.h; sourceTree = "<group>"; };
+		743F2FD41A0BAEFE002D020A /* TweetMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetMsg.m; path = MsgContent/TweetMsg.m; sourceTree = "<group>"; };
+		743F2FD61A0BB5A8002D020A /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetCell.h; path = TableCell/TweetCell.h; sourceTree = "<group>"; };
+		743F2FD71A0BB5A8002D020A /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetCell.m; path = TableCell/TweetCell.m; sourceTree = "<group>"; };
+		743F2FD91A0BC248002D020A /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		744844B61A08983A00FAC42E /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		744844B71A08983A00FAC42E /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		744844B91A089CD000FAC42E /* share_sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_sina.png; sourceTree = "<group>"; };
@@ -412,6 +420,7 @@
 		747EC7BC1A00B8AF0087B269 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				743F2FD91A0BC248002D020A /* comment.png */,
 				74FF0B021A074CED00239B09 /* big_avatar_loading.png */,
 				744844B91A089CD000FAC42E /* share_sina.png */,
 				744844BA1A089CD000FAC42E /* share_tencent.png */,
@@ -642,6 +651,8 @@
 				745A48D71A090E7E00957748 /* QuestionMsg.m */,
 				74C6475D1A0A5A5A004F0DD7 /* PostMsg.h */,
 				74C6475E1A0A5A5A004F0DD7 /* PostMsg.m */,
+				743F2FD31A0BAEFE002D020A /* TweetMsg.h */,
+				743F2FD41A0BAEFE002D020A /* TweetMsg.m */,
 			);
 			name = MsgContent;
 			sourceTree = "<group>";
@@ -655,6 +666,8 @@
 				74B1985E1A0663A700A42963 /* CommentCell.m */,
 				7438FF921A09B501009481FA /* QuestionCell.h */,
 				7438FF931A09B501009481FA /* QuestionCell.m */,
+				743F2FD61A0BB5A8002D020A /* TweetCell.h */,
+				743F2FD71A0BB5A8002D020A /* TweetCell.m */,
 			);
 			name = TabelCell;
 			sourceTree = "<group>";
@@ -756,6 +769,7 @@
 				747EC7E71A00C90F0087B269 /* rating@2x.png in Resources */,
 				74F658DD1A03228A0011A664 /* commentlist@2x.png in Resources */,
 				747EC7DF1A00C8450087B269 /* feedback@2x.png in Resources */,
+				743F2FDA1A0BC248002D020A /* comment.png in Resources */,
 				747EC8091A00D0110087B269 /* grayArrow@2x.png in Resources */,
 				747EC8051A00D0110087B269 /* blackArrow@2x.png in Resources */,
 				744844BF1A089CD000FAC42E /* share_weixin.png in Resources */,
@@ -800,6 +814,7 @@
 				747EC8481A00DBF70087B269 /* ASIHTTPRequest.m in Sources */,
 				747EC8561A00DBF70087B269 /* ASIS3ObjectRequest.m in Sources */,
 				742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */,
+				743F2FD51A0BAEFE002D020A /* TweetMsg.m in Sources */,
 				747EC79F1A00B2870087B269 /* ViewController.m in Sources */,
 				747EC8491A00DBF70087B269 /* ASIInputStream.m in Sources */,
 				744844B81A08983A00FAC42E /* AsyncImageView.m in Sources */,
@@ -836,6 +851,7 @@
 				747EC86B1A010B2B0087B269 /* XmlParser.m in Sources */,
 				74F658D41A0320660011A664 /* CommentsDetail.m in Sources */,
 				747EC8D51A0114F70087B269 /* TBXML.m in Sources */,
+				743F2FD81A0BB5A8002D020A /* TweetCell.m in Sources */,
 				747EC8551A00DBF70087B269 /* ASIS3BucketRequest.m in Sources */,
 				747EC8461A00DBF70087B269 /* ASIDownloadCache.m in Sources */,
 				747EC8D71A0114F70087B269 /* TBXML+HTTP.m in Sources */,

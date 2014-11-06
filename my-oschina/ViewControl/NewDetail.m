@@ -49,7 +49,7 @@
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
     [request setDelegate:self];
-    [request startAsynchronous];
+    [request startAsynchronous]; 
     
 }
 

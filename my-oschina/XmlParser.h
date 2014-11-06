@@ -13,6 +13,7 @@
 #import "CommentMsgDetails.h"
 #import "QuestionMsg.h"
 #import "PostMsg.h"
+#import "TweetMsg.h"
 
 @interface XmlParser : NSObject
 
@@ -31,5 +32,7 @@
 + (NSMutableArray*) questionNewParser:(NSString *)response;
 
 + (PostMsg *) postNewParser:(NSString *)response;
+
++ (NSMutableArray *)tweetNewParser:(NSString *)response;
 
 @end

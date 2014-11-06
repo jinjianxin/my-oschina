@@ -181,6 +181,7 @@
     newDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     newDetail.newsCategory = [self newsCategory];
     newDetail.msgDetail = msg;
+    newDetail.ids = msg.ids;
     
     
     CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
@@ -189,6 +190,7 @@
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
     commentDetail.msgDetail = msg;
     commentDetail.newsCategory = [self newsCategory];
+    commentDetail.ids = msg.ids;
     
     
     ShareDetail *shareDetail = [[ShareDetail alloc] init];
