@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		740CBF501A0CF2C000456AE7 /* OwnViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CBF4F1A0CF2C000456AE7 /* OwnViewControl.m */; };
+		740CBF531A0CF74C00456AE7 /* LoginViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CBF521A0CF74C00456AE7 /* LoginViewControl.m */; };
 		742597C81A03A5E20046300A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742597C71A03A5E20046300A /* Images.xcassets */; };
 		742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 742597CA1A03BA670046300A /* CommentMsgDetails.m */; };
 		7438FF941A09B501009481FA /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7438FF931A09B501009481FA /* QuestionCell.m */; };
@@ -124,6 +126,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		740CBF4E1A0CF2C000456AE7 /* OwnViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OwnViewControl.h; path = ViewControl/OwnViewControl.h; sourceTree = "<group>"; };
+		740CBF4F1A0CF2C000456AE7 /* OwnViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnViewControl.m; path = ViewControl/OwnViewControl.m; sourceTree = "<group>"; };
+		740CBF511A0CF74C00456AE7 /* LoginViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewControl.h; path = ViewControl/LoginViewControl.h; sourceTree = "<group>"; };
+		740CBF521A0CF74C00456AE7 /* LoginViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewControl.m; path = ViewControl/LoginViewControl.m; sourceTree = "<group>"; };
 		742597C71A03A5E20046300A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		742597C91A03BA670046300A /* CommentMsgDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentMsgDetails.h; path = MsgContent/CommentMsgDetails.h; sourceTree = "<group>"; };
 		742597CA1A03BA670046300A /* CommentMsgDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentMsgDetails.m; path = MsgContent/CommentMsgDetails.m; sourceTree = "<group>"; };
@@ -474,6 +480,10 @@
 				74C647611A0A6110004F0DD7 /* ReportViewControl.m */,
 				746B620C1A0A665000A1C9BE /* TweetViewControl.h */,
 				746B620D1A0A665000A1C9BE /* TweetViewControl.m */,
+				740CBF4E1A0CF2C000456AE7 /* OwnViewControl.h */,
+				740CBF4F1A0CF2C000456AE7 /* OwnViewControl.m */,
+				740CBF511A0CF74C00456AE7 /* LoginViewControl.h */,
+				740CBF521A0CF74C00456AE7 /* LoginViewControl.m */,
 			);
 			name = ViewControl;
 			sourceTree = "<group>";
@@ -810,6 +820,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				747EC7F71A00CFF70087B269 /* EGORefreshTableHeaderView.m in Sources */,
+				740CBF501A0CF2C000456AE7 /* OwnViewControl.m in Sources */,
 				747EC7CA1A00BB300087B269 /* InfoViewControl.m in Sources */,
 				747EC8481A00DBF70087B269 /* ASIHTTPRequest.m in Sources */,
 				747EC8561A00DBF70087B269 /* ASIS3ObjectRequest.m in Sources */,
@@ -826,6 +837,7 @@
 				745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */,
 				74E91EEF1A011F9400087136 /* MsgCell.m in Sources */,
 				74C6475F1A0A5A5A004F0DD7 /* PostMsg.m in Sources */,
+				740CBF531A0CF74C00456AE7 /* LoginViewControl.m in Sources */,
 				747EC8581A00DBF70087B269 /* ASIS3ServiceRequest.m in Sources */,
 				745A48CF1A08FAC100957748 /* RefreshTableHeaderView.m in Sources */,
 				747EC8571A00DBF70087B269 /* ASIS3Request.m in Sources */,
