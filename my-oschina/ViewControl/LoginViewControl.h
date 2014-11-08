@@ -11,8 +11,10 @@
 #import "prefix_define.h"
 #import "ASIFormDataRequest.h"
 #import "TBXML.h"
+#import "XmlParser.h"
 
-@interface LoginViewControl : UIViewController <ASIHTTPRequestDelegate>
+
+@interface LoginViewControl : UIViewController <ASIHTTPRequestDelegate,UIAlertViewDelegate>
 
 @property (strong,nonatomic) UILabel *m_userName;
 @property (strong,nonatomic) UITextField *m_userTextView;

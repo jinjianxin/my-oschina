@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "my-oschina/XmlParser.h"
-            timestampString = "436974705.347212"
+            timestampString = "437138701.813054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "+blogDetailParser:"
             landmarkType = "4">
          </BreakpointContent>

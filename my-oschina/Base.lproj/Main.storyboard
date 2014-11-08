@@ -295,8 +295,14 @@
                                 <segment title="我自己"/>
                                 <segment title="留言"/>
                             </segments>
+                            <connections>
+                                <action selector="segSender:" destination="Dch-Cw-hZj" eventType="valueChanged" id="3G4-Mx-JsA"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
+                    <connections>
+                        <outlet property="pullTableView" destination="WbJ-pb-bBA" id="qXP-s6-lEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUQ-yT-rEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

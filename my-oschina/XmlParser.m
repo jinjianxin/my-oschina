@@ -467,4 +467,110 @@
 
 }
 
++ (UserData *) loginParser:(NSString *)response
+{
+    
+    TBXMLElement *errorEle = nil;
+    UserData *data;
+    
+    
+    TBXML *tbxml = [TBXML newTBXMLWithXMLString:response error:nil];
+    
+    if (tbxml != nil) {
+        TBXMLElement *root = tbxml.rootXMLElement;
+        
+        if (root != nil) {
+            TBXMLElement *childElement = [TBXML childElementNamed:@"result" parentElement:root];
+            
+            if (childElement != nil) {
+                
+                errorEle = [TBXML childElementNamed:@"errorCode" parentElement:childElement];
+            }
+            
+            TBXMLElement *user = [TBXML childElementNamed:@"user" parentElement:root];
+            
+            if(user !=nil)
+            {
+                TBXMLElement *_id = [TBXML childElementNamed:@"uid" parentElement:user];
+                TBXMLElement *_location = [TBXML childElementNamed:@"location" parentElement:user];
+                TBXMLElement *_name = [TBXML childElementNamed:@"name" parentElement:user];
+                TBXMLElement *_followers = [TBXML childElementNamed:@"followers" parentElement:user];
+                TBXMLElement *_fans = [TBXML childElementNamed:@"fans" parentElement:user];
+                TBXMLElement *_score = [TBXML childElementNamed:@"score" parentElement:user];
+                TBXMLElement *_portrait = [TBXML childElementNamed:@"portrait" parentElement:user];
+                
+                data = [[UserData alloc]initWithContent:[TBXML textForElement:errorEle] andUid:[TBXML textForElement:_id] andLocation:[TBXML textForElement:_location] andName:[TBXML textForElement:_name] andFollowers:[TBXML textForElement:_followers] andFans:[TBXML textForElement:_fans] andScore:[TBXML textForElement:_score] andPortrait:[TBXML textForElement:_portrait]];
+                
+            }
+            
+        }
+    }
+    
+    return data;
+}
+
++ (NSMutableArray*) ownNewParser:(NSString *)response
+{
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    
+    TBXML *tbxml = [TBXML newTBXMLWithXMLString:response error:nil];
+    
+    if (tbxml != nil) {
+        TBXMLElement *root = tbxml.rootXMLElement;
+        
+        if (root != nil) {
+            TBXMLElement *childElement = [TBXML childElementNamed:@"activies" parentElement:root];
+            
+            TBXMLElement *activie = [TBXML childElementNamed:@"active" parentElement:childElement];
+            
+            while (activie!=nil) {
+                
+                TBXMLElement *_id = [TBXML childElementNamed:@"id" parentElement:activie];
+                TBXMLElement *_portrait  = [TBXML childElementNamed:@"portrait" parentElement:activie];
+                TBXMLElement *_author = [TBXML childElementNamed:@"author" parentElement:activie];
+                TBXMLElement *_authorid = [TBXML childElementNamed:@"authorid" parentElement:activie];
+                TBXMLElement *_catalog = [TBXML childElementNamed:@"catalog" parentElement:activie];
+                TBXMLElement *_objecttype = [TBXML childElementNamed:@"objecttype" parentElement:activie];
+                TBXMLElement *_objectcatalog = [TBXML childElementNamed:@"objectcatalog" parentElement:activie];
+                TBXMLElement *_objecttitle = [TBXML childElementNamed:@"objecttitle" parentElement:activie];
+                TBXMLElement *_appclient = [TBXML childElementNamed:@"appclient" parentElement:activie];
+                TBXMLElement *_url = [TBXML childElementNamed:@"url" parentElement:activie];
+                TBXMLElement *_objectID = [TBXML childElementNamed:@"objectID" parentElement:activie];
+                TBXMLElement *_message = [TBXML childElementNamed:@"message" parentElement:activie];
+                TBXMLElement *_commentCount = [TBXML childElementNamed:@"commentCount" parentElement:activie];
+                TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:activie];
+                TBXMLElement *_tweetimage = [TBXML childElementNamed:@"tweetimage" parentElement:activie];
+                
+                OwnMsg *msg = [[OwnMsg alloc] init];
+                msg.m_id = [TBXML textForElement:_id];
+                msg.m_portrait = [TBXML textForElement:_portrait];
+                msg.m_author = [TBXML textForElement:_author];
+                msg.m_authorid = [TBXML textForElement:_authorid];
+                msg.m_catalog = [TBXML textForElement:_catalog];
+                msg.m_objecttype = [TBXML textForElement:_objecttype];
+                msg.m_objectcatalog = [TBXML textForElement:_objectcatalog];
+                msg.m_objecttitle = [TBXML textForElement:_objecttitle];
+                msg.m_appclient = [TBXML textForElement:_appclient];
+                msg.m_url = [TBXML textForElement:_url];
+                msg.m_objectID = [TBXML textForElement:_objectID];
+                msg.m_message = [TBXML textForElement:_message];
+                msg.m_commentCount = [TBXML textForElement:_commentCount];
+                msg.m_pubDate = [TBXML textForElement:_pubDate];
+                msg.m_tweetimage = [TBXML textForElement:_tweetimage];
+                
+                [msg calculateHeight];
+                
+                [array addObject:msg];
+                
+                activie = [TBXML nextSiblingNamed:@"active" searchFromElement:activie];
+                
+            }
+            
+        }
+    }
+    
+    return array;
+}
+
 @end

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		740CBF501A0CF2C000456AE7 /* OwnViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CBF4F1A0CF2C000456AE7 /* OwnViewControl.m */; };
 		740CBF531A0CF74C00456AE7 /* LoginViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CBF521A0CF74C00456AE7 /* LoginViewControl.m */; };
+		740CBF561A0DCF6800456AE7 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CBF551A0DCF6800456AE7 /* UserData.m */; };
+		740CBF591A0E2E7200456AE7 /* OwnMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CBF581A0E2E7200456AE7 /* OwnMsg.m */; };
+		740CBF5C1A0E362800456AE7 /* OwnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740CBF5B1A0E362800456AE7 /* OwnCell.m */; };
 		742597C81A03A5E20046300A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742597C71A03A5E20046300A /* Images.xcassets */; };
 		742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 742597CA1A03BA670046300A /* CommentMsgDetails.m */; };
 		7438FF941A09B501009481FA /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7438FF931A09B501009481FA /* QuestionCell.m */; };
@@ -130,6 +133,12 @@
 		740CBF4F1A0CF2C000456AE7 /* OwnViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnViewControl.m; path = ViewControl/OwnViewControl.m; sourceTree = "<group>"; };
 		740CBF511A0CF74C00456AE7 /* LoginViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewControl.h; path = ViewControl/LoginViewControl.h; sourceTree = "<group>"; };
 		740CBF521A0CF74C00456AE7 /* LoginViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewControl.m; path = ViewControl/LoginViewControl.m; sourceTree = "<group>"; };
+		740CBF541A0DCF6800456AE7 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserData.h; path = MsgContent/UserData.h; sourceTree = "<group>"; };
+		740CBF551A0DCF6800456AE7 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserData.m; path = MsgContent/UserData.m; sourceTree = "<group>"; };
+		740CBF571A0E2E7200456AE7 /* OwnMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OwnMsg.h; path = MsgContent/OwnMsg.h; sourceTree = "<group>"; };
+		740CBF581A0E2E7200456AE7 /* OwnMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnMsg.m; path = MsgContent/OwnMsg.m; sourceTree = "<group>"; };
+		740CBF5A1A0E362800456AE7 /* OwnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OwnCell.h; path = TableCell/OwnCell.h; sourceTree = "<group>"; };
+		740CBF5B1A0E362800456AE7 /* OwnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnCell.m; path = TableCell/OwnCell.m; sourceTree = "<group>"; };
 		742597C71A03A5E20046300A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		742597C91A03BA670046300A /* CommentMsgDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentMsgDetails.h; path = MsgContent/CommentMsgDetails.h; sourceTree = "<group>"; };
 		742597CA1A03BA670046300A /* CommentMsgDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentMsgDetails.m; path = MsgContent/CommentMsgDetails.m; sourceTree = "<group>"; };
@@ -663,6 +672,10 @@
 				74C6475E1A0A5A5A004F0DD7 /* PostMsg.m */,
 				743F2FD31A0BAEFE002D020A /* TweetMsg.h */,
 				743F2FD41A0BAEFE002D020A /* TweetMsg.m */,
+				740CBF541A0DCF6800456AE7 /* UserData.h */,
+				740CBF551A0DCF6800456AE7 /* UserData.m */,
+				740CBF571A0E2E7200456AE7 /* OwnMsg.h */,
+				740CBF581A0E2E7200456AE7 /* OwnMsg.m */,
 			);
 			name = MsgContent;
 			sourceTree = "<group>";
@@ -678,6 +691,8 @@
 				7438FF931A09B501009481FA /* QuestionCell.m */,
 				743F2FD61A0BB5A8002D020A /* TweetCell.h */,
 				743F2FD71A0BB5A8002D020A /* TweetCell.m */,
+				740CBF5A1A0E362800456AE7 /* OwnCell.h */,
+				740CBF5B1A0E362800456AE7 /* OwnCell.m */,
 			);
 			name = TabelCell;
 			sourceTree = "<group>";
@@ -849,6 +864,7 @@
 				747EC8451A00DBF70087B269 /* ASIDataDecompressor.m in Sources */,
 				74EFB7E31A02682400358F0D /* NewDetail.m in Sources */,
 				747EC8471A00DBF70087B269 /* ASIFormDataRequest.m in Sources */,
+				740CBF591A0E2E7200456AE7 /* OwnMsg.m in Sources */,
 				747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */,
 				7438FF941A09B501009481FA /* QuestionCell.m in Sources */,
 				747EC8431A00DBF70087B269 /* ASIAuthenticationDialog.m in Sources */,
@@ -858,6 +874,7 @@
 				747EC84F1A00DBF70087B269 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				74E91EEA1A01196B00087136 /* MsgDetail.m in Sources */,
 				747EC8441A00DBF70087B269 /* ASIDataCompressor.m in Sources */,
+				740CBF5C1A0E362800456AE7 /* OwnCell.m in Sources */,
 				747EC84B1A00DBF70087B269 /* ASIWebPageRequest.m in Sources */,
 				747EC7F81A00CFF70087B269 /* LoadMoreTableFooterView.m in Sources */,
 				747EC86B1A010B2B0087B269 /* XmlParser.m in Sources */,
@@ -877,6 +894,7 @@
 				74C647621A0A6110004F0DD7 /* ReportViewControl.m in Sources */,
 				745A48D51A08FC8300957748 /* QuestionViewControl.m in Sources */,
 				74FF0B061A07BCCF00239B09 /* ReplyCiewControl.m in Sources */,
+				740CBF561A0DCF6800456AE7 /* UserData.m in Sources */,
 				747EC7991A00B2870087B269 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

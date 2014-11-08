@@ -14,6 +14,8 @@
 #import "QuestionMsg.h"
 #import "PostMsg.h"
 #import "TweetMsg.h"
+#import "UserData.h"
+#import "OwnMsg.h"
 
 @interface XmlParser : NSObject
 
@@ -34,5 +36,9 @@
 + (PostMsg *) postNewParser:(NSString *)response;
 
 + (NSMutableArray *)tweetNewParser:(NSString *)response;
+
++ (UserData *) loginParser:(NSString *)response;
+
++ (NSMutableArray *) ownNewParser:(NSString*)response;
 
 @end
