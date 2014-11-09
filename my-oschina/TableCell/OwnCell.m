@@ -16,6 +16,7 @@
 @synthesize m_question;
 @synthesize m_content;
 @synthesize m_time;
+@synthesize m_height;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -72,12 +73,12 @@
     m_time.text = msg.m_pubDate;
     m_time.font = [UIFont fontWithName:@"" size:14];
 
+    self.m_height = msg.m_height;
     
     [self addSubview:m_avator];
     [self addSubview:m_ownName];
     [self addSubview:m_content];
     [self addSubview:m_time];
-    
 }
 
 @end

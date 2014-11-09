@@ -15,6 +15,7 @@
 @synthesize newsCategory;
 @synthesize commentArray;
 @synthesize ids;
+@synthesize pageIndex;
 
 - (void) viewDidLoad
 {
@@ -46,6 +47,7 @@
 - (void) loadContent
 {
     int count = (int)[commentArray count];
+    pageIndex = count;
     
     NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count/20,20];
     
@@ -85,7 +87,19 @@
 {
     NSString *respose = [request responseString];
     
-    commentArray =  [XmlParser commentsDetailParser:respose];
+    NSArray *array =  [XmlParser commentsDetailParser:respose];
+    
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
+
+    [tempArray addObjectsFromArray:commentArray];
+    [tempArray addObjectsFromArray:array];
+    
+    if(pageIndex == [tempArray count]/20 )
+    {
+        [commentArray removeAllObjects];
+    }
+    
+    [commentArray addObjectsFromArray:array];
     
     [self.pullTabView reloadData];
 }

@@ -23,6 +23,7 @@
 @property (nonatomic ,strong) PullTableView *pullTabView;
 @property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
-@property (nonatomic,strong) NSArray *commentArray;
+@property (nonatomic,strong) NSMutableArray *commentArray;
+@property int pageIndex;
 
 @end

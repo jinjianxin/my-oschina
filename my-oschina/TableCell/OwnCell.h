@@ -19,6 +19,7 @@
 @property (strong,nonatomic) UILabel *m_question;
 @property (strong,nonatomic) UILabel *m_content;
 @property (strong,nonatomic) UILabel *m_time;
+@property int m_height;
 
 - (void) setContent:(OwnMsg*)msg;
 

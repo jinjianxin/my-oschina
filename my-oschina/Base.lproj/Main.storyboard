@@ -330,7 +330,7 @@
         <!--更多-->
         <scene sceneID="ba8-X8-wAG">
             <objects>
-                <tableViewController id="dEV-UY-bK9" sceneMemberID="viewController">
+                <tableViewController id="dEV-UY-bK9" customClass="MoreViewControl" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Byw-ra-08q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
