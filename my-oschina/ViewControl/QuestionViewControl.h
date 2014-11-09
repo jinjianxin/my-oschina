@@ -22,7 +22,6 @@
 
 @interface QuestionViewControl : UITableViewController <PullTableViewDelegate,ASIHTTPRequestDelegate>
 {
-  //  RefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
 }
 

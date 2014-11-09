@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZBarSDK.h"
+
+/*#import "ZBarSDK.h"
 
 @interface QrcodeViewControl : UIViewController <ZBarReaderViewDelegate>
 
 @end
+ */

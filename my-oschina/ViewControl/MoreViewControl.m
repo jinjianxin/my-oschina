@@ -75,9 +75,10 @@
 
 - (void) qrCode
 {
+    /*
     QrcodeViewControl *qrcode = [[QrcodeViewControl alloc] init];
     qrcode.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:qrcode animated:YES];
+    [self.navigationController pushViewController:qrcode animated:YES]; */
 
 }
 
