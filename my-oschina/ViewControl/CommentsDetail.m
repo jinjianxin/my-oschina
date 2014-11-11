@@ -23,7 +23,7 @@
     
     CGRect rect = self.view.bounds;
     
-    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
+    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 65, rect.size.width , rect.size.height)];
     
     [self.view addSubview:pullTabView];
     
@@ -33,6 +33,12 @@
     pullTabView.dataSource = self;
     
     self.pullTabView.pullDelegate = self;
+    
+    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
 }
 
@@ -46,11 +52,12 @@
 
 - (void) loadContent
 {
-    int count = (int)[commentArray count];
+    int count = (int)[commentArray count]/20;
     pageIndex = count;
     
-    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count/20,20];
+    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count,20];
     
+    NSLog(@"url = %@",str);
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -58,6 +65,8 @@
     
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    [self refreshTable];
     
 }
 

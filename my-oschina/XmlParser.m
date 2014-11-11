@@ -306,10 +306,15 @@
         TBXMLElement *_appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
         TBXMLElement *_refers = [TBXML childElementNamed:@"refers" parentElement:first];
         
+        NSMutableArray *referenceArray =  nil;
+
+        
+        if(_refers!=nil)
+        {
+            referenceArray = [[NSMutableArray alloc] initWithCapacity:2];
+            
         TBXMLElement *_refersChild = [TBXML childElementNamed:@"refer" parentElement:_refers];
-        
-        NSMutableArray *referenceArray = [[NSMutableArray alloc] initWithCapacity:2];
-        
+            
         while (_refersChild!=nil) {
             
             TBXMLElement *_refertitle = [TBXML childElementNamed:@"refertitle" parentElement:_refersChild];
@@ -321,8 +326,16 @@
             
              _refersChild = [TBXML nextSiblingNamed:@"refer" searchFromElement:_refersChild];
         }
+        }
     
-        CommentMsgDetails *news = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:[TBXML textForElement:_appclient] andRefers:[TBXML textForElement:_refers]];
+        NSString *_refersContent = nil;
+        
+        if(_refers!=nil)
+        {
+            _refersContent = [TBXML textForElement:_refers];
+        }
+        
+        CommentMsgDetails *news = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:[TBXML textForElement:_appclient] andRefers:_refersContent];
         
         news.refrenceArray = referenceArray;
         [news calculateHeight];

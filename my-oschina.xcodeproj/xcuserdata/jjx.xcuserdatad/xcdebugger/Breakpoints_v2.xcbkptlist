@@ -41,30 +41,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "my-oschina/XmlParser.m"
-            timestampString = "436454630.015425"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "+commentsDetailParser:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "my-oschina/ViewControl/QuestionViewControl.h"
-            timestampString = "436887895.481614"
+            timestampString = "437314467.849012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "@interface QuestionViewControl"
-            landmarkType = "2">
+            startingLineNumber = "46"
+            endingLineNumber = "46">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
