@@ -586,4 +586,41 @@
     return array;
 }
 
++ (NSMutableArray *) searchResultParser:(NSString*)response
+{
+    
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    TBXML *tbxml = [TBXML newTBXMLWithXMLString:response error:nil];
+
+    TBXMLElement *root = tbxml.rootXMLElement;
+    
+    if(root!=nil)
+    {
+        TBXMLElement *results = [TBXML childElementNamed:@"results" parentElement:root];
+        if(results!=nil)
+        {
+            TBXMLElement *result = [TBXML childElementNamed:@"result" parentElement:results];
+            
+            while (result!=nil) {
+                
+                TBXMLElement *_id = [TBXML childElementNamed:@"objid" parentElement:result];
+                TBXMLElement *_type = [TBXML childElementNamed:@"type" parentElement:result];
+                TBXMLElement *_title = [TBXML childElementNamed:@"title" parentElement:result];
+                TBXMLElement *_url = [TBXML childElementNamed:@"url" parentElement:result];
+                TBXMLElement *_author = [TBXML childElementNamed:@"author" parentElement:result];
+                
+                ResultMsg *msg = [[ResultMsg alloc] initContent:[TBXML textForElement:_id] andType:[TBXML textForElement:_type] andTitle:[TBXML textForElement:_title] andUrl:[TBXML textForElement:_url] andAuthor:[TBXML textForElement:_author]];
+                
+                [array addObject:msg];
+                
+                result = [TBXML nextSiblingNamed:@"result" searchFromElement:result];
+            }
+            
+        }
+    }
+    
+    return array;
+}
+
 @end

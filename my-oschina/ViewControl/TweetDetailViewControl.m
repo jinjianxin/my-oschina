@@ -23,10 +23,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    /*
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(rightButtonClick:)];
     
 
     self.parentViewController.navigationItem.rightBarButtonItem = item;
+     */
+    
+    self.parentViewController.navigationController.title = @"***";
     
     m_webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 375, 667)];
     m_webView.autoresizesSubviews = YES;
