@@ -2,35 +2,41 @@
 //  QuestionViewControl.m
 //  my-oschina
 //
-//  Created by jjx on 14/11/4.
+//  Created by jjx on 14/11/10.
 //  Copyright (c) 2014年 jjx. All rights reserved.
 //
 
 #import "QuestionViewControl.h"
 
+@interface QuestionViewControl ()
+
+@end
 
 @implementation QuestionViewControl
 
 @synthesize newsCategory;
 @synthesize newsArray;
+@synthesize pullTableView;
 
-- (void) viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
     self.pullTableView.pullBackgroundColor = [UIColor whiteColor];
     self.pullTableView.pullTextColor = [UIColor blackColor];
     self.pullTableView.pullDelegate = self;
-
+    
+    self.pullTableView.delegate = self;
+    self.pullTableView.dataSource = self;
     
     newsArray = [[NSMutableArray alloc] initWithCapacity:2];
-    
-    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-    {
-        self.parentViewController.edgesForExtendedLayout = UIRectEdgeNone;
-        self.parentViewController.automaticallyAdjustsScrollViewInsets = NO;
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -41,6 +47,10 @@
     
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)refreshTable {
     self.pullTableView.pullLastRefreshDate = [NSDate date];
@@ -65,8 +75,6 @@
 
 - (void) loadContent
 {
-    //http://www.oschina.net/action/api/post_list?catalog=1&pageIndex=0&pageSize=20
-    
     int count = (int)[newsArray count];
     
     NSString *str = [NSString stringWithFormat:@"%@catalog=%d&pageIndex=%d&pageSize=20",question_url,newsCategory,count/20];
@@ -87,13 +95,12 @@
 - (void) requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
-
-   NSArray *array= [XmlParser questionNewParser:responseString];
+    NSArray *array= [XmlParser questionNewParser:responseString];
     
     [newsArray addObjectsFromArray:array];
     
-    [self.tableView reloadData];
-
+    [self.pullTableView reloadData];
+    
 }
 
 -(void) requestFailed:(ASIHTTPRequest *)request
@@ -101,17 +108,17 @@
     
 }
 
-- (IBAction)questionSelect:(id)sender {    
+- (IBAction)questionSelect:(id)sender {
     UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
     
     newsCategory = (int)selectedSegment+1;
     
     [newsArray removeAllObjects];
-    [self.tableView reloadData];
+    [self.pullTableView reloadData];
     
     [self loadContent];
-
+    
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -133,7 +140,7 @@
     int index = (int)[indexPath row];
     QuestionMsg *msg = [newsArray objectAtIndex:index];
     cell.tag = [self newsCategory];
-   
+    
     [cell setContent:msg];
     
     return cell;
@@ -152,7 +159,6 @@
     postDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     postDetail.ids = msg.ids ;
     
-
     CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
     commentDetail.tabBarItem.title = @"评论";
     commentDetail.view.backgroundColor = [UIColor whiteColor];
@@ -170,8 +176,7 @@
     reportView.tabBarItem.title=@"举报";
     reportView.view.backgroundColor = [UIColor whiteColor];
     reportView.tabBarItem.image = [UIImage imageNamed:@"share"];
-    
-    
+
     
     newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];
     newTab.hidesBottomBarWhenPushed = YES;

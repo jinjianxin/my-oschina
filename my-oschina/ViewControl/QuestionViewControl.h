@@ -2,11 +2,12 @@
 //  QuestionViewControl.h
 //  my-oschina
 //
-//  Created by jjx on 14/11/4.
+//  Created by jjx on 14/11/10.
 //  Copyright (c) 2014年 jjx. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+
 #import "RefreshTableHeaderView.h"
 #import "ASIHTTPRequest.h"
 #import "prefix_define.h"
@@ -20,17 +21,16 @@
 #import "ReportViewControl.h"
 
 
-@interface QuestionViewControl : UITableViewController <PullTableViewDelegate,ASIHTTPRequestDelegate>
+@interface QuestionViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     BOOL _reloading;
 }
 
-@property (strong, nonatomic) IBOutlet PullTableView *pullTableView;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *questionSeg;
+@property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
+
 - (IBAction)questionSelect:(id)sender;
 
 @property int newsCategory;
 @property (strong,nonatomic) NSMutableArray *newsArray;
-
 @end

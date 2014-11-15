@@ -147,6 +147,9 @@
         [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
         pullTableIsRefreshing = NO;
     }
+    else{
+        [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self];   
+    }
 }
 
 - (void)setPullTableIsLoadingMore:(BOOL)isLoadingMore

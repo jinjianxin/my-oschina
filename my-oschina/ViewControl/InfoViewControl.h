@@ -13,17 +13,20 @@
 #import "NewDetail.h"
 #import "CommentsDetail.h"
 #import "ShareDetail.h"
+#import "MyUITabBarControl.h"
+#import "SearchViewController.h"
 
-@interface InfoViewControl : UITableViewController <PullTableViewDelegate,ASIHTTPRequestDelegate>
+@interface InfoViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
 {
    // PullTableView *pullTableView;
 }
+- (IBAction)searchSender:(id)sender;
 
-
-@property (strong,nonatomic) IBOutlet PullTableView *pullTableView;
 @property (strong,nonatomic) NSMutableArray *newsArray;
-
+@property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
 - (IBAction)categorySender:(id)sender;
+
+
 
 @property int newsCategory;
 @property int pageIndex;

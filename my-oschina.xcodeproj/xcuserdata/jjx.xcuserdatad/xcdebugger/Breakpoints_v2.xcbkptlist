@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "my-oschina/XmlParser.h"
-            timestampString = "437138701.813054"
+            timestampString = "437661768.411186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "+blogDetailParser:"
             landmarkType = "4">
          </BreakpointContent>
@@ -41,29 +41,27 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "my-oschina/XmlParser.m"
-            timestampString = "436454630.015425"
+            filePath = "my-oschina/ViewControl/QuestionViewControl.h"
+            timestampString = "437314467.849012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "+commentsDetailParser:"
-            landmarkType = "5">
+            startingLineNumber = "46"
+            endingLineNumber = "46">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "my-oschina/ViewControl/QuestionViewControl.h"
-            timestampString = "436887895.481614"
+            filePath = "my-oschina/ViewControl/InfoViewControl.h"
+            timestampString = "437576593.53152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "@interface QuestionViewControl"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "@interface InfoViewControl"
             landmarkType = "2">
          </BreakpointContent>
       </BreakpointProxy>

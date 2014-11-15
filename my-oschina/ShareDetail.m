@@ -9,6 +9,9 @@
 #import "ShareDetail.h"
 
 @implementation ShareDetail
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize shareRenren;
 @synthesize shareSina;
@@ -47,6 +50,23 @@
     [self.view addSubview:shareWeichat];
     
     
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [mydelegate setBarTitle:@"分享" andButtonTitle:@"" andProtocol:self];
+}
+
+-(void) barButttonClick
+{
+    
+}
+
+-(void) setMyDelegate:(id)delegate
+{
+    mydelegate = delegate;
 }
 
 -(void)sinaAction:(id)sender {

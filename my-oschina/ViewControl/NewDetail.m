@@ -12,6 +12,9 @@
 //http://www.oschina.net/action/api/news_detail?id=10002487
 
 @implementation NewDetail
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize msgDetail;
 @synthesize webView;
@@ -21,14 +24,13 @@
 - (void) loadView
 {
     [super loadView];
-    
 
     CGRect rect = self.view.bounds;
 
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
     
     [self.view addSubview:webView];
-
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -49,9 +51,25 @@
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
     [request setDelegate:self];
-    [request startAsynchronous]; 
+    [request startAsynchronous];
+    
+    //[mydelegate setBarTitle:@"咨询详情"];
+    [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"收藏此文" andProtocol:self];
     
 }
+
+- (void)barButttonClick
+{
+    NSLog(@"收藏");
+}
+
+
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
+    
+}
+
 
 - (void) requestFinished:(ASIHTTPRequest *)request
 {

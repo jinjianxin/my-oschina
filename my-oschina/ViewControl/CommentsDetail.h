@@ -15,9 +15,10 @@
 #import "CommentsDetail.h"
 #import "CommentCell.h"
 #import "ReplyCiewControl.h"
+#import "CustomProtocol.h"
 
 
-@interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,ViewProtocol>
 
 @property (nonatomic,weak) MsgDetail *msgDetail;
 @property (nonatomic ,strong) PullTableView *pullTabView;
@@ -25,5 +26,8 @@
 @property int newsCategory;
 @property (nonatomic,strong) NSMutableArray *commentArray;
 @property int pageIndex;
+@property BOOL isLoadOver;
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+
 
 @end

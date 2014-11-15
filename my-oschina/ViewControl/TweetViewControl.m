@@ -13,6 +13,7 @@
 @synthesize pullTableView;
 @synthesize m_uid;
 @synthesize m_newsArray;
+@synthesize m_countPage;
 
 - (void)viewDidLoad
 {
@@ -48,6 +49,7 @@
 - (void) loadContent
 {
     int count = (int)[m_newsArray count]/20;
+    m_countPage = count;
     
     NSString *str = [NSString stringWithFormat:@"%@uid=%d&pageIndex=%d&pageSize=%d", tweet_url,self.m_uid,count,20];
     NSLog(@"str = %@",str);
@@ -66,6 +68,17 @@
    
     NSArray *array = [XmlParser tweetNewParser:responseString];
     
+    
+    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    [tempArray addObjectsFromArray:array];
+    [tempArray addObjectsFromArray:m_newsArray];
+    
+    if (m_countPage == [tempArray count] / 20) {
+        [m_newsArray removeAllObjects];
+        [pullTableView reloadData];
+    }
+
     [m_newsArray addObjectsFromArray:array];
   
     [self.pullTableView reloadData];
@@ -159,4 +172,34 @@
     [self loadContent];
     
 }
+
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath :(NSIndexPath *)indexPath
+{
+ 
+    TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
+    
+    UITabBarController *newTab = [[UITabBarController alloc] init];
+    
+    TweetDetailViewControl *tweetDetail = [[TweetDetailViewControl alloc] init];
+    tweetDetail.view.backgroundColor = [UIColor whiteColor];
+    tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
+    tweetDetail.tabBarItem.title = @"咨询详情";
+    tweetDetail.m_uid = msg.m_id;
+    
+
+    CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
+    commentDetail.view.backgroundColor = [UIColor whiteColor];
+    commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    commentDetail.tabBarItem.title = @"评论";
+    commentDetail.ids = msg.m_id;
+    commentDetail.newsCategory = 3;
+    
+    newTab.viewControllers = [NSArray arrayWithObjects:tweetDetail,commentDetail, nil];
+    newTab.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:newTab animated:YES];
+    
+}
+
 @end

@@ -9,6 +9,9 @@
 #import "CommentsDetail.h"
 
 @implementation CommentsDetail
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize msgDetail;
 @synthesize pullTabView;
@@ -16,14 +19,19 @@
 @synthesize commentArray;
 @synthesize ids;
 @synthesize pageIndex;
+@synthesize isLoadOver;
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
+    isLoadOver = NO;
+    
     CGRect rect = self.view.bounds;
     
-    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
+    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 65, rect.size.width , rect.size.height-65)];
+    
+    pullTabView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     [self.view addSubview:pullTabView];
     
@@ -34,6 +42,12 @@
     
     self.pullTabView.pullDelegate = self;
     
+    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -41,16 +55,29 @@
     [super viewDidAppear:animated];
     
     [self loadContent];
+    
+    [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
 
+}
+
+-(void)barButttonClick
+{
+    NSLog(@"评论");
+}
+
+-(void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
 }
 
 - (void) loadContent
 {
-    int count = (int)[commentArray count];
+    int count = (int)[commentArray count]/20;
     pageIndex = count;
     
-    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count/20,20];
+    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count,20];
     
+    NSLog(@"url = %@",str);
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -58,6 +85,8 @@
     
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    [self refreshTable];
     
 }
 
@@ -69,7 +98,10 @@
 - (void)loadMoreDataToTable {
     self.pullTabView.pullTableIsLoadingMore = NO;
     
-    [self loadContent];
+    if(!isLoadOver)
+    {
+        [self loadContent];
+    }
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
@@ -89,7 +121,12 @@
     
     NSArray *array =  [XmlParser commentsDetailParser:respose];
     
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
+    if(array.count <20)
+    {
+        isLoadOver = YES;
+    }
+    
+   /* NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
 
     [tempArray addObjectsFromArray:commentArray];
     [tempArray addObjectsFromArray:array];
@@ -97,7 +134,7 @@
     if(pageIndex == [tempArray count]/20 )
     {
         [commentArray removeAllObjects];
-    }
+    } */
     
     [commentArray addObjectsFromArray:array];
     

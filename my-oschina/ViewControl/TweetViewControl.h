@@ -12,6 +12,8 @@
 #import "ASIHTTPRequest.h"
 #import "XmlParser.h"
 #import "TweetCell.h"
+#import "TweetDetailViewControl.h"
+#import "CommentsDetail.h"
 
 @interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate>
 
@@ -20,6 +22,7 @@
 - (IBAction)segSender:(id)sender;
 @property int m_uid;
 @property NSMutableArray *m_newsArray;
+@property int m_countPage;
 
 
 @end
