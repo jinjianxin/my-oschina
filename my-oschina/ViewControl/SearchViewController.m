@@ -281,6 +281,37 @@
     }
     else{
         
+        ResultMsg *msg = [m_resultArray objectAtIndex:[indexPath row]];
+        
+        UITabBarController *newTab = [[UITabBarController alloc] init];
+        
+        
+        NewDetail* newDetail = [[NewDetail alloc] init];
+        newDetail.view.backgroundColor = [UIColor whiteColor];
+        newDetail.title = @"资讯";
+        newDetail.tabBarItem.title = @"资讯";
+        newDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
+        newDetail.newsCategory = 1;//[self newsCategory];
+       // newDetail.msgDetail = msg;
+        newDetail.ids = msg.m_id;
+        
+        CommentsDetail* commentDetail = [[CommentsDetail alloc] init];
+        commentDetail.tabBarItem.title = @"评论";
+        commentDetail.view.backgroundColor = [UIColor whiteColor];
+        commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+        //commentDetail.msgDetail = msg;
+        commentDetail.newsCategory = 1;//[self newsCategory];
+        commentDetail.ids = msg.m_id;
+        
+        ShareDetail* shareDetail = [[ShareDetail alloc] init];
+        shareDetail.tabBarItem.title = @"分享";
+        shareDetail.view.backgroundColor = [UIColor whiteColor];
+        shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+        
+        newTab.viewControllers = [NSArray arrayWithObjects:newDetail,commentDetail,shareDetail, nil];
+        
+        [self.navigationController pushViewController:newTab animated:YES];
+        
     }
 }
 

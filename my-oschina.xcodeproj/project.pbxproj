@@ -28,6 +28,9 @@
 		745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48D71A090E7E00957748 /* QuestionMsg.m */; };
 		746B620E1A0A665000A1C9BE /* TweetViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 746B620D1A0A665000A1C9BE /* TweetViewControl.m */; };
 		7476B6911A162C0200B4FE5F /* ResultMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476B6901A162C0200B4FE5F /* ResultMsg.m */; };
+		7476B7081A177F0400B4FE5F /* MyUITabBarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476B7071A177F0400B4FE5F /* MyUITabBarControl.m */; };
+		7476B70B1A17852800B4FE5F /* searchWhite@2x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7476B7091A17852800B4FE5F /* searchWhite@2x 2.png */; };
+		7476B70C1A17852800B4FE5F /* searchWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7476B70A1A17852800B4FE5F /* searchWhite@2x.png */; };
 		747EC7991A00B2870087B269 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7981A00B2870087B269 /* main.m */; };
 		747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79B1A00B2870087B269 /* AppDelegate.m */; };
 		747EC79F1A00B2870087B269 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79E1A00B2870087B269 /* ViewController.m */; };
@@ -178,6 +181,11 @@
 		746B620D1A0A665000A1C9BE /* TweetViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetViewControl.m; path = ViewControl/TweetViewControl.m; sourceTree = "<group>"; };
 		7476B68F1A162C0200B4FE5F /* ResultMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultMsg.h; path = MsgContent/ResultMsg.h; sourceTree = "<group>"; };
 		7476B6901A162C0200B4FE5F /* ResultMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultMsg.m; path = MsgContent/ResultMsg.m; sourceTree = "<group>"; };
+		7476B7051A177E2400B4FE5F /* CustomProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomProtocol.h; sourceTree = "<group>"; };
+		7476B7061A177F0400B4FE5F /* MyUITabBarControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyUITabBarControl.h; path = ViewControl/MyUITabBarControl.h; sourceTree = "<group>"; };
+		7476B7071A177F0400B4FE5F /* MyUITabBarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyUITabBarControl.m; path = ViewControl/MyUITabBarControl.m; sourceTree = "<group>"; };
+		7476B7091A17852800B4FE5F /* searchWhite@2x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchWhite@2x 2.png"; sourceTree = "<group>"; };
+		7476B70A1A17852800B4FE5F /* searchWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchWhite@2x.png"; sourceTree = "<group>"; };
 		747EC7931A00B2870087B269 /* my-oschina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "my-oschina.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		747EC7971A00B2870087B269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747EC7981A00B2870087B269 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -442,6 +450,7 @@
 				747EC7A31A00B2870087B269 /* Images.xcassets */,
 				747EC7A51A00B2870087B269 /* LaunchScreen.xib */,
 				747EC7961A00B2870087B269 /* Supporting Files */,
+				7476B7051A177E2400B4FE5F /* CustomProtocol.h */,
 			);
 			path = "my-oschina";
 			sourceTree = "<group>";
@@ -475,6 +484,8 @@
 		747EC7BC1A00B8AF0087B269 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				7476B7091A17852800B4FE5F /* searchWhite@2x 2.png */,
+				7476B70A1A17852800B4FE5F /* searchWhite@2x.png */,
 				74DF81E31A123ACC00E8BD8F /* audio.html */,
 				74DF81E51A123B1D00E8BD8F /* jquery-1.7.1.min.js */,
 				74DF81E61A123B1D00E8BD8F /* jquery.js */,
@@ -546,6 +557,8 @@
 				7440E98D1A12564400D4E560 /* TestViewController.m */,
 				74B95DA11A139A3D009BA4D4 /* SearchViewController.h */,
 				74B95DA21A139A3D009BA4D4 /* SearchViewController.m */,
+				7476B7061A177F0400B4FE5F /* MyUITabBarControl.h */,
+				7476B7071A177F0400B4FE5F /* MyUITabBarControl.m */,
 			);
 			name = ViewControl;
 			sourceTree = "<group>";
@@ -844,6 +857,7 @@
 				747EC7D31A00C1B60087B269 /* microcomment.png in Resources */,
 				744844BD1A089CD000FAC42E /* share_sina.png in Resources */,
 				747EC8071A00D0110087B269 /* blueArrow@2x.png in Resources */,
+				7476B70C1A17852800B4FE5F /* searchWhite@2x.png in Resources */,
 				742597C81A03A5E20046300A /* Images.xcassets in Resources */,
 				747EC7C01A00B8F50087B269 /* info@2x.png in Resources */,
 				747EC7E71A00C90F0087B269 /* rating@2x.png in Resources */,
@@ -870,6 +884,7 @@
 				747EC7BE1A00B8D90087B269 /* answer@2x.png in Resources */,
 				747EC7C61A00B9B30087B269 /* active@2x.png in Resources */,
 				74F658DB1A0322570011A664 /* share@2x.png in Resources */,
+				7476B70B1A17852800B4FE5F /* searchWhite@2x 2.png in Resources */,
 				747EC7E31A00C89F0087B269 /* logo@2x.png in Resources */,
 				744844C01A089CD000FAC42E /* share_weixinFriend.png in Resources */,
 				747EC7A41A00B2870087B269 /* Images.xcassets in Resources */,
@@ -928,6 +943,7 @@
 				74EFB7E31A02682400358F0D /* NewDetail.m in Sources */,
 				747EC8471A00DBF70087B269 /* ASIFormDataRequest.m in Sources */,
 				740CBF591A0E2E7200456AE7 /* OwnMsg.m in Sources */,
+				7476B7081A177F0400B4FE5F /* MyUITabBarControl.m in Sources */,
 				747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */,
 				7438FF941A09B501009481FA /* QuestionCell.m in Sources */,
 				747EC8431A00DBF70087B269 /* ASIAuthenticationDialog.m in Sources */,

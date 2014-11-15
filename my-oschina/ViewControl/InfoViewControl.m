@@ -190,11 +190,7 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     MsgDetail* msg = [newsArray objectAtIndex:[indexPath row]];
-
-    UITabBarController* newTab = [[UITabBarController alloc] init];
-    //TestViewController *newTab = [[TestViewController alloc] init];
-
-    // newTab.title = @"咨询详情";
+    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
 
     NewDetail* newDetail = [[NewDetail alloc] init];
     newDetail.view.backgroundColor = [UIColor whiteColor];
@@ -204,7 +200,8 @@
     newDetail.newsCategory = [self newsCategory];
     newDetail.msgDetail = msg;
     newDetail.ids = msg.ids;
-
+    [newDetail setMyDelegate:newTab];
+    
     CommentsDetail* commentDetail = [[CommentsDetail alloc] init];
     commentDetail.tabBarItem.title = @"评论";
     commentDetail.view.backgroundColor = [UIColor whiteColor];
@@ -212,11 +209,13 @@
     commentDetail.msgDetail = msg;
     commentDetail.newsCategory = [self newsCategory];
     commentDetail.ids = msg.ids;
+    [commentDetail setMyDelegate:newTab];
 
     ShareDetail* shareDetail = [[ShareDetail alloc] init];
     shareDetail.tabBarItem.title = @"分享";
     shareDetail.view.backgroundColor = [UIColor whiteColor];
     shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+    [shareDetail setMyDelegate:newTab];
 
     newTab.viewControllers = [NSArray arrayWithObjects:newDetail, commentDetail, shareDetail, nil];
     newTab.hidesBottomBarWhenPushed = YES;

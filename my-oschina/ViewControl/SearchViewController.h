@@ -10,6 +10,9 @@
 #import "prefix_define.h"
 #import "ASIFormDataRequest.h"
 #import "XmlParser.h"
+#import "CommentsDetail.h"
+#import "NewDetail.h"
+#import "ShareDetail.h"
 
 @interface SearchViewController : UIViewController  <UITabBarDelegate,UITableViewDataSource,UISearchBarDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 

@@ -9,6 +9,9 @@
 #import "CommentsDetail.h"
 
 @implementation CommentsDetail
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize msgDetail;
 @synthesize pullTabView;
@@ -16,14 +19,19 @@
 @synthesize commentArray;
 @synthesize ids;
 @synthesize pageIndex;
+@synthesize isLoadOver;
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
+    isLoadOver = NO;
+    
     CGRect rect = self.view.bounds;
     
-    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 65, rect.size.width , rect.size.height)];
+    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 65, rect.size.width , rect.size.height-65)];
+    
+    pullTabView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     [self.view addSubview:pullTabView];
     
@@ -47,7 +55,19 @@
     [super viewDidAppear:animated];
     
     [self loadContent];
+    
+    [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
 
+}
+
+-(void)barButttonClick
+{
+    NSLog(@"评论");
+}
+
+-(void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
 }
 
 - (void) loadContent
@@ -78,7 +98,10 @@
 - (void)loadMoreDataToTable {
     self.pullTabView.pullTableIsLoadingMore = NO;
     
-    [self loadContent];
+    if(!isLoadOver)
+    {
+        [self loadContent];
+    }
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
@@ -98,7 +121,12 @@
     
     NSArray *array =  [XmlParser commentsDetailParser:respose];
     
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
+    if(array.count <20)
+    {
+        isLoadOver = YES;
+    }
+    
+   /* NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
 
     [tempArray addObjectsFromArray:commentArray];
     [tempArray addObjectsFromArray:array];
@@ -106,7 +134,7 @@
     if(pageIndex == [tempArray count]/20 )
     {
         [commentArray removeAllObjects];
-    }
+    } */
     
     [commentArray addObjectsFromArray:array];
     

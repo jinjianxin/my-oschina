@@ -13,7 +13,7 @@
 #import "NewDetail.h"
 #import "CommentsDetail.h"
 #import "ShareDetail.h"
-#import "TestViewController.h"
+#import "MyUITabBarControl.h"
 #import "SearchViewController.h"
 
 @interface InfoViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>

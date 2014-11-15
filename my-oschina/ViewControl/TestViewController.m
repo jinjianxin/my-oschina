@@ -22,10 +22,6 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:nil];
     self.navigationItem.rightBarButtonItem = item;
-    
-
-
-   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +31,6 @@
 
 - (void) tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-  
 }
 
 
