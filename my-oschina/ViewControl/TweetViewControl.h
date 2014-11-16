@@ -14,6 +14,9 @@
 #import "TweetCell.h"
 #import "TweetDetailViewControl.h"
 #import "CommentsDetail.h"
+#import "CustomProtocol.h"
+#import "MyUITabBarControl.h"
+
 
 @interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate>
 

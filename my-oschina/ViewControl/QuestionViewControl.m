@@ -150,7 +150,8 @@
 {
     QuestionMsg *msg  = [newsArray objectAtIndex:[indexPath row]];
     
-    UITabBarController *newTab = [[UITabBarController alloc] init];
+    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+    newTab.title = @"问答详情";
     
     
     PostDetails *postDetail = [[PostDetails alloc] init];
@@ -158,6 +159,8 @@
     postDetail.tabBarItem.title = @"详情";
     postDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     postDetail.ids = msg.ids ;
+    [postDetail setMyDelegate:newTab];
+
     
     CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
     commentDetail.tabBarItem.title = @"评论";
@@ -165,17 +168,20 @@
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
     commentDetail.ids = msg.ids;
     commentDetail.newsCategory = 2;
+    [commentDetail setMyDelegate:newTab];
 
     
     ShareDetail *shareDetail = [[ShareDetail alloc] init];
     shareDetail.tabBarItem.title=@"分享";
     shareDetail.view.backgroundColor = [UIColor whiteColor];
     shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+    [shareDetail setMyDelegate:newTab];
     
     ReportViewControl *reportView = [[ReportViewControl alloc] init];
     reportView.tabBarItem.title=@"举报";
     reportView.view.backgroundColor = [UIColor whiteColor];
     reportView.tabBarItem.image = [UIImage imageNamed:@"share"];
+    [reportView setMyDelegate:newTab];
 
     
     newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];

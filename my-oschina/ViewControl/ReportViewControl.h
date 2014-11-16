@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomProtocol.h"
 
-@interface ReportViewControl : UIViewController
+@interface ReportViewControl : UIViewController <ViewProtocol>
+
+-(void) setMyDelegate:(id<TabBarProtocol>)delegate;
 
 @end

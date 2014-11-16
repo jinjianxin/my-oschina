@@ -74,6 +74,8 @@
     }
 
     NSURL* url = [NSURL URLWithString:str];
+    
+    NSLog(@"%@",url);
 
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
 
@@ -191,6 +193,7 @@
 {
     MsgDetail* msg = [newsArray objectAtIndex:[indexPath row]];
     MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+    newTab.title = @"资讯详情";
 
     NewDetail* newDetail = [[NewDetail alloc] init];
     newDetail.view.backgroundColor = [UIColor whiteColor];
@@ -201,6 +204,8 @@
     newDetail.msgDetail = msg;
     newDetail.ids = msg.ids;
     [newDetail setMyDelegate:newTab];
+    [newDetail viewDidAppear:YES];
+    
     
     CommentsDetail* commentDetail = [[CommentsDetail alloc] init];
     commentDetail.tabBarItem.title = @"评论";
@@ -210,15 +215,21 @@
     commentDetail.newsCategory = [self newsCategory];
     commentDetail.ids = msg.ids;
     [commentDetail setMyDelegate:newTab];
+    //[commentDetail viewDidAppear:YES];
 
     ShareDetail* shareDetail = [[ShareDetail alloc] init];
     shareDetail.tabBarItem.title = @"分享";
     shareDetail.view.backgroundColor = [UIColor whiteColor];
     shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
     [shareDetail setMyDelegate:newTab];
-
+    //[shareDetail viewDidAppear:YES];
+    
+    [newDetail viewDidAppear:YES];
     newTab.viewControllers = [NSArray arrayWithObjects:newDetail, commentDetail, shareDetail, nil];
     newTab.hidesBottomBarWhenPushed = YES;
+    
+    //self.navigationController.navigationBar.topItem.title=@"test";
+    
     [self.navigationController pushViewController:newTab animated:YES];
 }
 

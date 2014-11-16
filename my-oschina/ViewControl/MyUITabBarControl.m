@@ -17,13 +17,11 @@
 
 
 - (void) viewDidAppear:(BOOL)animated
-{
-    self.title = @"咨询详情";
-    
+{    
     barButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
     [barButton setTitle:@"收藏此文" forState:UIControlStateNormal];
     [barButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [barButton setTitleColor:[UIColor redColor] forState:UIControlStateReserved];
+    [barButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [barButton addTarget:self action:@selector(clickSearch:) forControlEvents:UIControlEventTouchDown];
     
     

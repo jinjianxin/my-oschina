@@ -24,5 +24,7 @@
 @property int m_category;
 @property (strong,nonatomic) NSMutableArray *m_newsArray;
 @property int m_countPage;
+@property BOOL m_isLoadOver;
+
 
 @end

@@ -11,11 +11,14 @@
 #import "prefix_define.h"
 #import "TBXML.h"
 #import "XmlParser.h"
+#import "CustomProtocol.h"
 
-@interface TweetDetailViewControl : UIViewController <ASIHTTPRequestDelegate>
+@interface TweetDetailViewControl : UIViewController <ASIHTTPRequestDelegate,ViewProtocol>
 
 @property (strong,nonatomic) NSString *m_uid;
 @property (strong,nonatomic) UIWebView *m_webView;
 @property (strong,nonatomic) UITextView *m_textField;
+
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
 
 @end

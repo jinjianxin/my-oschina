@@ -12,13 +12,16 @@
 #import "SingleNews.h"
 #import "prefix_define.h"
 #import "XmlParser.h"
+#import "CustomProtocol.h"
 
-@interface PostDetails : UIViewController <ASIHTTPRequestDelegate>
+@interface PostDetails : UIViewController <ASIHTTPRequestDelegate,ViewProtocol>
 
 @property (strong,nonatomic) UIWebView *webView;
 
 @property (strong, nonatomic) IBOutlet UIView *myView;
 @property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
+
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
 
 @end

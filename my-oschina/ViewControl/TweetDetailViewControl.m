@@ -13,6 +13,9 @@
 @end
 
 @implementation TweetDetailViewControl
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize m_uid;
 @synthesize m_webView;
@@ -22,13 +25,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    /*
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(rightButtonClick:)];
-    
-
-    self.parentViewController.navigationItem.rightBarButtonItem = item;
-     */
     
     self.parentViewController.navigationController.title = @"***";
     
@@ -68,6 +64,32 @@
                                                 action:@selector(hideKeyboard)];
     gesture.numberOfTapsRequired = 1; //手势敲击的次数
     [self.view addGestureRecognizer:gesture];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    NSString* str =
+    [NSString stringWithFormat:@"%@id=%@", api_tweet_detail, m_uid];
+    
+    ASIHTTPRequest* request =
+    [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+    
+    [mydelegate setBarTitle:@"动态详情" andButtonTitle:@"发表" andProtocol:self];
+}
+
+- (void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
+}
+
+-(void)barButttonClick
+{
+    
 }
 
 - (void)rightButtonClick:(id) sender
@@ -113,19 +135,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 
-    NSString* str =
-        [NSString stringWithFormat:@"%@id=%@", api_tweet_detail, m_uid];
-
-    ASIHTTPRequest* request =
-        [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
-
-    [request setDelegate:self];
-    [request startAsynchronous];
-}
 
 - (void)requestFinished:(ASIHTTPRequest*)request
 {

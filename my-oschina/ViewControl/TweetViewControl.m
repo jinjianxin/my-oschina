@@ -180,13 +180,15 @@
  
     TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
     
-    UITabBarController *newTab = [[UITabBarController alloc] init];
+    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+    newTab.title = @"动态详情";
     
     TweetDetailViewControl *tweetDetail = [[TweetDetailViewControl alloc] init];
     tweetDetail.view.backgroundColor = [UIColor whiteColor];
     tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     tweetDetail.tabBarItem.title = @"咨询详情";
     tweetDetail.m_uid = msg.m_id;
+    
     
 
     CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
@@ -195,6 +197,7 @@
     commentDetail.tabBarItem.title = @"评论";
     commentDetail.ids = msg.m_id;
     commentDetail.newsCategory = 3;
+    [commentDetail setMyDelegate:newTab];
     
     newTab.viewControllers = [NSArray arrayWithObjects:tweetDetail,commentDetail, nil];
     newTab.hidesBottomBarWhenPushed = YES;

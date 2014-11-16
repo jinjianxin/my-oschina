@@ -35,6 +35,8 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
+   // [super viewDidAppear:animated];
+    
     NSString *str ;
     
     if(newsCategory ==1)
@@ -60,16 +62,37 @@
 
 - (void)barButttonClick
 {
-    NSLog(@"收藏");
-}
+    NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
 
+    NSString* uid = [userData stringForKey:@"uid"];
+
+    if (uid != nil) {
+
+        NSString* str = [NSString stringWithFormat:@"%@?uid=%@&?type=4?&objid=%@", api_favorite_add,uid,ids];
+        
+        ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:str]];
+        
+        [request setCompletionBlock:^{
+            NSString *responseString = [request responseString ];
+            
+            NSLog(@"result = %@",responseString);
+            
+        }];
+        
+        [request setFailedBlock:^{
+            
+        }];
+        
+        [request startAsynchronous];
+    
+    }
+}
 
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate
 {
     mydelegate = delegate;
     
 }
-
 
 - (void) requestFinished:(ASIHTTPRequest *)request
 {

@@ -18,7 +18,6 @@
 		743F2FD51A0BAEFE002D020A /* TweetMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F2FD41A0BAEFE002D020A /* TweetMsg.m */; };
 		743F2FD81A0BB5A8002D020A /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F2FD71A0BB5A8002D020A /* TweetCell.m */; };
 		743F2FDA1A0BC248002D020A /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 743F2FD91A0BC248002D020A /* comment.png */; };
-		7440E98E1A12564400D4E560 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7440E98D1A12564400D4E560 /* TestViewController.m */; };
 		744844B81A08983A00FAC42E /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744844B71A08983A00FAC42E /* AsyncImageView.m */; };
 		744844BD1A089CD000FAC42E /* share_sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844B91A089CD000FAC42E /* share_sina.png */; };
 		744844BE1A089CD000FAC42E /* share_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BA1A089CD000FAC42E /* share_tencent.png */; };
@@ -165,8 +164,6 @@
 		743F2FD61A0BB5A8002D020A /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TweetCell.h; path = TableCell/TweetCell.h; sourceTree = "<group>"; };
 		743F2FD71A0BB5A8002D020A /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TweetCell.m; path = TableCell/TweetCell.m; sourceTree = "<group>"; };
 		743F2FD91A0BC248002D020A /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
-		7440E98C1A12564400D4E560 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ViewControl/TestViewController.h; sourceTree = "<group>"; };
-		7440E98D1A12564400D4E560 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ViewControl/TestViewController.m; sourceTree = "<group>"; };
 		744844B61A08983A00FAC42E /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		744844B71A08983A00FAC42E /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		744844B91A089CD000FAC42E /* share_sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_sina.png; sourceTree = "<group>"; };
@@ -553,8 +550,6 @@
 				74CD83581A10D6FA007B16BD /* QuestionViewControl.m */,
 				74CD835D1A10E644007B16BD /* TweetDetailViewControl.h */,
 				74CD835E1A10E644007B16BD /* TweetDetailViewControl.m */,
-				7440E98C1A12564400D4E560 /* TestViewController.h */,
-				7440E98D1A12564400D4E560 /* TestViewController.m */,
 				74B95DA11A139A3D009BA4D4 /* SearchViewController.h */,
 				74B95DA21A139A3D009BA4D4 /* SearchViewController.m */,
 				7476B7061A177F0400B4FE5F /* MyUITabBarControl.h */,
@@ -926,7 +921,6 @@
 				747EC84E1A00DBF70087B269 /* ASICloudFilesContainerRequest.m in Sources */,
 				747EC7F91A00CFF70087B269 /* MessageInterceptor.m in Sources */,
 				745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */,
-				7440E98E1A12564400D4E560 /* TestViewController.m in Sources */,
 				74E91EEF1A011F9400087136 /* MsgCell.m in Sources */,
 				74C6475F1A0A5A5A004F0DD7 /* PostMsg.m in Sources */,
 				74E8B6131A0F447800CED382 /* MoreViewControl.m in Sources */,

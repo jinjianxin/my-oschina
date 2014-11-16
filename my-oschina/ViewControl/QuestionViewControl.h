@@ -19,6 +19,7 @@
 #import "ShareDetail.h"
 #import "PostDetails.h"
 #import "ReportViewControl.h"
+#import "MyUITabBarControl.h"
 
 
 @interface QuestionViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>

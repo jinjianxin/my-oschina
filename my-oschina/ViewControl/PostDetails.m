@@ -9,6 +9,9 @@
 #import "PostDetails.h"
 
 @implementation PostDetails
+{
+     id<TabBarProtocol> mydelegate;
+}
 
 @synthesize webView;
 @synthesize newsCategory;
@@ -27,6 +30,11 @@
     
 }
 
+-(void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
+}
+
 - (void) viewDidAppear:(BOOL)animated
 {
     NSString *str ;
@@ -43,6 +51,13 @@
     
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    [mydelegate setBarTitle:@"问答详情" andButtonTitle:@"收藏此贴" andProtocol:self];
+    
+}
+
+- (void)barButttonClick
+{
     
 }
 
