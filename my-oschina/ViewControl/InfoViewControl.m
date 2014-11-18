@@ -192,7 +192,8 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     MsgDetail* msg = [newsArray objectAtIndex:[indexPath row]];
-    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+   
+    /*MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
     newTab.title = @"资讯详情";
 
     NewDetail* newDetail = [[NewDetail alloc] init];
@@ -215,22 +216,19 @@
     commentDetail.newsCategory = [self newsCategory];
     commentDetail.ids = msg.ids;
     [commentDetail setMyDelegate:newTab];
-    //[commentDetail viewDidAppear:YES];
 
     ShareDetail* shareDetail = [[ShareDetail alloc] init];
     shareDetail.tabBarItem.title = @"分享";
     shareDetail.view.backgroundColor = [UIColor whiteColor];
     shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
     [shareDetail setMyDelegate:newTab];
-    //[shareDetail viewDidAppear:YES];
     
-    [newDetail viewDidAppear:YES];
     newTab.viewControllers = [NSArray arrayWithObjects:newDetail, commentDetail, shareDetail, nil];
     newTab.hidesBottomBarWhenPushed = YES;
     
-    //self.navigationController.navigationBar.topItem.title=@"test";
+    [self.navigationController pushViewController:newTab animated:YES]; */
     
-    [self.navigationController pushViewController:newTab animated:YES];
+    [Helper pushNewsDetail:self.navigationController andMag:msg andCategory:newsCategory];
 }
 
 - (void)viewDidAppear:(BOOL)animated

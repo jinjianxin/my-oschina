@@ -15,6 +15,7 @@
 #import "ShareDetail.h"
 #import "MyUITabBarControl.h"
 #import "SearchViewController.h"
+#import "Helper.h"
 
 @interface InfoViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
 {

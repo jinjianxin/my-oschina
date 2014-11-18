@@ -15,8 +15,11 @@
 @property (nonatomic,copy) NSString *ids;
 @property (nonatomic,copy) NSString *pullDate;
 @property (nonatomic,copy) NSString *url;
+@property int newType;
+@property (nonatomic,copy) NSString *attachMent;
+@property BOOL favorite;
 
-- (id) initwithContent:(NSString *)_titile author:(NSString *)_author ids:(NSString *)_ids pullDate:(NSString *)_pullDate;
+- (id) initwithContent:(NSString *)_titile author:(NSString *)_author ids:(NSString *)_ids pullDate:(NSString *)_pullDate ;
 
 - (id) initwithBlog:(NSString *)_titile author:(NSString *)_author ids:(NSString *)_ids pullDate:(NSString *)_pullDate url:(NSString *)_url;
 

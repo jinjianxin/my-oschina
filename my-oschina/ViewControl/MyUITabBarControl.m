@@ -16,18 +16,23 @@
 }
 
 
-- (void) viewDidAppear:(BOOL)animated
-{    
-    barButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
-    [barButton setTitle:@"收藏此文" forState:UIControlStateNormal];
+- (void) viewDidLoad
+{
+    barButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 120, 50)];
+    [barButton setTitle:@"" forState:UIControlStateNormal];
     [barButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [barButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
     [barButton addTarget:self action:@selector(clickSearch:) forControlEvents:UIControlEventTouchDown];
     
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:barButton];
-
+    
     self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{    
+
 }
 
 
@@ -50,6 +55,7 @@
 {
     self.title = title;
     [barButton setTitle:buttonTitle forState:UIControlStateNormal];
+    [barButton setTitle:buttonTitle forState:UIControlStateHighlighted];
     viewDelegate = nProtocol;
 }
 

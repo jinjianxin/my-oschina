@@ -20,6 +20,7 @@
 @synthesize webView;
 @synthesize newsCategory;
 @synthesize ids;
+@synthesize singleNews;
 
 - (void) loadView
 {
@@ -28,6 +29,7 @@
     CGRect rect = self.view.bounds;
 
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
+
     
     [self.view addSubview:webView];
     
@@ -50,14 +52,14 @@
 
     NSURL *url = [NSURL URLWithString:str];
     
+    NSLog(@"str = %@",str);
+    
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
     [request setDelegate:self];
     [request startAsynchronous];
     
     //[mydelegate setBarTitle:@"咨询详情"];
-    [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"收藏此文" andProtocol:self];
-    
 }
 
 - (void)barButttonClick
@@ -67,19 +69,62 @@
     NSString* uid = [userData stringForKey:@"uid"];
 
     if (uid != nil) {
+        
+        NSString* str = nil;
 
-        NSString* str = [NSString stringWithFormat:@"%@?uid=%@&?type=4?&objid=%@", api_favorite_add,uid,ids];
+        if(singleNews.favorite)
+        {
+            str = [NSString stringWithFormat:@"%@?uid=%@&?type=4?&objid=%@", api_favorite_delete,uid,ids];
+        }
+        else{
+            str = [NSString stringWithFormat:@"%@?uid=%@&?type=4?&objid=%@", api_favorite_add,uid,ids];
+        }
+      
+        
+        NSLog(@"str = %@",str);
         
         ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:str]];
         
         [request setCompletionBlock:^{
-            NSString *responseString = [request responseString ];
+            NSString *response = [request responseString ];
+           
+            TBXML *tbxml = [TBXML newTBXMLWithXMLString:response error:nil];
             
-            NSLog(@"result = %@",responseString);
-            
+            if(tbxml !=nil)
+            {
+                TBXMLElement *root = tbxml.rootXMLElement;
+                 NSLog(@"");
+                if(root!=nil)
+                {
+                    TBXMLElement *_result = [TBXML childElementNamed:@"result" parentElement:root];
+                    
+                    TBXMLElement *_errorCode = [TBXML childElementNamed:@"errorCode" parentElement:_result];
+                    
+                    int errorcode = [[TBXML textForElement:_result] intValue];
+                    if(errorcode ==1)
+                    {
+                        singleNews.favorite = !singleNews.favorite;
+                        
+                        if(singleNews.favorite)
+                        {
+                            [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"取消收藏" andProtocol:self];
+                        }
+                        else{
+                            [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"收藏此文" andProtocol:self];
+                        }
+
+                    }
+                    else{
+                        
+                    }
+                
+                }
+            }
         }];
         
         [request setFailedBlock:^{
+            
+            NSLog(@"---");
             
         }];
         
@@ -91,7 +136,11 @@
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate
 {
     mydelegate = delegate;
-    
+}
+
+ -(void) viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 - (void) requestFinished:(ASIHTTPRequest *)request
@@ -103,7 +152,7 @@
     if(newsCategory ==1)
     {
     
-    SingleNews *singleNews = [XmlParser singleNewParser:responseString];
+    singleNews = [XmlParser singleNewParser:responseString];
     
     NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%d'>%@</a> 发布于 %@",singleNews.authorid,singleNews.author,singleNews.pubDate];
     
@@ -127,6 +176,17 @@
     
     
     [self.webView loadHTMLString:html baseURL:nil];
+    
+    
+    if(singleNews.favorite)
+    {
+        [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"取消收藏" andProtocol:self];
+    }
+    else{
+        [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"收藏此文" andProtocol:self];
+    }
+    
+    
     
 }
 

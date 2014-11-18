@@ -9,15 +9,26 @@
 #import "TweetViewControl.h"
 
 @implementation TweetViewControl
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize pullTableView;
 @synthesize m_uid;
 @synthesize m_newsArray;
 @synthesize m_countPage;
+@synthesize isLoadOver;
+@synthesize projectId;
+@synthesize newsCategory;
+@synthesize body;
 
-- (void)viewDidLoad
+- (void)loadView
 {
-    [super viewDidLoad];
+    [super loadView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAttachmentCommentCount:) name:@"soft_count" object:nil];
+    
+    isLoadOver = NO;
     
     self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
     self.pullTableView.pullBackgroundColor = [UIColor whiteColor];
@@ -39,6 +50,32 @@
     m_newsArray = [[NSMutableArray alloc] initWithCapacity:2];
 }
 
+- (void)getAttachmentCommentCount:(NSNotification *)notification
+{
+    if (notification.object)
+    {
+        NSMutableArray *nc = (NSMutableArray *)notification.object;
+        if (nc)
+        {
+            
+            if([nc objectAtIndex:0] == self.body)
+            {
+                self.projectId = [nc objectAtIndex:2] ;
+            }
+        }
+    }
+}
+
+-(void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate =delegate;
+}
+
+-(void)barButttonClick
+{
+    
+}
+
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -51,8 +88,25 @@
     int count = (int)[m_newsArray count]/20;
     m_countPage = count;
     
-    NSString *str = [NSString stringWithFormat:@"%@uid=%d&pageIndex=%d&pageSize=%d", tweet_url,self.m_uid,count,20];
-    NSLog(@"str = %@",str);
+    /*
+    else if(newsCategory ==100)
+    {
+        //http://www.oschina.net/action/api/software_tweet_list?project=33477
+        str = [NSString stringWithFormat:@"http://www.oschina.net/action/api/software_tweet_list?project=%@", self.projectId];
+    } */
+    
+    NSString *str = nil;
+    
+    if(self.newsCategory ==100)
+    {
+       // str = [NSString stringWithFormat:@"http://www.oschina.net/action/api/software_tweet_list?project=%@", self.projectId];
+        str = @"http://www.oschina.net/action/api/software_tweet_list?project=33477";
+    }
+    else{
+        str = [NSString stringWithFormat:@"%@uid=%d&pageIndex=%d&pageSize=%d", tweet_url,self.m_uid,count,20];
+    }
+    
+    
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
     
@@ -68,15 +122,10 @@
    
     NSArray *array = [XmlParser tweetNewParser:responseString];
     
-    
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
-    
-    [tempArray addObjectsFromArray:array];
-    [tempArray addObjectsFromArray:m_newsArray];
-    
-    if (m_countPage == [tempArray count] / 20) {
-        [m_newsArray removeAllObjects];
-        [pullTableView reloadData];
+
+    if(array.count<20)
+    {
+        isLoadOver = YES;
     }
 
     [m_newsArray addObjectsFromArray:array];
@@ -97,7 +146,10 @@
 - (void)loadMoreDataToTable {
     self.pullTableView.pullTableIsLoadingMore = NO;
     
-    [self loadContent];
+    if(!isLoadOver)
+    {
+        [self loadContent];
+    }
     
 }
 
@@ -131,6 +183,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"*******");
+    
     static NSString *tag = @"tag";
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];

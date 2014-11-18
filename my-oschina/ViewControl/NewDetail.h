@@ -29,6 +29,7 @@
 @property (nonatomic,strong) MsgDetail *msgDetail;
 @property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
+@property (strong,nonatomic) SingleNews *singleNews;
 
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate;
 

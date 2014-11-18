@@ -16,9 +16,10 @@
 #import "CommentsDetail.h"
 #import "CustomProtocol.h"
 #import "MyUITabBarControl.h"
+#import "CustomProtocol.h"
 
 
-@interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate>
+@interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate,ViewProtocol>
 
 @property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
 
@@ -26,6 +27,11 @@
 @property int m_uid;
 @property NSMutableArray *m_newsArray;
 @property int m_countPage;
+@property BOOL isLoadOver;
+@property (nonatomic,strong) NSString *projectId;
+@property int  newsCategory ;
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+@property id body;
 
 
 @end

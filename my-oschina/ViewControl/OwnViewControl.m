@@ -150,6 +150,8 @@
 
 - (IBAction)segSender:(id)sender
 {
+    
+    m_isLoadOver = NO;
     UISegmentedControl* seg = (UISegmentedControl*)sender;
 
     m_category = (int)seg.selectedSegmentIndex + 1;

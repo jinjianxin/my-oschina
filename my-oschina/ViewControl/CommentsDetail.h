@@ -16,6 +16,7 @@
 #import "CommentCell.h"
 #import "ReplyCiewControl.h"
 #import "CustomProtocol.h"
+#import "PubComments.h"
 
 
 @interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,ViewProtocol>
@@ -28,6 +29,9 @@
 @property int pageIndex;
 @property BOOL isLoadOver;
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+@property int parentID;
+@property id body;
+
 
 
 @end

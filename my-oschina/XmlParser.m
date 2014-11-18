@@ -45,7 +45,18 @@
                     TBXMLElement *dateEle = [TBXML childElementNamed:@"pubDate" parentElement:test];
                     NSString *pullData = [XmlParser intervalSinceNow:[TBXML textForElement:dateEle]] ;
                     
+                    TBXMLElement *newType = [TBXML childElementNamed:@"newstype" parentElement:test];
+                    TBXMLElement *type = [TBXML childElementNamed:@"type" parentElement:newType];
+                    TBXMLElement *attachment = [TBXML childElementNamed:@"attachment" parentElement:newType];
+                    
+                    
                     MsgDetail *news = [[MsgDetail alloc] initwithContent:content author:author ids:ids pullDate:pullData];
+                    
+                    news.newType = [[TBXML textForElement:type] intValue];
+                    if(attachment!=nil)
+                    {
+                        news.attachMent = [TBXML textForElement:attachment];
+                    }
                     
                     [newsArray addObject:news];
                     
@@ -147,16 +158,11 @@
                 TBXMLElement *_authorid = [TBXML childElementNamed:@"authorid"parentElement:news];
                 TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:news];
                 
-                
-                
                 TBXMLElement *_commentCount = [TBXML childElementNamed:@"commentCount" parentElement:news];
                 
                 TBXMLElement *_softwarelink = [TBXML childElementNamed:@"softwarelink" parentElement:news];
                 TBXMLElement *_softwarename = [TBXML childElementNamed:@"softwarename" parentElement:news];
                 TBXMLElement *_fav = [TBXML childElementNamed:@"favorite" parentElement:news];
-                
-                NSLog(@"%@",[TBXML textForElement:_fav]);
-
                 
                 TBXMLElement *_relativies = [TBXML childElementNamed:@"relativies" parentElement:news];
                 
@@ -180,7 +186,7 @@
                 }
           
             
-                singleNews = [[SingleNews alloc] initWithContent:[[TBXML textForElement:_id] intValue] andtitle:[TBXML textForElement:_title] andurl:[TBXML textForElement:_url] andbody:[TBXML textForElement:_body] andauthor:[TBXML textForElement:_author] andauthorid:[[TBXML textForElement:_authorid] intValue] andpubDate:[TBXML textForElement:_pubDate] andcommentCount:[[TBXML textForElement:_commentCount] intValue] andfavorite:_fav];
+                singleNews = [[SingleNews alloc] initWithContent:[[TBXML textForElement:_id] intValue] andtitle:[TBXML textForElement:_title] andurl:[TBXML textForElement:_url] andbody:[TBXML textForElement:_body] andauthor:[TBXML textForElement:_author] andauthorid:[[TBXML textForElement:_authorid] intValue] andpubDate:[TBXML textForElement:_pubDate] andcommentCount:[[TBXML textForElement:_commentCount] intValue] andfavorite:[[TBXML textForElement:_fav] intValue] ==1 ];
                 
                 singleNews.softwarelink = [TBXML textForElement:_softwarelink];
                 singleNews.softwarename = [TBXML textForElement:_softwarename];

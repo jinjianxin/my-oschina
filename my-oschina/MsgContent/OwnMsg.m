@@ -29,11 +29,23 @@
 
 - (void) calculateHeight
 {
+    NSString *str = nil;
+    int height = 0;
     
-    NSString *str = [NSString stringWithFormat:@"%@ 回答了问题: %@",@"xjnzy",self.m_objecttitle];
-    
-    UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(157, 178, 236, 331)];
-    int height = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0f] andText:str]+80;
+    if([m_objecttype isEqualToString:@"32"])
+    {
+        str = [NSString stringWithFormat:@"%@ 回答了问题: %@",@"xjnzy",self.m_objecttitle];
+        
+        UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(157, 178, 236, 331)];
+        height = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0f] andText:str]+40;
+    }
+    else{
+        str = [NSString stringWithFormat:@"%@ 加入了开源中国",@"xjnzy"];
+        
+        UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(157, 178, 236, 331)];
+        height = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0f] andText:str]+80;
+    }
+
     
     if(height<62)
     {

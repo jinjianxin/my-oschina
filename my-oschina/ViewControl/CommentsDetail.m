@@ -20,10 +20,13 @@
 @synthesize ids;
 @synthesize pageIndex;
 @synthesize isLoadOver;
+@synthesize parentID;
+@synthesize body;
 
-- (void) viewDidLoad
+
+-(void)loadView
 {
-    [super viewDidLoad];
+    [super loadView];
     
     isLoadOver = NO;
     
@@ -47,22 +50,30 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self loadContent];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self loadContent];
-    
     [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
-
 }
 
 -(void)barButttonClick
 {
-    NSLog(@"评论");
+    PubComments *pubComments = [[PubComments alloc] init];
+    pubComments.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.navigationController pushViewController:pubComments animated:YES];
+    
+
 }
 
 -(void)setMyDelegate:(id<TabBarProtocol>)delegate
@@ -75,7 +86,16 @@
     int count = (int)[commentArray count]/20;
     pageIndex = count;
     
-    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count,20];
+    NSString *str= nil;
+    
+    if(newsCategory ==5)
+    {
+        str = [NSString stringWithFormat:@"%@?id=%d&pageIndex=%d&pageSize=%d", api_blogcomment_list, self.parentID, pageIndex, 20];
+    }
+    else{
+        str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count,20];
+    }
+
     
     NSLog(@"url = %@",str);
     
@@ -125,16 +145,6 @@
     {
         isLoadOver = YES;
     }
-    
-   /* NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
-
-    [tempArray addObjectsFromArray:commentArray];
-    [tempArray addObjectsFromArray:array];
-    
-    if(pageIndex == [tempArray count]/20 )
-    {
-        [commentArray removeAllObjects];
-    } */
     
     [commentArray addObjectsFromArray:array];
     

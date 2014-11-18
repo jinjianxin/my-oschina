@@ -15,6 +15,9 @@
 @synthesize ids;
 @synthesize pullDate;
 @synthesize url;
+@synthesize favorite;
+@synthesize newType;
+@synthesize attachMent;
 
 - (id) initwithContent:(NSString *)_titile author:(NSString *)_author ids:(NSString *)_ids pullDate:(NSString *)_pullDate
 {
@@ -24,6 +27,7 @@
     msg.author = _author;
     msg.ids = _ids;
     msg.pullDate = _pullDate;
+// msg.favorite = _favorite;
     
     return msg;
 }
