@@ -55,25 +55,43 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self loadContent];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"----- count = %d",[commentArray count]);
+    [super viewWillAppear:animated];
+    [pullTabView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self loadContent];
+    
     [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
 }
 
--(void)barButttonClick
+- (void)barButttonClick
 {
-    PubComments *pubComments = [[PubComments alloc] init];
-    pubComments.view.backgroundColor = [UIColor whiteColor];
+    NSLog(@"count = %d",[commentArray count]);
     
-    [self.navigationController pushViewController:pubComments animated:YES];
-    
+    NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
+    NSString* uid = [userData stringForKey:@"uid"];
 
+    if (uid != nil) {
+
+        PubComments* pubComments = [[PubComments alloc] init];
+        pubComments.view.backgroundColor = [UIColor whiteColor];
+
+        pubComments.m_id = ids;
+        pubComments.m_catalog = [NSString stringWithFormat:@"%d", newsCategory];
+        pubComments.m_uid = uid;
+        pubComments.m_parent = self;
+
+        [self.navigationController pushViewController:pubComments animated:YES];
+    }
 }
 
 -(void)setMyDelegate:(id<TabBarProtocol>)delegate

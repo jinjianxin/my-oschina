@@ -105,8 +105,7 @@
     else{
         str = [NSString stringWithFormat:@"%@uid=%d&pageIndex=%d&pageSize=%d", tweet_url,self.m_uid,count,20];
     }
-    
-    
+
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
     
@@ -243,8 +242,7 @@
     tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     tweetDetail.tabBarItem.title = @"咨询详情";
     tweetDetail.m_uid = msg.m_id;
-    
-    
+
 
     CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
     commentDetail.view.backgroundColor = [UIColor whiteColor];
