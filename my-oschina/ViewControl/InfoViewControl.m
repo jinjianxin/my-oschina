@@ -208,11 +208,21 @@
 
 - (IBAction)searchSender:(id)sender {
     
-    SearchViewController *searchControl = [[SearchViewController alloc] init];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    SearchViewController *searchControl =[storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
     searchControl.view.backgroundColor = [UIColor whiteColor];
     
     searchControl.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:searchControl animated:YES];
+    
+    /*
+    
+    SearchViewController *searchControl = [[SearchViewController alloc] init];
+    searchControl.view.backgroundColor = [UIColor whiteColor];
+    
+    searchControl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchControl animated:YES];*/
     
 }
 @end

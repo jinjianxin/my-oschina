@@ -131,12 +131,6 @@
     static NSString *tag = @"tag";
     
     QuestionCell *cell  = [tableView dequeueReusableCellWithIdentifier:tag];
-   
-    /*
-    if(cell ==nil)
-    {
-        cell = [[QuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
-    }*/
     
     int index = (int)[indexPath row];
    
@@ -144,8 +138,6 @@
     cell.tag = [self newsCategory];
     
     [cell setContent:msg];
-    
-    //cell.avatorView.imageURL = [NSURL URLWithString:msg.portrait];
     
     return cell;
 }
@@ -164,16 +156,17 @@
     postDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     postDetail.ids = msg.ids ;
     [postDetail setMyDelegate:newTab];
-
     
-    CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
-    commentDetail.tabBarItem.title = @"评论";
+    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    CommentsDetail *commentDetail = [stroboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    commentDetail.tabBarItem.title = @"评论";
     commentDetail.ids = msg.ids;
     commentDetail.newsCategory = 2;
     [commentDetail setMyDelegate:newTab];
-
+    
     
     ShareDetail *shareDetail = [[ShareDetail alloc] init];
     shareDetail.tabBarItem.title=@"分享";
@@ -193,5 +186,18 @@
     newTab.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:newTab animated:YES];
 }
+
+- (IBAction)m_submitSender:(id)sender {
+    
+    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    SubmitQuestion *submitQuestion = [stroboard instantiateViewControllerWithIdentifier:@"SubmitQuestion"];
+    
+    submitQuestion.view.backgroundColor = [UIColor whiteColor];
+    
+    submitQuestion.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:submitQuestion animated:YES];
+    
+}
+
 
 @end

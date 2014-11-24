@@ -20,13 +20,14 @@
 #import "PostDetails.h"
 #import "ReportViewControl.h"
 #import "MyUITabBarControl.h"
+#import "SubmitQuestion.h"
 
 
 @interface QuestionViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     BOOL _reloading;
 }
-
+- (IBAction)m_submitSender:(id)sender;
 
 @property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
 

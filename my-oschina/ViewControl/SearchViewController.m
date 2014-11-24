@@ -14,12 +14,11 @@
 
 @implementation SearchViewController
 
-@synthesize m_tableView;
 @synthesize m_category;
 @synthesize m_resultArray;
 @synthesize m_isLoading;
-@synthesize m_searchBar;
 @synthesize m_isLoadOver;
+@synthesize m_searchBar;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,29 +45,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    CGRect rect = [self.view bounds];
-    
-    self.m_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44.0f, rect.size.width, rect.size.height-44)];
-    m_tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    m_tableView.delegate = self;
-    m_tableView.dataSource = self;
-    
-    [self.view addSubview:m_tableView];
-    
-//在这里创建搜索栏和搜索显示控制器
-    m_searchBar= [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, rect.size.width, 44.0f)];
-    m_searchBar.tintColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f];
-    m_searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-    m_searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    m_searchBar.keyboardType = UIKeyboardTypeAlphabet;
-    m_searchBar.hidden = NO;
-    m_searchBar.placeholder = [NSString stringWithCString:"请输入需要查找的文本内容" encoding:NSUTF8StringEncoding];
-    m_searchBar.returnKeyType = UIReturnKeySearch;
-   
-    [self.view addSubview:m_searchBar];
-    
-    m_searchBar.delegate = self;
-    
+    //在这里创建搜索栏和搜索显示控制器
+    m_searchBar.delegate =self;
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -88,14 +66,14 @@
     // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
     if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
         
-        [m_searchBar resignFirstResponder];
+      //  [m_searchBar resignFirstResponder];
         return NO;
     }
     return  YES;
 }
 
 - (void)dismissKeyboard {
-    [m_searchBar resignFirstResponder];
+    //[m_searchBar resignFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -171,7 +149,7 @@
     
     [m_resultArray removeAllObjects];
     
-    [m_tableView reloadData];
+   // [m_tableView reloadData];
     
     [self searchKeyResult:nil];
 }
@@ -283,7 +261,7 @@
         
         ResultMsg *msg = [m_resultArray objectAtIndex:[indexPath row]];
         
-        UITabBarController *newTab = [[UITabBarController alloc] init];
+        MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
         
         
         NewDetail* newDetail = [[NewDetail alloc] init];
@@ -291,22 +269,28 @@
         newDetail.title = @"资讯";
         newDetail.tabBarItem.title = @"资讯";
         newDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
-        newDetail.newsCategory = 1;//[self newsCategory];
-       // newDetail.msgDetail = msg;
+        newDetail.newsCategory = 1;
         newDetail.ids = msg.m_id;
+        [newDetail setMyDelegate:newTab];
+
         
-        CommentsDetail* commentDetail = [[CommentsDetail alloc] init];
+        UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        
+        CommentsDetail* commentDetail = [stroboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
         commentDetail.tabBarItem.title = @"评论";
         commentDetail.view.backgroundColor = [UIColor whiteColor];
         commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
-        //commentDetail.msgDetail = msg;
-        commentDetail.newsCategory = 1;//[self newsCategory];
+        commentDetail.newsCategory = 1;
         commentDetail.ids = msg.m_id;
+        [commentDetail setMyDelegate:newTab];
         
-        ShareDetail* shareDetail = [[ShareDetail alloc] init];
+        ShareDetail* shareDetail = [stroboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
         shareDetail.tabBarItem.title = @"分享";
         shareDetail.view.backgroundColor = [UIColor whiteColor];
         shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+        [shareDetail setMyDelegate:newTab];
+        
+        [newDetail viewDidAppear:YES];
         
         newTab.viewControllers = [NSArray arrayWithObjects:newDetail,commentDetail,shareDetail, nil];
         
@@ -314,5 +298,6 @@
         
     }
 }
+
 
 @end

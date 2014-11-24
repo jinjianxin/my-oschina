@@ -253,4 +253,16 @@
     
 }
 
+- (IBAction)m_tweetSender:(id)sender {
+    
+    UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    SubmitTweet *submitTweet = [stroyboard instantiateViewControllerWithIdentifier:@"SubmitTweet"];
+    
+    submitTweet.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:submitTweet animated:YES];
+    
+}
+
 @end

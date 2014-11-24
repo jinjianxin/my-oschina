@@ -13,7 +13,6 @@
     id<TabBarProtocol> mydelegate;
 }
 
-#if 1
 @synthesize msgDetail;
 @synthesize pullTabView;
 @synthesize newsCategory;
@@ -30,9 +29,6 @@
     [super loadView];
     
     isLoadOver = NO;
-    
-    CGRect rect = self.view.bounds;
-
     
     commentArray = [[NSMutableArray alloc] initWithCapacity:2];
     
@@ -71,7 +67,7 @@
 
 - (void)barButttonClick
 {
-    NSLog(@"count = %d",[commentArray count]);
+    NSLog(@"count = %d",(int)[commentArray count]);
     
     NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
     NSString* uid = [userData stringForKey:@"uid"];
@@ -90,14 +86,11 @@
     }
 }
 
-#endif
 
 -(void)setMyDelegate:(id<TabBarProtocol>)delegate
 {
     mydelegate = delegate;
 }
-
-#if 1
 
 - (void) loadContent
 {
@@ -214,7 +207,5 @@
     
     [self.navigationController pushViewController:repleControl animated:YES];
 }
-
-#endif
 
 @end

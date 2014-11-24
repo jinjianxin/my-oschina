@@ -97,20 +97,6 @@
 
 - (void)keyboadWillShow:(NSNotification*)note
 {
-    /*
-    CGRect rect = self.view.bounds;
-    CGRect fieldRect = self.m_textField.bounds;
-    
-    NSDictionary* info = [note userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    
-    CGFloat offY = (rect.size.height - keyboardSize.height) - m_textField.frame.size.height-20;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    
-    m_textField.frame = CGRectMake(10, 20, fieldRect.size.width, fieldRect.size.height);
-    [UIView commitAnimations]; */
-    
     NSDictionary *info = [note userInfo];
     NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
     

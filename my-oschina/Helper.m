@@ -41,7 +41,7 @@
             commentDetail.ids = msg.ids;
             [commentDetail setMyDelegate:newTab];
             
-            ShareDetail* shareDetail = [[ShareDetail alloc] init];
+            ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
             shareDetail.tabBarItem.title = @"分享";
             shareDetail.view.backgroundColor = [UIColor whiteColor];
             shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];

@@ -105,6 +105,8 @@
 		747EC8D51A0114F70087B269 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D21A0114F70087B269 /* TBXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		747EC8D61A0114F70087B269 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D31A0114F70087B269 /* TBXML+Compression.m */; };
 		747EC8D71A0114F70087B269 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D41A0114F70087B269 /* TBXML+HTTP.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		74A1855D1A236FD900ED1741 /* SubmitQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1855C1A236FD900ED1741 /* SubmitQuestion.m */; };
+		74A185601A23797700ED1741 /* SubmitTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1855F1A23797700ED1741 /* SubmitTweet.m */; };
 		74AAE2B01A1B7C7A00730759 /* PubComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AAE2AF1A1B7C7900730759 /* PubComments.m */; };
 		74B1985F1A0663A700A42963 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B1985E1A0663A700A42963 /* CommentCell.m */; };
 		74B95DA31A139A3D009BA4D4 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B95DA21A139A3D009BA4D4 /* SearchViewController.m */; };
@@ -310,6 +312,10 @@
 		747EC8D81A0115020087B269 /* TBXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
 		747EC8D91A0115020087B269 /* TBXML+Compression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML+Compression.h"; sourceTree = "<group>"; };
 		747EC8DA1A0115020087B269 /* TBXML+HTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
+		74A1855B1A236FD900ED1741 /* SubmitQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmitQuestion.h; path = ViewControl/SubmitQuestion.h; sourceTree = "<group>"; };
+		74A1855C1A236FD900ED1741 /* SubmitQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmitQuestion.m; path = ViewControl/SubmitQuestion.m; sourceTree = "<group>"; };
+		74A1855E1A23797700ED1741 /* SubmitTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmitTweet.h; path = ViewControl/SubmitTweet.h; sourceTree = "<group>"; };
+		74A1855F1A23797700ED1741 /* SubmitTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmitTweet.m; path = ViewControl/SubmitTweet.m; sourceTree = "<group>"; };
 		74AAE2AE1A1B7C7900730759 /* PubComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PubComments.h; path = ViewControl/PubComments.h; sourceTree = "<group>"; };
 		74AAE2AF1A1B7C7900730759 /* PubComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PubComments.m; path = ViewControl/PubComments.m; sourceTree = "<group>"; };
 		74B1985D1A0663A700A42963 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentCell.h; path = TableCell/CommentCell.h; sourceTree = "<group>"; };
@@ -581,6 +587,10 @@
 				74AAE2AF1A1B7C7900730759 /* PubComments.m */,
 				7449B7591A1F080E007808C5 /* TestViewControl.h */,
 				7449B75A1A1F080E007808C5 /* TestViewControl.m */,
+				74A1855B1A236FD900ED1741 /* SubmitQuestion.h */,
+				74A1855C1A236FD900ED1741 /* SubmitQuestion.m */,
+				74A1855E1A23797700ED1741 /* SubmitTweet.h */,
+				74A1855F1A23797700ED1741 /* SubmitTweet.m */,
 			);
 			name = ViewControl;
 			sourceTree = "<group>";
@@ -953,6 +963,7 @@
 				74E8B6451A0F49DD00CED382 /* QrcodeViewControl.m in Sources */,
 				747EC8491A00DBF70087B269 /* ASIInputStream.m in Sources */,
 				744844B81A08983A00FAC42E /* AsyncImageView.m in Sources */,
+				74A185601A23797700ED1741 /* SubmitTweet.m in Sources */,
 				747EC84D1A00DBF70087B269 /* ASICloudFilesContainer.m in Sources */,
 				7449B75B1A1F080E007808C5 /* TestViewControl.m in Sources */,
 				747EC8511A00DBF70087B269 /* ASICloudFilesObjectRequest.m in Sources */,
@@ -1000,6 +1011,7 @@
 				747EC8551A00DBF70087B269 /* ASIS3BucketRequest.m in Sources */,
 				747EC8461A00DBF70087B269 /* ASIDownloadCache.m in Sources */,
 				74D76F1D1A1A15300085D8DD /* Helper.m in Sources */,
+				74A1855D1A236FD900ED1741 /* SubmitQuestion.m in Sources */,
 				747EC8D71A0114F70087B269 /* TBXML+HTTP.m in Sources */,
 				747EC8601A00DD560087B269 /* Reachability.m in Sources */,
 				747EC84A1A00DBF70087B269 /* ASINetworkQueue.m in Sources */,
