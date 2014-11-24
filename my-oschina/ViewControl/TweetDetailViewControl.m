@@ -110,20 +110,37 @@
     
     m_textField.frame = CGRectMake(10, 20, fieldRect.size.width, fieldRect.size.height);
     [UIView commitAnimations]; */
+    
+    NSDictionary *info = [note userInfo];
+    NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+    
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    CGRect keyboardFrame = [kbFrame CGRectValue];
+    
+    CGRect finalKeyboardFrame = [self.view convertRect:keyboardFrame fromView:self.view.window];
+    
+    int kbHeight = finalKeyboardFrame.size.height;
+    
+    int height = kbHeight + self.bottomConstraint.constant;
+    
+    self.bottomConstraint.constant = height;
+    
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)keyboardWillHide:(NSNotification*)note
 {
-    NSLog(@"");
+    NSDictionary *info = [note userInfo];
     
-    /*CGRect rect = self.view.bounds;
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
-     [UIView beginAnimations : nil context : NULL]; //此处添加动画，使之变化平滑一点
-     [UIView setAnimationDuration : 0.3];
-     m_textField.frame = CGRectMake(10, rect.size.height - 200,
-                                   rect.size.width - 20, 80); //UITextField位置复原
-     [UIView commitAnimations];*/
+    self.bottomConstraint.constant = 10;
     
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 -(void)hideKeyboard

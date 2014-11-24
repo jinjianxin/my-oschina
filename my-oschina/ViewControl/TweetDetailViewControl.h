@@ -19,6 +19,7 @@
 @property (strong,nonatomic) NSString *m_uid;
 
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 /*@property (strong,nonatomic) UIWebView *m_webView;
 @property (strong,nonatomic) UITextView *m_textField;

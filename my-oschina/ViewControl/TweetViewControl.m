@@ -230,35 +230,24 @@
     newTab.title = @"动态详情";
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
 
     TweetDetailViewControl *tweetDetail = [storyboard instantiateViewControllerWithIdentifier:@"TweetDetailViewControl"];
     tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     tweetDetail.tabBarItem.title = @"咨询详情";
     tweetDetail.m_uid = msg.m_id;
-
     
-    
-   
-    /*
-    TweetDetailViewControl *tweetDetail = [[TweetDetailViewControl alloc] init];
-    tweetDetail.view.backgroundColor = [UIColor whiteColor];
-    tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
-    tweetDetail.tabBarItem.title = @"咨询详情";
-    tweetDetail.m_uid = msg.m_id;
-
-
-    CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
+    CommentsDetail *commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
     commentDetail.tabBarItem.title = @"评论";
     commentDetail.ids = msg.m_id;
     commentDetail.newsCategory = 3;
-    [commentDetail setMyDelegate:newTab];*/
-    
+    [commentDetail setMyDelegate:newTab];
+
+
     [tweetDetail viewDidAppear:YES];
     
-    newTab.viewControllers = [NSArray arrayWithObjects:tweetDetail, nil];
+    newTab.viewControllers = [NSArray arrayWithObjects:tweetDetail,commentDetail,nil];
     newTab.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:newTab animated:YES];
     

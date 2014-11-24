@@ -13,6 +13,7 @@
     id<TabBarProtocol> mydelegate;
 }
 
+#if 1
 @synthesize msgDetail;
 @synthesize pullTabView;
 @synthesize newsCategory;
@@ -31,12 +32,7 @@
     isLoadOver = NO;
     
     CGRect rect = self.view.bounds;
-    
-    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 65, rect.size.width , rect.size.height-65)];
-    
-    pullTabView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    
-    [self.view addSubview:pullTabView];
+
     
     commentArray = [[NSMutableArray alloc] initWithCapacity:2];
     
@@ -59,7 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"----- count = %d",[commentArray count]);
+    NSLog(@"----- count = %d",(int)[commentArray count]);
     [super viewWillAppear:animated];
     [pullTabView reloadData];
 }
@@ -94,10 +90,14 @@
     }
 }
 
+#endif
+
 -(void)setMyDelegate:(id<TabBarProtocol>)delegate
 {
     mydelegate = delegate;
 }
+
+#if 1
 
 - (void) loadContent
 {
@@ -214,5 +214,7 @@
     
     [self.navigationController pushViewController:repleControl animated:YES];
 }
+
+#endif
 
 @end

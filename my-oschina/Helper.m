@@ -30,8 +30,9 @@
             [newDetail setMyDelegate:newTab];
             [newDetail viewDidAppear:YES];
             
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             
-            CommentsDetail* commentDetail = [[CommentsDetail alloc] init];
+            CommentsDetail *commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
             commentDetail.tabBarItem.title = @"评论";
             commentDetail.view.backgroundColor = [UIColor whiteColor];
             commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
