@@ -26,27 +26,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.parentViewController.navigationController.title = @"***";
     
-    m_webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 375, 667)];
-    m_webView.autoresizesSubviews = YES;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
 
+    
+    self.parentViewController.navigationController.title = @"***";
+   
     for (id v in m_webView.subviews) {
         if ([v isKindOfClass:[UIScrollView class]]) {
             [v setBounces:NO];
         }
     }
-
-    [self.view addSubview:m_webView];
-
-    CGRect rect = self.view.bounds;
-
-    m_textField =[[UITextView alloc] initWithFrame:CGRectMake(10, rect.size.height - 200,
-                                                      rect.size.width - 20, 80)];
-    //m_textField.delegate = self;
-
-    [self.view addSubview:m_textField];
-
+    
+    m_textField.layer.borderColor = UIColor.grayColor.CGColor;
+    m_textField.layer.borderWidth = 1;
+    m_textField.layer.cornerRadius = 6;
+    m_textField.layer.masksToBounds = YES;
     
     [[NSNotificationCenter defaultCenter]
         addObserver:self
@@ -99,7 +97,9 @@
 
 - (void)keyboadWillShow:(NSNotification*)note
 {
+    /*
     CGRect rect = self.view.bounds;
+    CGRect fieldRect = self.m_textField.bounds;
     
     NSDictionary* info = [note userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
@@ -108,19 +108,21 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     
-    m_textField.frame = CGRectMake(10, offY, rect.size.width-20, 80);
-    [UIView commitAnimations];
+    m_textField.frame = CGRectMake(10, 20, fieldRect.size.width, fieldRect.size.height);
+    [UIView commitAnimations]; */
 }
 
 - (void)keyboardWillHide:(NSNotification*)note
 {
-     CGRect rect = self.view.bounds;
+    NSLog(@"");
+    
+    /*CGRect rect = self.view.bounds;
     
      [UIView beginAnimations : nil context : NULL]; //此处添加动画，使之变化平滑一点
      [UIView setAnimationDuration : 0.3];
      m_textField.frame = CGRectMake(10, rect.size.height - 200,
                                    rect.size.width - 20, 80); //UITextField位置复原
-     [UIView commitAnimations];
+     [UIView commitAnimations];*/
     
 }
 
@@ -233,6 +235,5 @@
 - (void)requestFailed:(ASIHTTPRequest*)request
 {
 }
-
 
 @end

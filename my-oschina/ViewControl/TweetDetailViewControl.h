@@ -14,11 +14,13 @@
 #import "CustomProtocol.h"
 
 @interface TweetDetailViewControl : UIViewController <ASIHTTPRequestDelegate,ViewProtocol>
-
+@property (weak, nonatomic) IBOutlet UIWebView *m_webView;
+@property (weak, nonatomic) IBOutlet UITextView *m_textField;
 @property (strong,nonatomic) NSString *m_uid;
-@property (strong,nonatomic) UIWebView *m_webView;
-@property (strong,nonatomic) UITextView *m_textField;
 
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate;
 
+/*@property (strong,nonatomic) UIWebView *m_webView;
+@property (strong,nonatomic) UITextView *m_textField;
+*/
 @end

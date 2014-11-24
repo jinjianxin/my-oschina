@@ -131,17 +131,21 @@
     static NSString *tag = @"tag";
     
     QuestionCell *cell  = [tableView dequeueReusableCellWithIdentifier:tag];
-    
+   
+    /*
     if(cell ==nil)
     {
         cell = [[QuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
-    }
+    }*/
     
     int index = (int)[indexPath row];
+   
     QuestionMsg *msg = [newsArray objectAtIndex:index];
     cell.tag = [self newsCategory];
     
     [cell setContent:msg];
+    
+    //cell.avatorView.imageURL = [NSURL URLWithString:msg.portrait];
     
     return cell;
 }
@@ -183,6 +187,7 @@
     reportView.tabBarItem.image = [UIImage imageNamed:@"share"];
     [reportView setMyDelegate:newTab];
 
+    [postDetail viewDidAppear:YES];
     
     newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];
     newTab.hidesBottomBarWhenPushed = YES;
