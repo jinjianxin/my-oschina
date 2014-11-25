@@ -166,9 +166,9 @@
     commentDetail.ids = msg.ids;
     commentDetail.newsCategory = 2;
     [commentDetail setMyDelegate:newTab];
+
     
-    
-    ShareDetail *shareDetail = [[ShareDetail alloc] init];
+    ShareDetail *shareDetail = [stroboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
     shareDetail.tabBarItem.title=@"分享";
     shareDetail.view.backgroundColor = [UIColor whiteColor];
     shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
@@ -196,8 +196,6 @@
     
     submitQuestion.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:submitQuestion animated:YES];
-    
 }
-
 
 @end

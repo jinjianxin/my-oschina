@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "prefix_define.h"
+#import "ASIFormDataRequest.h"
+#import "Helper.h"
+#import "TBXML.h"
+#import "MyThread.h"
 
-@interface SubmitTweet : UIViewController
+@interface SubmitTweet : UIViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ASIHTTPRequestDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
+@property (weak, nonatomic) IBOutlet UITextView *m_contentView;
 @end

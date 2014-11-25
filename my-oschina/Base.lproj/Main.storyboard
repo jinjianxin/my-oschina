@@ -822,15 +822,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sg5-b5-Nul">
-                                <rect key="frame" x="284" y="166" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="今天你动弹了吗" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pK6-6n-Dyv">
+                                <rect key="frame" x="16" y="80" width="384" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eb9-6y-tDE">
+                                <rect key="frame" x="16" y="147" width="568" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1.点击‘+图片’可用来上传一张照片" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lK2-hZ-Mb4">
+                                <rect key="frame" x="16" y="308" width="256" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2.#软件名#用来引入某个开源软件" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oda-ho-Jgc">
+                                <rect key="frame" x="16" y="350" width="255" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3.@xxx用来提到某人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jS7-k2-Z0Z">
+                                <rect key="frame" x="16" y="402" width="157" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SFH-1A-vM0">
+                                <rect key="frame" x="175" y="452" width="121" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="hJl-0w-mWf"/>
+                                    <constraint firstAttribute="width" constant="121" id="j0V-SK-8c3"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Oda-ho-Jgc" firstAttribute="top" secondItem="lK2-hZ-Mb4" secondAttribute="bottom" constant="10" id="Crc-N7-4fE"/>
+                            <constraint firstAttribute="trailing" secondItem="SFH-1A-vM0" secondAttribute="trailing" constant="304" id="Np3-xe-awL"/>
+                            <constraint firstItem="pK6-6n-Dyv" firstAttribute="top" secondItem="B6G-V9-kvS" secondAttribute="top" constant="80" id="Ofi-aX-FRz"/>
+                            <constraint firstItem="SFH-1A-vM0" firstAttribute="leading" secondItem="B6G-V9-kvS" secondAttribute="leading" constant="175" id="Oxw-vg-y9L"/>
+                            <constraint firstItem="Oda-ho-Jgc" firstAttribute="leading" secondItem="jS7-k2-Z0Z" secondAttribute="leading" id="PBa-OB-Ibp"/>
+                            <constraint firstItem="pK6-6n-Dyv" firstAttribute="leading" secondItem="B6G-V9-kvS" secondAttribute="leading" constant="20" id="Qfh-Gc-pTe"/>
+                            <constraint firstItem="SFH-1A-vM0" firstAttribute="top" secondItem="jS7-k2-Z0Z" secondAttribute="bottom" constant="15" id="TVw-hu-nbk"/>
+                            <constraint firstAttribute="trailing" secondItem="pK6-6n-Dyv" secondAttribute="trailing" constant="20" id="bg0-TD-ZDn"/>
+                            <constraint firstItem="lK2-hZ-Mb4" firstAttribute="top" secondItem="Eb9-6y-tDE" secondAttribute="bottom" constant="15" id="c6O-fQ-dCG"/>
+                            <constraint firstItem="Eb9-6y-tDE" firstAttribute="leading" secondItem="lK2-hZ-Mb4" secondAttribute="leading" id="iSF-Ik-0Oa"/>
+                            <constraint firstItem="Eb9-6y-tDE" firstAttribute="top" secondItem="pK6-6n-Dyv" secondAttribute="bottom" constant="15" id="j7E-ZI-Q9I"/>
+                            <constraint firstAttribute="bottom" secondItem="SFH-1A-vM0" secondAttribute="bottom" constant="15" id="l3G-XY-Tit"/>
+                            <constraint firstAttribute="trailing" secondItem="Eb9-6y-tDE" secondAttribute="trailing" constant="20" id="nlb-k2-RpE"/>
+                            <constraint firstItem="jS7-k2-Z0Z" firstAttribute="top" secondItem="Oda-ho-Jgc" secondAttribute="bottom" constant="10" id="xtN-xQ-3Xj"/>
+                            <constraint firstItem="Oda-ho-Jgc" firstAttribute="leading" secondItem="lK2-hZ-Mb4" secondAttribute="leading" id="xyL-Gp-RQy"/>
+                            <constraint firstItem="Eb9-6y-tDE" firstAttribute="leading" secondItem="pK6-6n-Dyv" secondAttribute="leading" id="yC3-ZM-WvP"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="m_contentView" destination="Eb9-6y-tDE" id="d1r-74-wVo"/>
+                        <outlet property="m_imageView" destination="SFH-1A-vM0" id="OBX-kF-M3I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LAy-Zv-kcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

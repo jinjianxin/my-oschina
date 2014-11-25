@@ -33,6 +33,7 @@
 		7476B7081A177F0400B4FE5F /* MyUITabBarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476B7071A177F0400B4FE5F /* MyUITabBarControl.m */; };
 		7476B70B1A17852800B4FE5F /* searchWhite@2x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7476B7091A17852800B4FE5F /* searchWhite@2x 2.png */; };
 		7476B70C1A17852800B4FE5F /* searchWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7476B70A1A17852800B4FE5F /* searchWhite@2x.png */; };
+		747C30FF1A24598900CFDD7A /* MyThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C30FE1A24598900CFDD7A /* MyThread.m */; };
 		747EC7991A00B2870087B269 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7981A00B2870087B269 /* main.m */; };
 		747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79B1A00B2870087B269 /* AppDelegate.m */; };
 		747EC79F1A00B2870087B269 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79E1A00B2870087B269 /* ViewController.m */; };
@@ -197,6 +198,8 @@
 		7476B7071A177F0400B4FE5F /* MyUITabBarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyUITabBarControl.m; path = ViewControl/MyUITabBarControl.m; sourceTree = "<group>"; };
 		7476B7091A17852800B4FE5F /* searchWhite@2x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchWhite@2x 2.png"; sourceTree = "<group>"; };
 		7476B70A1A17852800B4FE5F /* searchWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchWhite@2x.png"; sourceTree = "<group>"; };
+		747C30FD1A24598900CFDD7A /* MyThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyThread.h; sourceTree = "<group>"; };
+		747C30FE1A24598900CFDD7A /* MyThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyThread.m; sourceTree = "<group>"; };
 		747EC7931A00B2870087B269 /* my-oschina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "my-oschina.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		747EC7971A00B2870087B269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747EC7981A00B2870087B269 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -758,6 +761,8 @@
 			children = (
 				74D76F1B1A1A15300085D8DD /* Helper.h */,
 				74D76F1C1A1A15300085D8DD /* Helper.m */,
+				747C30FD1A24598900CFDD7A /* MyThread.h */,
+				747C30FE1A24598900CFDD7A /* MyThread.m */,
 			);
 			name = Until;
 			sourceTree = "<group>";
@@ -960,6 +965,7 @@
 				742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */,
 				743F2FD51A0BAEFE002D020A /* TweetMsg.m in Sources */,
 				747EC79F1A00B2870087B269 /* ViewController.m in Sources */,
+				747C30FF1A24598900CFDD7A /* MyThread.m in Sources */,
 				74E8B6451A0F49DD00CED382 /* QrcodeViewControl.m in Sources */,
 				747EC8491A00DBF70087B269 /* ASIInputStream.m in Sources */,
 				744844B81A08983A00FAC42E /* AsyncImageView.m in Sources */,

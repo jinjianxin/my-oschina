@@ -21,4 +21,5 @@
 
 + (void)pushNewsDetail:(UINavigationController *)navigationController andMag:(MsgDetail *)msg andCategory:(int) category;
 
++ (NSString *)getUid;
 @end

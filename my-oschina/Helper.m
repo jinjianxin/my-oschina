@@ -74,7 +74,7 @@
             [tweetView setMyDelegate:newTab];
             
             
-            ShareDetail* shareDetail = [[ShareDetail alloc] init];
+            ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
             shareDetail.tabBarItem.title = @"分享";
             shareDetail.view.backgroundColor = [UIColor whiteColor];
             shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
@@ -109,7 +109,9 @@
             [blogDetail setMyDelegate:newTab];
             [blogDetail viewDidAppear:YES];
             
-            CommentsDetail* commentDetail = [[CommentsDetail alloc] init];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            
+            CommentsDetail *commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
             commentDetail.tabBarItem.title = @"评论";
             commentDetail.view.backgroundColor = [UIColor whiteColor];
             commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
@@ -119,7 +121,8 @@
             commentDetail.ids = msg.ids;
             [commentDetail setMyDelegate:newTab];
             
-            ShareDetail* shareDetail = [[ShareDetail alloc] init];
+            
+            ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
             shareDetail.tabBarItem.title = @"分享";
             shareDetail.view.backgroundColor = [UIColor whiteColor];
             shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
@@ -135,9 +138,21 @@
         default:
             break;
     }
-    
+}
 
++ (NSString *)getUid
+{
     
+    NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
+    NSString* uid = [userData stringForKey:@"uid"];
+
+    if (uid != nil) {
+        return uid;
+    }
+    else{
+        return nil;
+    }
+
 }
 
 @end
