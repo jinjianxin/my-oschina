@@ -19,16 +19,16 @@
 @synthesize newType;
 @synthesize attachMent;
 
-- (id) initwithContent:(NSString *)_titile author:(NSString *)_author ids:(NSString *)_ids pullDate:(NSString *)_pullDate
+- (id)initwithContent:(NSString*)_titile author:(NSString*)_author ids:(NSString*)_ids pullDate:(NSString*)_pullDate
 {
-    MsgDetail *msg = [[MsgDetail alloc] init];
-    
-    msg.titile =_titile;
+    MsgDetail* msg = [[MsgDetail alloc] init];
+
+    msg.titile = _titile;
     msg.author = _author;
     msg.ids = _ids;
     msg.pullDate = _pullDate;
-// msg.favorite = _favorite;
-    
+    // msg.favorite = _favorite;
+
     return msg;
 }
 

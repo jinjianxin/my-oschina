@@ -12,11 +12,16 @@
 
 
 @interface ShareDetail : UIViewController <ViewProtocol>
+@property (weak, nonatomic) IBOutlet UIButton *m_shareSina;
+@property (weak, nonatomic) IBOutlet UIButton *m_shareTencentWeiBo;
+@property (weak, nonatomic) IBOutlet UIButton *m_shareQQFriend;
+@property (weak, nonatomic) IBOutlet UIButton *m_shareWeixin;
+@property (weak, nonatomic) IBOutlet UIButton *tecent_sender;
+@property (weak, nonatomic) IBOutlet UIButton *friend_sender;
+@property (weak, nonatomic) IBOutlet UIButton *weixin_sender;
 
-@property (strong,nonatomic) UIButton  *shareSina;
-@property (strong,nonatomic) UIButton  *shareTent;
-@property (strong,nonatomic) UIButton  *shareRenren;
-@property (strong,nonatomic) UIButton  *shareWeichat;
+- (IBAction)sina_sender:(id)sender;
+
 
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate;
 

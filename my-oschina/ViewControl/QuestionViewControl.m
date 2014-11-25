@@ -132,12 +132,8 @@
     
     QuestionCell *cell  = [tableView dequeueReusableCellWithIdentifier:tag];
     
-    if(cell ==nil)
-    {
-        cell = [[QuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
-    }
-    
     int index = (int)[indexPath row];
+   
     QuestionMsg *msg = [newsArray objectAtIndex:index];
     cell.tag = [self newsCategory];
     
@@ -160,18 +156,19 @@
     postDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     postDetail.ids = msg.ids ;
     [postDetail setMyDelegate:newTab];
-
     
-    CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
-    commentDetail.tabBarItem.title = @"评论";
+    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    CommentsDetail *commentDetail = [stroboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    commentDetail.tabBarItem.title = @"评论";
     commentDetail.ids = msg.ids;
     commentDetail.newsCategory = 2;
     [commentDetail setMyDelegate:newTab];
 
     
-    ShareDetail *shareDetail = [[ShareDetail alloc] init];
+    ShareDetail *shareDetail = [stroboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
     shareDetail.tabBarItem.title=@"分享";
     shareDetail.view.backgroundColor = [UIColor whiteColor];
     shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
@@ -183,10 +180,22 @@
     reportView.tabBarItem.image = [UIImage imageNamed:@"share"];
     [reportView setMyDelegate:newTab];
 
+    [postDetail viewDidAppear:YES];
     
     newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];
     newTab.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:newTab animated:YES];
+}
+
+- (IBAction)m_submitSender:(id)sender {
+    
+    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    SubmitQuestion *submitQuestion = [stroboard instantiateViewControllerWithIdentifier:@"SubmitQuestion"];
+    
+    submitQuestion.view.backgroundColor = [UIColor whiteColor];
+    
+    submitQuestion.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:submitQuestion animated:YES];
 }
 
 @end

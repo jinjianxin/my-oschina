@@ -11,6 +11,7 @@
 @implementation TweetViewControl
 {
     id<TabBarProtocol> mydelegate;
+    TweetCell *customCell;
 }
 
 @synthesize pullTableView;
@@ -88,18 +89,10 @@
     int count = (int)[m_newsArray count]/20;
     m_countPage = count;
     
-    /*
-    else if(newsCategory ==100)
-    {
-        //http://www.oschina.net/action/api/software_tweet_list?project=33477
-        str = [NSString stringWithFormat:@"http://www.oschina.net/action/api/software_tweet_list?project=%@", self.projectId];
-    } */
-    
     NSString *str = nil;
     
     if(self.newsCategory ==100)
     {
-       // str = [NSString stringWithFormat:@"http://www.oschina.net/action/api/software_tweet_list?project=%@", self.projectId];
         str = @"http://www.oschina.net/action/api/software_tweet_list?project=33477";
     }
     else{
@@ -171,6 +164,7 @@
 {
     TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
     
+    
     if(msg!=nil)
     {
         return msg.m_height;
@@ -180,20 +174,18 @@
     }
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 140;
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSLog(@"*******");
-    
-    static NSString *tag = @"tag";
+    static NSString *tag = @"tweetCell";
     
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
-    
-    if(cell ==nil)
-    {
-        cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
-    }
-    
     TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
 
     [cell setContent:msg];
@@ -237,24 +229,39 @@
     MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
     newTab.title = @"动态详情";
     
-    TweetDetailViewControl *tweetDetail = [[TweetDetailViewControl alloc] init];
-    tweetDetail.view.backgroundColor = [UIColor whiteColor];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    TweetDetailViewControl *tweetDetail = [storyboard instantiateViewControllerWithIdentifier:@"TweetDetailViewControl"];
     tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     tweetDetail.tabBarItem.title = @"咨询详情";
     tweetDetail.m_uid = msg.m_id;
-
-
-    CommentsDetail *commentDetail = [[CommentsDetail alloc] init];
+    
+    CommentsDetail *commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
     commentDetail.tabBarItem.title = @"评论";
     commentDetail.ids = msg.m_id;
     commentDetail.newsCategory = 3;
     [commentDetail setMyDelegate:newTab];
+
+
+    [tweetDetail viewDidAppear:YES];
     
-    newTab.viewControllers = [NSArray arrayWithObjects:tweetDetail,commentDetail, nil];
+    newTab.viewControllers = [NSArray arrayWithObjects:tweetDetail,commentDetail,nil];
     newTab.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:newTab animated:YES];
+    
+}
+
+- (IBAction)m_tweetSender:(id)sender {
+    
+    UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    SubmitTweet *submitTweet = [stroyboard instantiateViewControllerWithIdentifier:@"SubmitTweet"];
+    
+    submitTweet.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:submitTweet animated:YES];
     
 }
 

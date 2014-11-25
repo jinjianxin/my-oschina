@@ -30,14 +30,6 @@
     
     isLoadOver = NO;
     
-    CGRect rect = self.view.bounds;
-    
-    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 65, rect.size.width , rect.size.height-65)];
-    
-    pullTabView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    
-    [self.view addSubview:pullTabView];
-    
     commentArray = [[NSMutableArray alloc] initWithCapacity:2];
     
     pullTabView.delegate = self;
@@ -59,7 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"----- count = %d",[commentArray count]);
+    NSLog(@"----- count = %d",(int)[commentArray count]);
     [super viewWillAppear:animated];
     [pullTabView reloadData];
 }
@@ -75,7 +67,7 @@
 
 - (void)barButttonClick
 {
-    NSLog(@"count = %d",[commentArray count]);
+    NSLog(@"count = %d",(int)[commentArray count]);
     
     NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
     NSString* uid = [userData stringForKey:@"uid"];
@@ -93,6 +85,7 @@
         [self.navigationController pushViewController:pubComments animated:YES];
     }
 }
+
 
 -(void)setMyDelegate:(id<TabBarProtocol>)delegate
 {

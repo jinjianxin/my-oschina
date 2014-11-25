@@ -34,15 +34,18 @@
     msg.m_pubDate = npubDate;
     
     UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(157, 178, 236, 331)];
-    int height = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0f] andText:msg.m_body]+40;
+
+    int height = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:17.0f] andText:msg.m_body]+40;
     
-    if(height<62)
+    int pullHeight = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:17.0f] andText:msg.m_pubDate];
+    
+    if(height+pullHeight<62)
     {
         msg.m_height = 62;
     }
     else
     {
-        msg.m_height = height;
+        msg.m_height = height+pullHeight;
     }
     
     return msg;

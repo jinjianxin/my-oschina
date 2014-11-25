@@ -23,6 +23,8 @@
 		744844BE1A089CD000FAC42E /* share_tencent.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BA1A089CD000FAC42E /* share_tencent.png */; };
 		744844BF1A089CD000FAC42E /* share_weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BB1A089CD000FAC42E /* share_weixin.png */; };
 		744844C01A089CD000FAC42E /* share_weixinFriend.png in Resources */ = {isa = PBXBuildFile; fileRef = 744844BC1A089CD000FAC42E /* share_weixinFriend.png */; };
+		7449B7581A1F0736007808C5 /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7449B7571A1F0736007808C5 /* TestCell.m */; };
+		7449B75B1A1F080E007808C5 /* TestViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7449B75A1A1F080E007808C5 /* TestViewControl.m */; };
 		74501B381A1A29DC00DAA253 /* SoftDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 74501B371A1A29DC00DAA253 /* SoftDetail.m */; };
 		745A48CF1A08FAC100957748 /* RefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48CE1A08FAC100957748 /* RefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745A48D81A090E7E00957748 /* QuestionMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 745A48D71A090E7E00957748 /* QuestionMsg.m */; };
@@ -31,6 +33,7 @@
 		7476B7081A177F0400B4FE5F /* MyUITabBarControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7476B7071A177F0400B4FE5F /* MyUITabBarControl.m */; };
 		7476B70B1A17852800B4FE5F /* searchWhite@2x 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7476B7091A17852800B4FE5F /* searchWhite@2x 2.png */; };
 		7476B70C1A17852800B4FE5F /* searchWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7476B70A1A17852800B4FE5F /* searchWhite@2x.png */; };
+		747C30FF1A24598900CFDD7A /* MyThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C30FE1A24598900CFDD7A /* MyThread.m */; };
 		747EC7991A00B2870087B269 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC7981A00B2870087B269 /* main.m */; };
 		747EC79C1A00B2870087B269 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79B1A00B2870087B269 /* AppDelegate.m */; };
 		747EC79F1A00B2870087B269 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC79E1A00B2870087B269 /* ViewController.m */; };
@@ -103,6 +106,8 @@
 		747EC8D51A0114F70087B269 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D21A0114F70087B269 /* TBXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		747EC8D61A0114F70087B269 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D31A0114F70087B269 /* TBXML+Compression.m */; };
 		747EC8D71A0114F70087B269 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D41A0114F70087B269 /* TBXML+HTTP.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		74A1855D1A236FD900ED1741 /* SubmitQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1855C1A236FD900ED1741 /* SubmitQuestion.m */; };
+		74A185601A23797700ED1741 /* SubmitTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1855F1A23797700ED1741 /* SubmitTweet.m */; };
 		74AAE2B01A1B7C7A00730759 /* PubComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AAE2AF1A1B7C7900730759 /* PubComments.m */; };
 		74B1985F1A0663A700A42963 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B1985E1A0663A700A42963 /* CommentCell.m */; };
 		74B95DA31A139A3D009BA4D4 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B95DA21A139A3D009BA4D4 /* SearchViewController.m */; };
@@ -174,6 +179,10 @@
 		744844BA1A089CD000FAC42E /* share_tencent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_tencent.png; sourceTree = "<group>"; };
 		744844BB1A089CD000FAC42E /* share_weixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_weixin.png; sourceTree = "<group>"; };
 		744844BC1A089CD000FAC42E /* share_weixinFriend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_weixinFriend.png; sourceTree = "<group>"; };
+		7449B7561A1F0735007808C5 /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCell.h; path = TableCell/TestCell.h; sourceTree = "<group>"; };
+		7449B7571A1F0736007808C5 /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCell.m; path = TableCell/TestCell.m; sourceTree = "<group>"; };
+		7449B7591A1F080E007808C5 /* TestViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewControl.h; path = ViewControl/TestViewControl.h; sourceTree = "<group>"; };
+		7449B75A1A1F080E007808C5 /* TestViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewControl.m; path = ViewControl/TestViewControl.m; sourceTree = "<group>"; };
 		74501B361A1A29DC00DAA253 /* SoftDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoftDetail.h; path = ViewControl/SoftDetail.h; sourceTree = "<group>"; };
 		74501B371A1A29DC00DAA253 /* SoftDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoftDetail.m; path = ViewControl/SoftDetail.m; sourceTree = "<group>"; };
 		745A48CD1A08FAC100957748 /* RefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -189,6 +198,8 @@
 		7476B7071A177F0400B4FE5F /* MyUITabBarControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyUITabBarControl.m; path = ViewControl/MyUITabBarControl.m; sourceTree = "<group>"; };
 		7476B7091A17852800B4FE5F /* searchWhite@2x 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchWhite@2x 2.png"; sourceTree = "<group>"; };
 		7476B70A1A17852800B4FE5F /* searchWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchWhite@2x.png"; sourceTree = "<group>"; };
+		747C30FD1A24598900CFDD7A /* MyThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyThread.h; sourceTree = "<group>"; };
+		747C30FE1A24598900CFDD7A /* MyThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyThread.m; sourceTree = "<group>"; };
 		747EC7931A00B2870087B269 /* my-oschina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "my-oschina.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		747EC7971A00B2870087B269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		747EC7981A00B2870087B269 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -304,6 +315,10 @@
 		747EC8D81A0115020087B269 /* TBXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
 		747EC8D91A0115020087B269 /* TBXML+Compression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML+Compression.h"; sourceTree = "<group>"; };
 		747EC8DA1A0115020087B269 /* TBXML+HTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
+		74A1855B1A236FD900ED1741 /* SubmitQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmitQuestion.h; path = ViewControl/SubmitQuestion.h; sourceTree = "<group>"; };
+		74A1855C1A236FD900ED1741 /* SubmitQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmitQuestion.m; path = ViewControl/SubmitQuestion.m; sourceTree = "<group>"; };
+		74A1855E1A23797700ED1741 /* SubmitTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmitTweet.h; path = ViewControl/SubmitTweet.h; sourceTree = "<group>"; };
+		74A1855F1A23797700ED1741 /* SubmitTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmitTweet.m; path = ViewControl/SubmitTweet.m; sourceTree = "<group>"; };
 		74AAE2AE1A1B7C7900730759 /* PubComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PubComments.h; path = ViewControl/PubComments.h; sourceTree = "<group>"; };
 		74AAE2AF1A1B7C7900730759 /* PubComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PubComments.m; path = ViewControl/PubComments.m; sourceTree = "<group>"; };
 		74B1985D1A0663A700A42963 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentCell.h; path = TableCell/CommentCell.h; sourceTree = "<group>"; };
@@ -573,6 +588,12 @@
 				74501B371A1A29DC00DAA253 /* SoftDetail.m */,
 				74AAE2AE1A1B7C7900730759 /* PubComments.h */,
 				74AAE2AF1A1B7C7900730759 /* PubComments.m */,
+				7449B7591A1F080E007808C5 /* TestViewControl.h */,
+				7449B75A1A1F080E007808C5 /* TestViewControl.m */,
+				74A1855B1A236FD900ED1741 /* SubmitQuestion.h */,
+				74A1855C1A236FD900ED1741 /* SubmitQuestion.m */,
+				74A1855E1A23797700ED1741 /* SubmitTweet.h */,
+				74A1855F1A23797700ED1741 /* SubmitTweet.m */,
 			);
 			name = ViewControl;
 			sourceTree = "<group>";
@@ -740,6 +761,8 @@
 			children = (
 				74D76F1B1A1A15300085D8DD /* Helper.h */,
 				74D76F1C1A1A15300085D8DD /* Helper.m */,
+				747C30FD1A24598900CFDD7A /* MyThread.h */,
+				747C30FE1A24598900CFDD7A /* MyThread.m */,
 			);
 			name = Until;
 			sourceTree = "<group>";
@@ -784,6 +807,8 @@
 				743F2FD71A0BB5A8002D020A /* TweetCell.m */,
 				740CBF5A1A0E362800456AE7 /* OwnCell.h */,
 				740CBF5B1A0E362800456AE7 /* OwnCell.m */,
+				7449B7561A1F0735007808C5 /* TestCell.h */,
+				7449B7571A1F0736007808C5 /* TestCell.m */,
 			);
 			name = TabelCell;
 			sourceTree = "<group>";
@@ -940,10 +965,13 @@
 				742597CB1A03BA670046300A /* CommentMsgDetails.m in Sources */,
 				743F2FD51A0BAEFE002D020A /* TweetMsg.m in Sources */,
 				747EC79F1A00B2870087B269 /* ViewController.m in Sources */,
+				747C30FF1A24598900CFDD7A /* MyThread.m in Sources */,
 				74E8B6451A0F49DD00CED382 /* QrcodeViewControl.m in Sources */,
 				747EC8491A00DBF70087B269 /* ASIInputStream.m in Sources */,
 				744844B81A08983A00FAC42E /* AsyncImageView.m in Sources */,
+				74A185601A23797700ED1741 /* SubmitTweet.m in Sources */,
 				747EC84D1A00DBF70087B269 /* ASICloudFilesContainer.m in Sources */,
+				7449B75B1A1F080E007808C5 /* TestViewControl.m in Sources */,
 				747EC8511A00DBF70087B269 /* ASICloudFilesObjectRequest.m in Sources */,
 				747EC84C1A00DBF70087B269 /* ASICloudFilesCDNRequest.m in Sources */,
 				747EC84E1A00DBF70087B269 /* ASICloudFilesContainerRequest.m in Sources */,
@@ -974,6 +1002,7 @@
 				747EC8D61A0114F70087B269 /* TBXML+Compression.m in Sources */,
 				74CD835F1A10E644007B16BD /* TweetDetailViewControl.m in Sources */,
 				74EFB7E61A026C4F00358F0D /* NewDetailsControl.m in Sources */,
+				7449B7581A1F0736007808C5 /* TestCell.m in Sources */,
 				747EC84F1A00DBF70087B269 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				74E91EEA1A01196B00087136 /* MsgDetail.m in Sources */,
 				747EC8441A00DBF70087B269 /* ASIDataCompressor.m in Sources */,
@@ -988,6 +1017,7 @@
 				747EC8551A00DBF70087B269 /* ASIS3BucketRequest.m in Sources */,
 				747EC8461A00DBF70087B269 /* ASIDownloadCache.m in Sources */,
 				74D76F1D1A1A15300085D8DD /* Helper.m in Sources */,
+				74A1855D1A236FD900ED1741 /* SubmitQuestion.m in Sources */,
 				747EC8D71A0114F70087B269 /* TBXML+HTTP.m in Sources */,
 				747EC8601A00DD560087B269 /* Reachability.m in Sources */,
 				747EC84A1A00DBF70087B269 /* ASINetworkQueue.m in Sources */,

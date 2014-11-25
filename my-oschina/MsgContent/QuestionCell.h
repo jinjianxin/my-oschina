@@ -9,17 +9,25 @@
 #import <UIKit/UIKit.h>
 #import "QuestionMsg.h"
 #import "AsyncImageView.h"
+#import "XmlParser.h"
 
 @interface QuestionCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *avatorView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *answerTitle;
+@property (weak, nonatomic) IBOutlet UILabel *answerCount;
+@property (weak, nonatomic) IBOutlet UILabel *author;
+
+/*
 @property (strong,nonatomic) UIImageView *avatorView;
 @property (strong ,nonatomic) UILabel *titleLable;
 @property (strong,nonatomic) UILabel *authorLabel;
 @property (strong ,nonatomic) UILabel *answerTitle;
 @property (strong,nonatomic) UILabel *answerCount;
-@property int tag; //分类
+//分类*/
 
-
+@property int tag;
 - (void)setContent:(QuestionMsg *)msg;
 
 @end

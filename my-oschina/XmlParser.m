@@ -541,6 +541,8 @@
         if (root != nil) {
             TBXMLElement *childElement = [TBXML childElementNamed:@"activies" parentElement:root];
             
+            if(childElement ==nil)
+                return nil;
             TBXMLElement *activie = [TBXML childElementNamed:@"active" parentElement:childElement];
             
             while (activie!=nil) {

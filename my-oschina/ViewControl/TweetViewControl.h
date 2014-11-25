@@ -17,6 +17,7 @@
 #import "CustomProtocol.h"
 #import "MyUITabBarControl.h"
 #import "CustomProtocol.h"
+#import "SubmitTweet.h"
 
 
 @interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate,ViewProtocol>
@@ -33,5 +34,6 @@
 - (void) setMyDelegate:(id<TabBarProtocol>)delegate;
 @property id body;
 
+- (IBAction)m_tweetSender:(id)sender;
 
 @end

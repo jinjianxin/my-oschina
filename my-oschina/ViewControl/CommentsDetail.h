@@ -18,11 +18,11 @@
 #import "CustomProtocol.h"
 #import "PubComments.h"
 
-
 @interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,ViewProtocol>
 
 @property (nonatomic,weak) MsgDetail *msgDetail;
-@property (nonatomic ,strong) PullTableView *pullTabView;
+@property (weak, nonatomic) IBOutlet PullTableView *pullTabView;
+
 @property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
 @property (nonatomic,strong) NSMutableArray *commentArray;

@@ -10,6 +10,7 @@
 
 @implementation TweetCell
 
+/*
 @synthesize m_avator;
 @synthesize m_author;
 @synthesize m_title;
@@ -17,6 +18,7 @@
 @synthesize m_icon;
 @synthesize m_count;
 @synthesize m_msg;
+*/
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -30,9 +32,20 @@
 {
     if(self)
     {
-        [self initView:msg];
+        [AsyncImageView cancelPreviousPerformRequestsWithTarget:self.m_avator];
+        self.m_avator.imageURL = [NSURL URLWithString:msg.m_portrait];
+        
+        self.m_author.text = msg.m_author;
+        self.m_answerCount.text = msg.m_commentCount;
+        self.m_title.text = msg.m_body;
+        self.m_pullDate.text = msg.m_pubDate;
+       // self.m_pullDate.text = msg.m_pubDate;
+        //self.m_title.numberOfLines = 0;
+        
     }
 }
+
+/*
 
 - (void) initView:(TweetMsg *)msg
 {
@@ -93,6 +106,6 @@
     [self addSubview:m_count];
     
     
-}
+}*/
 
 @end
