@@ -10,6 +10,7 @@
 
 @implementation OwnCell
 
+/*
 @synthesize m_avator;
 @synthesize m_ownName;
 @synthesize m_answer;
@@ -17,6 +18,11 @@
 @synthesize m_content;
 @synthesize m_time;
 @synthesize m_height;
+ */
+
+@synthesize m_height;
+
+@synthesize m_author;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,9 +33,33 @@
 
 - (void)setContent:(OwnMsg *)msg
 {
-    [self initView:msg];
+   if(self)
+   {
+       [AsyncImageView cancelPreviousPerformRequestsWithTarget:self.m_avator];
+       self.m_avator.imageURL = [NSURL URLWithString:msg.m_portrait];
+       
+       //self.m_author.text= msg.m_author;
+       
+       [m_author setText:msg.m_content];
+       
+     //  self.m_content.text = msg.m_message;
+       //self.m_pullDate.text = [XmlParser intervalSinceNow:msg.m_pubDate] ;//msg.m_pubDate;
+   }
 }
 
+- (void)layoutSubviews
+{
+    
+    [super layoutSubviews];
+    
+    CGSize optimumSize = [self.m_author optimumSize];
+    m_height = (int)optimumSize.height+5;
+    
+    self.m_authorHeight.constant = m_height;
+
+}
+
+ /*
 - (void)initView:(OwnMsg*)msg
 {
     if (self.m_avator) {
@@ -85,6 +115,6 @@
     [self addSubview:m_avator];
     [self addSubview:m_ownName];
     [self addSubview:m_time];
-}
+}*/
 
 @end

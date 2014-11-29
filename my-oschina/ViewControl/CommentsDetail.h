@@ -14,7 +14,7 @@
 #import "XmlParser.h"
 #import "CommentsDetail.h"
 #import "CommentCell.h"
-#import "ReplyCiewControl.h"
+#import "ReplyViewControl.h"
 #import "CustomProtocol.h"
 #import "PubComments.h"
 

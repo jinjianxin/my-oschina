@@ -174,6 +174,8 @@
     else {
         return 63;
     }
+    
+    //return 220;
 }
 
 - (NSInteger)tableView:(UITableView*)tableView
@@ -185,20 +187,40 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView
         cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString* tag = @"tag";
-
-    OwnCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
-
-    if (cell == nil) {
-        cell = [[OwnCell alloc] initWithStyle:UITableViewCellStyleDefault
-                              reuseIdentifier:tag];
-    }
+    static NSString *tag = @"ownCell";
+    static NSString *tagImg = @"ownCellImg";
 
     OwnMsg* msg = [m_newsArray objectAtIndex:[indexPath row]];
-
-    [cell setContent:msg];
-
-    return cell;
+    
+    if([msg.m_tweetimage length]!=0)
+    {
+        OwnCellImg* cell = [tableView dequeueReusableCellWithIdentifier:tagImg];
+        [cell setContent:msg];
+        
+        if(m_category==2)
+        {
+            cell.m_author.lineSpacing = 5.0;
+        }
+        else{
+        cell.m_author.lineSpacing = 10.0;
+        }
+        
+        return cell;
+    }
+    else{
+    
+        OwnCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
+        [cell setContent:msg];
+        if(m_category==2)
+        {
+            cell.m_author.lineSpacing = 5.0;
+        }
+        else{
+            cell.m_author.lineSpacing = 10.0;
+        }
+    
+        return cell;
+    }  
 }
 
 @end

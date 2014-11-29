@@ -198,12 +198,14 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReplyCiewControl *repleControl = [[ReplyCiewControl alloc] init];
+    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    ReplyViewControl *repleControl = [stroboard instantiateViewControllerWithIdentifier:@"ReplyCiewControl"] ;//[[ReplyCiewControl alloc] init];
     repleControl.view.backgroundColor = [UIColor whiteColor];
    
     int index = (int)[indexPath row];
     CommentMsgDetails *msg  = [commentArray objectAtIndex:index];
-    repleControl.msg = msg;
+    repleControl.m_msg = msg;
     
     [self.navigationController pushViewController:repleControl animated:YES];
 }

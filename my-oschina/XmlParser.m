@@ -472,9 +472,19 @@
         TBXMLElement *_appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
         TBXMLElement *_commentCount = [TBXML childElementNamed:@"commentCount" parentElement:first];
         TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
+        TBXMLElement *_imgSmall = [TBXML childElementNamed:@"imgSmall" parentElement:first];
+        TBXMLElement *_imgBig = [TBXML childElementNamed:@"imgBig" parentElement:first];
     
         TweetMsg *msg = [[TweetMsg alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andBody:[TBXML textForElement:_body] andAppclient:[TBXML textForElement:_appclient] andCommentCount:[TBXML textForElement:_commentCount] andPullDate:[TBXML textForElement:_pubDate]];
         
+        if(_imgSmall!=nil)
+        {
+            msg.m_imgSmall = [TBXML textForElement:_imgSmall];
+            msg.m_imgBig = [TBXML textForElement:_imgBig];
+        }
+        
+        [msg calculateHeight];
+
         [array addObject:msg];
         
         first = [TBXML nextSiblingNamed:@"tweet" searchFromElement:first];
@@ -571,6 +581,9 @@
                 msg.m_catalog = [TBXML textForElement:_catalog];
                 msg.m_objecttype = [TBXML textForElement:_objecttype];
                 msg.m_objectcatalog = [TBXML textForElement:_objectcatalog];
+                
+                NSLog(@"***%@",[TBXML textForElement:_objectcatalog]);
+                
                 msg.m_objecttitle = [TBXML textForElement:_objecttitle];
                 msg.m_appclient = [TBXML textForElement:_appclient];
                 msg.m_url = [TBXML textForElement:_url];

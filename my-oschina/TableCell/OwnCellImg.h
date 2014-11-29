@@ -1,8 +1,8 @@
 //
-//  OwnCell.h
+//  OwnCellImg.h
 //  my-oschina
 //
-//  Created by jjx on 14/11/8.
+//  Created by jjx on 14/11/25.
 //  Copyright (c) 2014年 jjx. All rights reserved.
 //
 
@@ -13,19 +13,9 @@
 #import "RTLabel.h"
 
 
-@interface OwnCell : UITableViewCell
 
-/*
-@property (strong,nonatomic) UIImageView *m_avator;
-@property (strong,nonatomic) UILabel *m_ownName;
-@property (strong,nonatomic) UILabel *m_answer;
-@property (strong,nonatomic) UILabel *m_question;
-@property (strong,nonatomic) UILabel *m_content;
-@property (strong,nonatomic) UILabel *m_time;
-@property int m_height;
+@interface OwnCellImg : UITableViewCell
 
-- (void) setContent:(OwnMsg*)msg;
- */
 @property (weak, nonatomic) IBOutlet UIImageView *m_avator;
 
 //@property (weak, nonatomic) IBOutlet UILabel *m_author;
@@ -34,7 +24,9 @@
 
 //@property (strong,nonatomic) RTLabel *m_author;
 @property int m_height;
+@property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
 
 - (void) setContent:(OwnMsg*)msg;
+
 
 @end

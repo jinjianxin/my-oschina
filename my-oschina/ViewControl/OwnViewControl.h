@@ -14,6 +14,7 @@
 #import "XmlParser.h"
 #import "OwnMsg.h"
 #import "OwnCell.h"
+#import "OwnCellImg.h"
 
 @interface OwnViewControl : UIViewController <UIActionSheetDelegate,PullTableViewDelegate,UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate>
 

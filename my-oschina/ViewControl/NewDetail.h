@@ -15,9 +15,10 @@
 #import "CustomProtocol.h"
 #import "ASIFormDataRequest.h"
 #import "prefix_define.h"
+#import "Helper.h"
 
 
-@interface NewDetail : UIViewController <ASIHTTPRequestDelegate,ViewProtocol,ASIHTTPRequestDelegate>
+@interface NewDetail : UIViewController <ASIHTTPRequestDelegate,ViewProtocol,ASIHTTPRequestDelegate,UIWebViewDelegate>
 {
   //  MsgDetail *msgDetail;
 }

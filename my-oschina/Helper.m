@@ -16,81 +16,18 @@
     switch (msg.newType) {
         case 0:
         {
-            MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
-            newTab.title = @"资讯详情";
-            
-            NewDetail* newDetail = [[NewDetail alloc] init];
-            newDetail.view.backgroundColor = [UIColor whiteColor];
-            newDetail.title = @"资讯";
-            newDetail.tabBarItem.title = @"资讯";
-            newDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
-            newDetail.newsCategory = category;
-            newDetail.msgDetail = msg;
-            newDetail.ids = msg.ids;
-            [newDetail setMyDelegate:newTab];
-            [newDetail viewDidAppear:YES];
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            
-            CommentsDetail *commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
-            commentDetail.tabBarItem.title = @"评论";
-            commentDetail.view.backgroundColor = [UIColor whiteColor];
-            commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
-            commentDetail.msgDetail = msg;
-            commentDetail.newsCategory = category;
-            commentDetail.ids = msg.ids;
-            [commentDetail setMyDelegate:newTab];
-            
-            ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
-            shareDetail.tabBarItem.title = @"分享";
-            shareDetail.view.backgroundColor = [UIColor whiteColor];
-            shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
-            [shareDetail setMyDelegate:newTab];
-            
-            newTab.viewControllers = [NSArray arrayWithObjects:newDetail, commentDetail, shareDetail, nil];
-            newTab.hidesBottomBarWhenPushed = YES;
-            
-            [navigationController pushViewController:newTab animated:YES];
+            [self pushNews:navigationController andIds:msg.ids andCategory:category];
         }
             break;
         case 1:
         {
-            MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
-            newTab.title = @"软件详情";
-            
-            SoftDetail *software = [[SoftDetail alloc] init];
-            software.tabBarItem.image = [UIImage imageNamed:@"detail"];
-            software.softwareName = msg.attachMent;
-            [software viewDidAppear:YES];
-            
-             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            
-            TweetViewControl *tweetView =  [storyboard instantiateViewControllerWithIdentifier:@"TweetViewControl"];
-            tweetView.tabBarItem.title = @"评论";
-            tweetView.view.backgroundColor = [UIColor whiteColor];
-            tweetView.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
-            tweetView.newsCategory = 100;
-            tweetView.body  = software;
-            [tweetView setMyDelegate:newTab];
-            
-            
-            ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
-            shareDetail.tabBarItem.title = @"分享";
-            shareDetail.view.backgroundColor = [UIColor whiteColor];
-            shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
-            [shareDetail setMyDelegate:newTab];
-
-            
-            newTab.viewControllers = [NSArray arrayWithObjects:software, tweetView, shareDetail, nil];
-            newTab.hidesBottomBarWhenPushed = YES;
-            
-            [navigationController pushViewController:newTab animated:YES];
+            [self pushSoft:navigationController andIds:msg.attachMent andCategory:0];
 
         }
             break;
         case 2:
         {
-            
+            [self pushQuestion:navigationController andIds:msg.ids andCategory:2];
         }
             break;
         case 3:
@@ -138,6 +75,175 @@
         default:
             break;
     }
+}
+
++ (void)pushNews:(UINavigationController *)navigationController andIds:(NSString *)ids andCategory:(int)category
+{
+    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+    newTab.title = @"资讯详情";
+    
+    NewDetail* newDetail = [[NewDetail alloc] init];
+    newDetail.view.backgroundColor = [UIColor whiteColor];
+    newDetail.title = @"资讯";
+    newDetail.tabBarItem.title = @"资讯";
+    newDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
+    newDetail.newsCategory = category;
+    newDetail.ids = ids;
+    [newDetail setMyDelegate:newTab];
+    [newDetail viewDidAppear:YES];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    CommentsDetail *commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
+    commentDetail.tabBarItem.title = @"评论";
+    commentDetail.view.backgroundColor = [UIColor whiteColor];
+    commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    commentDetail.newsCategory = category;
+    commentDetail.ids = ids;
+    [commentDetail setMyDelegate:newTab];
+    
+    ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
+    shareDetail.tabBarItem.title = @"分享";
+    shareDetail.view.backgroundColor = [UIColor whiteColor];
+    shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+    [shareDetail setMyDelegate:newTab];
+    
+    newTab.viewControllers = [NSArray arrayWithObjects:newDetail, commentDetail, shareDetail, nil];
+    newTab.hidesBottomBarWhenPushed = YES;
+    
+    [navigationController pushViewController:newTab animated:YES];
+
+}
+
++ (void)pushQuestion:(UINavigationController *)navigationController andIds:(NSString *)ids andCategory:(int)category
+{
+    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+    newTab.title = @"问答详情";
+    
+    
+    PostDetails *postDetail = [[PostDetails alloc] init];
+    postDetail.view.backgroundColor = [UIColor whiteColor];
+    postDetail.tabBarItem.title = @"详情";
+    postDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
+    postDetail.ids = ids ;
+    [postDetail setMyDelegate:newTab];
+    
+    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    CommentsDetail *commentDetail = [stroboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
+    commentDetail.view.backgroundColor = [UIColor whiteColor];
+    commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    commentDetail.tabBarItem.title = @"评论";
+    commentDetail.ids = ids;
+    commentDetail.newsCategory = category;
+    [commentDetail setMyDelegate:newTab];
+    
+    
+    ShareDetail *shareDetail = [stroboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
+    shareDetail.tabBarItem.title=@"分享";
+    shareDetail.view.backgroundColor = [UIColor whiteColor];
+    shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+    [shareDetail setMyDelegate:newTab];
+    
+    ReportViewControl *reportView = [[ReportViewControl alloc] init];
+    reportView.tabBarItem.title=@"举报";
+    reportView.view.backgroundColor = [UIColor whiteColor];
+    reportView.tabBarItem.image = [UIImage imageNamed:@"share"];
+    [reportView setMyDelegate:newTab];
+    
+    [postDetail viewDidAppear:YES];
+    
+    newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];
+    newTab.hidesBottomBarWhenPushed = YES;
+    [navigationController pushViewController:newTab animated:YES];
+}
+
++ (void)pushSoft:(UINavigationController *)navigationController andIds:(NSString *)ids andCategory:(int)category
+{
+    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+    newTab.title = @"软件详情";
+    
+    SoftDetail *software = [[SoftDetail alloc] init];
+    software.tabBarItem.image = [UIImage imageNamed:@"detail"];
+    software.softwareName = ids;
+    [software viewDidAppear:YES];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    TweetViewControl *tweetView =  [storyboard instantiateViewControllerWithIdentifier:@"TweetViewControl"];
+    tweetView.tabBarItem.title = @"评论";
+    tweetView.view.backgroundColor = [UIColor whiteColor];
+    tweetView.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    tweetView.newsCategory = 100;
+    tweetView.body  = software;
+    [tweetView setMyDelegate:newTab];
+    tweetView.m_top.constant = 64;
+    
+    
+    ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
+    shareDetail.tabBarItem.title = @"分享";
+    shareDetail.view.backgroundColor = [UIColor whiteColor];
+    shareDetail.tabBarItem.image = [UIImage imageNamed:@"share"];
+    [shareDetail setMyDelegate:newTab];
+    
+    
+    newTab.viewControllers = [NSArray arrayWithObjects:software, tweetView, shareDetail, nil];
+    newTab.hidesBottomBarWhenPushed = YES;
+    
+    [navigationController pushViewController:newTab animated:YES]; 
+}
+
++ (void)analysisDetail:(NSString *)url andNav:(UINavigationController *)navigationController
+{
+    NSLog(@"url = %@",url);
+    
+    NSString *search = @"oschina.net";
+    
+    NSRange rng = [url rangeOfString:search];
+    if (rng.length <= 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        return;
+    }
+    else{
+        NSString *tail = [url substringFromIndex:7];
+        
+        if([tail hasPrefix:@"www"])
+        {
+            NSArray *array = [tail componentsSeparatedByString:@"/"];
+           
+            if([[array objectAtIndex:1] isEqualToString:@"news"])
+            {
+                [self pushNews:navigationController andIds:[array objectAtIndex:2] andCategory:1];
+                return;
+            }
+            else if([[array objectAtIndex:1] isEqualToString:@"p"])
+            {
+                [self pushSoft:navigationController andIds:[array objectAtIndex:2] andCategory:0];
+                return;
+            }
+            else if([[array objectAtIndex:1] isEqualToString:@"question"])
+            {
+                //[self pushQuestion:navigationController andIds:[array objectAtIndex:2] andCategory:2];
+                
+                if([array count]==3)
+                {
+                    NSString *ids = [[[array objectAtIndex:2] componentsSeparatedByString:@"_"] objectAtIndex:1];
+                    
+                    [self pushQuestion:navigationController andIds:ids andCategory:2];
+                    return;
+                }
+            }
+           
+        }
+
+    }
+    
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+
+    
+    
+    
 }
 
 + (NSString *)getUid

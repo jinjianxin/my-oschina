@@ -21,6 +21,7 @@
 #import "ReportViewControl.h"
 #import "MyUITabBarControl.h"
 #import "SubmitQuestion.h"
+#import "Helper.h"
 
 
 @interface QuestionViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>

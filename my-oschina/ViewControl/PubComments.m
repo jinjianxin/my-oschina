@@ -48,7 +48,7 @@
     UITapGestureRecognizer* gesture =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(hideKeyboard)];
-    gesture.numberOfTapsRequired = 1; //手势敲击的次数
+    gesture.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:gesture];
     
     

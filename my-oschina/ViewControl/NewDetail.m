@@ -29,6 +29,8 @@
     CGRect rect = self.view.bounds;
 
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
+    
+    self.webView.delegate =self;
 
     
     [self.view addSubview:webView];
@@ -188,6 +190,23 @@
     
     
     
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    /*
+    [Tool analysis:[request.URL absoluteString] andNavController:self.parentViewController.navigationController];*/
+    
+    [Helper analysisDetail:[request.URL absoluteString] andNav:self.parentViewController.navigationController];
+    
+    if ([request.URL.absoluteString isEqualToString:@"about:blank"])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 

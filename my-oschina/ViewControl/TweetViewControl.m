@@ -99,6 +99,7 @@
         str = [NSString stringWithFormat:@"%@uid=%d&pageIndex=%d&pageSize=%d", tweet_url,self.m_uid,count,20];
     }
 
+    NSLog(@"%@",str);
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
     
@@ -184,14 +185,56 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *tag = @"tweetCell";
+    static NSString *tagImag  = @"tweetCellImg";
     
-    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
     TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
+    
+    if([msg.m_imgSmall length]!=0)
+    {
+        TweetCellImag *cell = [tableView dequeueReusableCellWithIdentifier:tagImag];
+        [cell setContent:msg];
+        
+        if([[cell.m_imageView gestureRecognizers] count]>0)
+        {
+            UITip *tip = [[cell.m_imageView gestureRecognizers] objectAtIndex:0];
+            tip.m_imageView = cell.m_imageView;
+            
+        }
+        else
+        {
+            cell.m_imageView.userInteractionEnabled = YES;
+            
+            UITip *tip =[[UITip alloc] initWithTarget:self action:@selector(clickImage:)];
+            tip.numberOfTapsRequired=1;
+            tip.m_imageView = cell.m_imageView;
+            tip.m_imageUrl = msg.m_imgBig;
+            tip.m_imageUrl = msg.m_imgBig;
+            
+            [cell.m_imageView addGestureRecognizer:tip];
+        
+        }
+        
+        return cell;
+    }
+    else
+    {
+        TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
+        [cell setContent:msg];
+    
+        return cell;
+    }
+}
 
-    [cell setContent:msg];
+
+- (void)clickImage:(id)sender
+{
+    UITip *tip = (UITip*)sender;
     
-    return cell;
+    GGFullscreenImageViewController *viewControl = [[GGFullscreenImageViewController alloc] init];
+    viewControl.liftedImageView = tip.m_imageView;
+    viewControl.m_imageUrl = tip.m_imageUrl;
     
+    [self presentViewController:viewControl animated:YES completion:nil];
 }
 
 - (IBAction)segSender:(id)sender {
@@ -218,8 +261,6 @@
     [self loadContent];
     
 }
-
-
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath :(NSIndexPath *)indexPath
 {

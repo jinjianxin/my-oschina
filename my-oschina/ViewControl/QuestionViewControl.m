@@ -145,7 +145,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     QuestionMsg *msg  = [newsArray objectAtIndex:[indexPath row]];
-    
+   
+    /*
     MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
     newTab.title = @"问答详情";
     
@@ -184,7 +185,9 @@
     
     newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];
     newTab.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:newTab animated:YES];
+    [self.navigationController pushViewController:newTab animated:YES]; */
+    
+    [Helper pushQuestion:self.navigationController andIds:msg.ids andCategory:2];
 }
 
 - (IBAction)m_submitSender:(id)sender {

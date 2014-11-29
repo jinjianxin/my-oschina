@@ -18,6 +18,9 @@
 #import "MyUITabBarControl.h"
 #import "CustomProtocol.h"
 #import "SubmitTweet.h"
+#import "TweetCellImag.h"
+#import "UITip.h"
+#import "GGFullScreenImageViewController.h"
 
 
 @interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate,ViewProtocol>
@@ -35,5 +38,6 @@
 @property id body;
 
 - (IBAction)m_tweetSender:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_top;
 
 @end
