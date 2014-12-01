@@ -121,7 +121,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest*)request
 {
-    NSLog(@"tiem out");
+    
 }
 
 - (CGFloat)tableView:(UITableView*)tableView
@@ -207,7 +207,6 @@
 }
 
 - (IBAction)searchSender:(id)sender {
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
     SearchViewController *searchControl =[storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];

@@ -17,6 +17,7 @@
 #import "ReplyViewControl.h"
 #import "CustomProtocol.h"
 #import "PubComments.h"
+#import "UIView+Toast.h"
 
 @interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,ViewProtocol>
 

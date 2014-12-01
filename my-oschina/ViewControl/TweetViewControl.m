@@ -198,6 +198,7 @@
         {
             UITip *tip = [[cell.m_imageView gestureRecognizers] objectAtIndex:0];
             tip.m_imageView = cell.m_imageView;
+            tip.m_imageUrl = msg.m_imgBig;
             
         }
         else
@@ -208,7 +209,7 @@
             tip.numberOfTapsRequired=1;
             tip.m_imageView = cell.m_imageView;
             tip.m_imageUrl = msg.m_imgBig;
-            tip.m_imageUrl = msg.m_imgBig;
+            
             
             [cell.m_imageView addGestureRecognizer:tip];
         

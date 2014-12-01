@@ -51,7 +51,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"----- count = %d",(int)[commentArray count]);
     [super viewWillAppear:animated];
     [pullTabView reloadData];
 }
@@ -63,12 +62,11 @@
     [self loadContent];
     
     [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
+
 }
 
 - (void)barButttonClick
 {
-    NSLog(@"count = %d",(int)[commentArray count]);
-    
     NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
     NSString* uid = [userData stringForKey:@"uid"];
 
@@ -84,6 +82,9 @@
 
         [self.navigationController pushViewController:pubComments animated:YES];
     }
+    else{
+        [self.view makeToast:@"请先登陆"];
+    }
 }
 
 
@@ -94,6 +95,10 @@
 
 - (void) loadContent
 {
+    
+    if(!isLoadOver)
+    {
+    
     int count = (int)[commentArray count]/20;
     pageIndex = count;
     
@@ -107,9 +112,6 @@
         str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count,20];
     }
 
-    
-    NSLog(@"url = %@",str);
-    
     NSURL *url = [NSURL URLWithString:str];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
@@ -117,7 +119,8 @@
     [request setDelegate:self];
     [request startAsynchronous];
     
-    [self refreshTable];
+    //[self refreshTable];
+    }
     
 }
 
@@ -200,7 +203,7 @@
 {
     UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     
-    ReplyViewControl *repleControl = [stroboard instantiateViewControllerWithIdentifier:@"ReplyCiewControl"] ;//[[ReplyCiewControl alloc] init];
+    ReplyViewControl *repleControl = [stroboard instantiateViewControllerWithIdentifier:@"ReplyCiewControl"] ;
     repleControl.view.backgroundColor = [UIColor whiteColor];
    
     int index = (int)[indexPath row];
