@@ -13,7 +13,7 @@
 
 @interface NewDetailsControl : UITabBarController
 
-@property (strong,nonatomic) MsgDetail *news;
+@property (strong,nonatomic) MsgDetail *m_news;
 
 
 

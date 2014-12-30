@@ -188,9 +188,9 @@
             
                 singleNews = [[SingleNews alloc] initWithContent:[[TBXML textForElement:_id] intValue] andtitle:[TBXML textForElement:_title] andurl:[TBXML textForElement:_url] andbody:[TBXML textForElement:_body] andauthor:[TBXML textForElement:_author] andauthorid:[[TBXML textForElement:_authorid] intValue] andpubDate:[TBXML textForElement:_pubDate] andcommentCount:[[TBXML textForElement:_commentCount] intValue] andfavorite:[[TBXML textForElement:_fav] intValue] ==1 ];
                 
-                singleNews.softwarelink = [TBXML textForElement:_softwarelink];
-                singleNews.softwarename = [TBXML textForElement:_softwarename];
-                singleNews.relativies = relativeArray;
+                singleNews.m_softwarelink = [TBXML textForElement:_softwarelink];
+                singleNews.m_softwarename = [TBXML textForElement:_softwarename];
+                singleNews.m_relativies = relativeArray;
                 
                 
             }
@@ -256,7 +256,7 @@
     }
     NSString *middle = @"";
     for (RelativeNews *r in array) {
-        middle = [NSString stringWithFormat:@"%@<a href=%@ style='text-decoration:none'>%@</a><p/>",middle, r.rurl, r.rtitle];
+        middle = [NSString stringWithFormat:@"%@<a href=%@ style='text-decoration:none'>%@</a><p/>",middle, r.m_url, r.m_title];
     }
     return [NSString stringWithFormat:@"<hr/>相关文章<div style='font-size:14px'><p/>%@</div>", middle];
 }
@@ -343,7 +343,7 @@
         
         CommentMsgDetails *news = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:[TBXML textForElement:_appclient] andRefers:_refersContent];
         
-        news.refrenceArray = referenceArray;
+        news.m_refrenceArray = referenceArray;
         [news calculateHeight];
         
         
@@ -393,7 +393,7 @@
         
         if(_name!=nil)
         {
-            msg.name = [TBXML textForElement:_name];
+            msg.m_name = [TBXML textForElement:_name];
         }
         
         [array addObject:msg];

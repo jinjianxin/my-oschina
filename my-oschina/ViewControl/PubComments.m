@@ -111,7 +111,7 @@
                     CommentMsgDetails *msg = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorId] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:nil andRefers:nil];
                     
                     CommentsDetail *commentsDetail = (CommentsDetail*)m_parent;
-                    [commentsDetail.commentArray addObject:msg];
+                    [commentsDetail.m_commentArray addObject:msg];
                     
                 }
 

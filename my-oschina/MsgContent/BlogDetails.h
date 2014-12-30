@@ -10,17 +10,17 @@
 
 @interface BlogDetails : NSObject
 
-@property int _id;
-@property (copy,nonatomic) NSString * title;
-@property (copy,nonatomic) NSString * where;
-@property (copy,nonatomic) NSString * body;
-@property (copy,nonatomic) NSString * author;
-@property int authorid;
-@property int documentType;
-@property (copy,nonatomic) NSString * pubDate;
-@property BOOL favorite;
-@property (copy,nonatomic) NSString * url;
-@property int commentCount;
+@property int m_id;
+@property (copy,nonatomic) NSString *m_title;
+@property (copy,nonatomic) NSString *m_where;
+@property (copy,nonatomic) NSString *m_body;
+@property (copy,nonatomic) NSString *m_author;
+@property int m_authorid;
+@property int m_documentType;
+@property (copy,nonatomic) NSString *m_pubDate;
+@property BOOL m_favorite;
+@property (copy,nonatomic) NSString *m_url;
+@property int m_commentCount;
 
 - (id)initWithParameters:(int)nid
                 andTitle:(NSString *)ntitle

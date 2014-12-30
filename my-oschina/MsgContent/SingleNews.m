@@ -10,32 +10,32 @@
 
 @implementation SingleNews
 
-@synthesize _id;
-@synthesize title;
-@synthesize url;
-@synthesize body;
-@synthesize author;
-@synthesize authorid;
-@synthesize pubDate;
-@synthesize commentCount;
-@synthesize relativies;
-@synthesize softwarelink;
-@synthesize softwarename;
-@synthesize favorite;
+@synthesize m_id;
+@synthesize m_title;
+@synthesize m_url;
+@synthesize m_body;
+@synthesize m_author;
+@synthesize m_authorid;
+@synthesize m_pubDate;
+@synthesize m_commentCount;
+@synthesize m_relativies;
+@synthesize m_softwarelink;
+@synthesize m_softwarename;
+@synthesize m_favorite;
 
 - (id) initWithContent:(int)nid andtitle:(NSString *)ntitle andurl:(NSString *)nurl andbody:(NSString *)nbody andauthor:(NSString *)nauthor andauthorid:(int)nauthorid andpubDate:(NSString *)npubDate andcommentCount:(int)ncommentCount andfavorite:(BOOL)nfavorite
 {
     SingleNews *news = [[SingleNews alloc] init];
     
-    news._id = nid;
-    news.title = ntitle;
-    news.url = nurl;
-    news.body = nbody;
-    news.author = nauthor;
-    news.authorid = nauthorid;
-    news.pubDate = npubDate;
-    news.commentCount = ncommentCount;
-    news.favorite = nfavorite;
+    news.m_id = nid;
+    news.m_title = ntitle;
+    news.m_url = nurl;
+    news.m_body = nbody;
+    news.m_author = nauthor;
+    news.m_authorid = nauthorid;
+    news.m_pubDate = npubDate;
+    news.m_commentCount = ncommentCount;
+    news.m_favorite = nfavorite;
     return news;
 
 }
@@ -45,15 +45,15 @@
 
 @implementation RelativeNews
 
-@synthesize rtitle;
-@synthesize rurl;
+@synthesize m_title;
+@synthesize m_url;
 
 - (id) initWithContent:(NSString *)ntitle andUrl:(NSString *)nurl
 {
     RelativeNews *msg = [[RelativeNews alloc] init];
     
-    msg.rtitle = ntitle;
-    msg.rurl = nurl;
+    msg.m_title = ntitle;
+    msg.m_url = nurl;
     
     return msg;
 }

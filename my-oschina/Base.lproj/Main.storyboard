@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -98,9 +99,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="author" destination="eLd-ZQ-JKu" id="cCt-eu-qRQ"/>
-                                            <outlet property="pullData" destination="zET-QJ-jTR" id="9sv-KI-Iup"/>
-                                            <outlet property="title" destination="bCj-Yy-5lA" id="3G5-qb-d7o"/>
+                                            <outlet property="m_author" destination="eLd-ZQ-JKu" id="CUk-Yz-Kql"/>
+                                            <outlet property="m_pullData" destination="zET-QJ-jTR" id="Z3b-2C-F7K"/>
+                                            <outlet property="m_title" destination="bCj-Yy-5lA" id="kQZ-H8-cOp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -137,7 +138,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
-                        <outlet property="pullTableView" destination="sSc-uL-eHJ" id="rex-LZ-zxj"/>
+                        <outlet property="m_pullTableView" destination="sSc-uL-eHJ" id="eGa-Zk-RPW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPW-VZ-1QL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,11 +243,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="answerCount" destination="tKq-zv-keQ" id="eGm-fh-vIr"/>
-                                            <outlet property="answerTitle" destination="JQt-3R-E0Y" id="nBw-2E-Via"/>
-                                            <outlet property="author" destination="lJg-2e-6c4" id="9o1-7s-ZvJ"/>
-                                            <outlet property="avatorView" destination="pea-Pl-VmK" id="9KR-uG-Ep0"/>
-                                            <outlet property="titleLabel" destination="Cvf-J2-NUq" id="y0O-Ml-Vw8"/>
+                                            <outlet property="m_answerCount" destination="tKq-zv-keQ" id="G5d-oF-fHM"/>
+                                            <outlet property="m_answerTitle" destination="JQt-3R-E0Y" id="4S5-gO-LiN"/>
+                                            <outlet property="m_author" destination="lJg-2e-6c4" id="Uao-6F-ocp"/>
+                                            <outlet property="m_avatorView" destination="pea-Pl-VmK" id="GZG-eK-t5h"/>
+                                            <outlet property="m_titleLabel" destination="Cvf-J2-NUq" id="i6E-Il-uTq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -755,7 +756,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dLe-Dd-GQi"/>
                     <connections>
-                        <outlet property="pullTabView" destination="1BI-1j-e8G" id="Kdx-uT-XFB"/>
+                        <outlet property="m_pullTabView" destination="1BI-1j-e8G" id="gVe-4U-rdp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhR-1g-srP" userLabel="First Responder" sceneMemberID="firstResponder"/>

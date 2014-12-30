@@ -65,23 +65,23 @@
 
     PostMsg *msg = [XmlParser postNewParser:responseString];
     
-    NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%@'>%@</a> 发布于 %@",msg.authorid, msg.author, msg.pubDate];
+    NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%@'>%@</a> 发布于 %@",msg.m_authorid, msg.m_author, msg.m_pubDate];
     
     NSString *result ;
     
-    if (msg.tagArray == nil || msg.tagArray.count == 0) {
+    if (msg.m_tagArray == nil || msg.m_tagArray.count == 0) {
         result = @"";
     }
     else
     {
         result = @"";
-        for (NSString *t in msg.tagArray) {
+        for (NSString *t in msg.m_tagArray) {
             result = [NSString stringWithFormat:@"%@<a style='background-color: #BBD6F3;border-bottom: 1px solid #3E6D8E;border-right: 1px solid #7F9FB6;color: #284A7B;font-size: 12pt;-webkit-text-size-adjust: none;line-height: 2.4;margin: 2px 2px 2px 0;padding: 2px 4px;text-decoration: none;white-space: nowrap;' href='http://www.oschina.net/question/tag/%@' >&nbsp;%@&nbsp;</a>&nbsp;&nbsp;",result,t,t];
         }
     }
 
     
-    NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3;'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@</body>",HTML_Style, msg.title,author_str,msg.body,result,HTML_Bottom];
+    NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3;'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@</body>",HTML_Style, msg.m_title,author_str,msg.m_body,result,HTML_Bottom];
     
     [self.webView loadHTMLString:html baseURL:nil];
 

@@ -14,31 +14,31 @@
 
 @implementation InfoViewControl
 
-@synthesize pullTableView;
-@synthesize newsArray;
-@synthesize newsCategory;
-@synthesize pageIndex;
+@synthesize m_pullTableView;
+@synthesize m_newsArray;
+@synthesize m_newsCategory;
+@synthesize m_pageIndex;
 
 - (void)loadView
 {
     [super loadView];
 
-    newsCategory = 1;
-    pageIndex = 0;
+    m_newsCategory = 1;
+    m_pageIndex = 0;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
-    self.pullTableView.pullBackgroundColor = [UIColor whiteColor];
-    self.pullTableView.pullTextColor = [UIColor blackColor];
-    self.pullTableView.pullDelegate = self;
-    self.pullTableView.delegate = self;
-    self.pullTableView.dataSource = self;
+    self.m_pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+    self.m_pullTableView.pullBackgroundColor = [UIColor whiteColor];
+    self.m_pullTableView.pullTextColor = [UIColor blackColor];
+    self.m_pullTableView.pullDelegate = self;
+    self.m_pullTableView.delegate = self;
+    self.m_pullTableView.dataSource = self;
 
-    newsArray = [[NSMutableArray alloc] initWithCapacity:10];
+    m_newsArray = [[NSMutableArray alloc] initWithCapacity:10];
 
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -55,22 +55,22 @@
 {
     NSString* str;
 
-    pageIndex = (int)[newsArray count] / 20;
+    m_pageIndex = (int)[m_newsArray count] / 20;
 
-    if (newsCategory == 1) {
-        NSLog(@"%d", pageIndex);
+    if (m_newsCategory == 1) {
+        NSLog(@"%d", m_pageIndex);
 
         str = [NSString stringWithFormat:@"%@catalog=%d&pageIndex=%d&pageSize=%d",
-                                         new_url, 1, pageIndex, 20];
-        NSLog(@"pageIndex = %d", pageIndex);
+                                         new_url, 1, m_pageIndex, 20];
+        NSLog(@"pageIndex = %d", m_pageIndex);
     }
-    else if (newsCategory == 2) {
+    else if (m_newsCategory == 2) {
         str = [NSString stringWithFormat:@"%@type=latest&pageIndex=%d&pageSize=%d",
-                                         blog_url, pageIndex, 20];
+                                         blog_url, m_pageIndex, 20];
     }
-    else if (newsCategory == 3) {
+    else if (m_newsCategory == 3) {
         str = [NSString stringWithFormat:@"%@type=recommend&pageIndex=%d&pageSize=%d",
-                                         blog_url, pageIndex, 20];
+                                         blog_url, m_pageIndex, 20];
     }
     
     
@@ -89,8 +89,8 @@
 {
     [super viewWillAppear:animated];
 
-    if (!self.pullTableView.pullTableIsRefreshing) {
-        self.pullTableView.pullTableIsRefreshing = YES;
+    if (!self.m_pullTableView.pullTableIsRefreshing) {
+        self.m_pullTableView.pullTableIsRefreshing = YES;
         [self performSelector:@selector(refreshTable)
                    withObject:nil
                    afterDelay:0.1f];
@@ -101,24 +101,24 @@
 {
     NSString* responseString = [request responseString];
 
-    if (newsCategory == 1) {
+    if (m_newsCategory == 1) {
         NSMutableArray* array = [XmlParser newsParser:responseString];
 
-        [newsArray addObjectsFromArray:array];
+        [m_newsArray addObjectsFromArray:array];
     }
-    else if (newsCategory == 2) {
+    else if (m_newsCategory == 2) {
         NSMutableArray* array = [XmlParser blogParser:responseString];
 
-        [newsArray addObjectsFromArray:array];
+        [m_newsArray addObjectsFromArray:array];
     }
-    else if (newsCategory == 3) {
+    else if (m_newsCategory == 3) {
 
         NSMutableArray* array = [XmlParser blogParser:responseString];
 
-        [newsArray addObjectsFromArray:array];
+        [m_newsArray addObjectsFromArray:array];
     }
 
-    [pullTableView reloadData];
+    [m_pullTableView reloadData];
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
@@ -135,7 +135,7 @@
 - (NSInteger)tableView:(UITableView*)tableView
     numberOfRowsInSection:(NSInteger)section
 {
-    return [newsArray count];
+    return [m_newsArray count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView
@@ -145,25 +145,25 @@
 
     MsgCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
 
-    MsgDetail* news = [newsArray objectAtIndex:[indexPath row]];
+    MsgDetail* news = [m_newsArray objectAtIndex:[indexPath row]];
 
-    cell.title.text = news.titile;
-    cell.author.text = news.author;
+    cell.m_title.text = news.m_titile;
+    cell.m_author.text = news.m_author;
 
-    cell.pullData.text = news.pullDate;
+    cell.m_pullData.text = news.m_pullDate;
    
     return cell;
 }
 
 - (void)refreshTable
 {
-    self.pullTableView.pullLastRefreshDate = [NSDate date];
-    self.pullTableView.pullTableIsRefreshing = NO;
+    self.m_pullTableView.pullLastRefreshDate = [NSDate date];
+    self.m_pullTableView.pullTableIsRefreshing = NO;
 }
 
 - (void)loadMoreDataToTable
 {
-    self.pullTableView.pullTableIsLoadingMore = NO;
+    self.m_pullTableView.pullTableIsLoadingMore = NO;
 
     [self loadContent];
 }
@@ -185,7 +185,7 @@
     UISegmentedControl* segmentedControl = (UISegmentedControl*)sender;
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
 
-    newsCategory = (int)selectedSegment + 1;
+    m_newsCategory = (int)selectedSegment + 1;
 
     [self clear];
     [self loadContent];
@@ -193,8 +193,8 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    MsgDetail* msg = [newsArray objectAtIndex:[indexPath row]];
-    [Helper pushNewsDetail:self.navigationController andMag:msg andCategory:newsCategory];
+    MsgDetail* msg = [m_newsArray objectAtIndex:[indexPath row]];
+    [Helper pushNewsDetail:self.navigationController andMag:msg andCategory:m_newsCategory];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -204,8 +204,8 @@
 
 - (void)clear
 {
-    [newsArray removeAllObjects];
-    [pullTableView reloadData];
+    [m_newsArray removeAllObjects];
+    [m_pullTableView reloadData];
 }
 
 - (IBAction)searchSender:(id)sender {

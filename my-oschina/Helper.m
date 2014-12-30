@@ -16,7 +16,7 @@
     switch (msg.newType) {
         case 0:
         {
-            [self pushNews:navigationController andIds:msg.ids andCategory:category];
+            [self pushNews:navigationController andIds:msg.m_ids andCategory:category];
         }
             break;
         case 1:
@@ -27,7 +27,7 @@
             break;
         case 2:
         {
-            [self pushQuestion:navigationController andIds:msg.ids andCategory:2];
+            [self pushQuestion:navigationController andIds:msg.m_ids andCategory:2];
         }
             break;
         case 3:
@@ -52,10 +52,10 @@
             commentDetail.tabBarItem.title = @"评论";
             commentDetail.view.backgroundColor = [UIColor whiteColor];
             commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
-            commentDetail.msgDetail = msg;
-            commentDetail.newsCategory = 5;
-            commentDetail.parentID = [msg.attachMent intValue];
-            commentDetail.ids = msg.ids;
+            commentDetail.m_msgDetail = msg;
+            commentDetail.m_newsCategory = 5;
+            commentDetail.m_parentID = [msg.attachMent intValue];
+            commentDetail.m_ids = msg.m_ids;
             [commentDetail setMyDelegate:newTab];
             
             
@@ -87,8 +87,8 @@
     newDetail.title = @"资讯";
     newDetail.tabBarItem.title = @"资讯";
     newDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
-    newDetail.newsCategory = category;
-    newDetail.ids = ids;
+    newDetail.m_newsCategory = category;
+    newDetail.m_ids = ids;
     [newDetail setMyDelegate:newTab];
     [newDetail viewDidAppear:YES];
     
@@ -98,8 +98,8 @@
     commentDetail.tabBarItem.title = @"评论";
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
-    commentDetail.newsCategory = category;
-    commentDetail.ids = ids;
+    commentDetail.m_newsCategory = category;
+    commentDetail.m_ids = ids;
     [commentDetail setMyDelegate:newTab];
     
     ShareDetail *shareDetail = [storyboard instantiateViewControllerWithIdentifier:@"ShareDetail"];
@@ -134,8 +134,8 @@
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
     commentDetail.tabBarItem.title = @"评论";
-    commentDetail.ids = ids;
-    commentDetail.newsCategory = category;
+    commentDetail.m_ids = ids;
+    commentDetail.m_newsCategory = category;
     [commentDetail setMyDelegate:newTab];
     
     

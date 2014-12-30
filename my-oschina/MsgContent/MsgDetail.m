@@ -10,24 +10,25 @@
 
 @implementation MsgDetail
 
-@synthesize titile;
-@synthesize author;
-@synthesize ids;
-@synthesize pullDate;
-@synthesize url;
-@synthesize favorite;
-@synthesize newType;
-@synthesize attachMent;
+@synthesize m_titile;
+@synthesize m_author;
+@synthesize m_ids;
+@synthesize m_pullDate;
+@synthesize m_url;
+/*
+@synthesize m_favorite;
+@synthesize m_newType;
+@synthesize m_attachMent;*/
 
 - (id)initwithContent:(NSString*)_titile author:(NSString*)_author ids:(NSString*)_ids pullDate:(NSString*)_pullDate
 {
     MsgDetail* msg = [[MsgDetail alloc] init];
 
-    msg.titile = _titile;
-    msg.author = _author;
-    msg.ids = _ids;
-    msg.pullDate = _pullDate;
-    // msg.favorite = _favorite;
+    msg.m_titile = _titile;
+    msg.m_author = _author;
+    msg.m_ids = _ids;
+    msg.m_pullDate = _pullDate;
+  
 
     return msg;
 }
@@ -36,11 +37,11 @@
 {
     MsgDetail *msg = [[MsgDetail alloc] init];
     
-    msg.titile = _titile;
-    msg.author = _author;
-    msg.ids = _ids;
-    msg.pullDate = _pullDate;
-    msg.url = _url;
+    msg.m_titile = _titile;
+    msg.m_author = _author;
+    msg.m_ids = _ids;
+    msg.m_pullDate = _pullDate;
+    msg.m_url = _url;
     
     return msg;
 }

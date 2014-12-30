@@ -282,8 +282,8 @@
     commentDetail.view.backgroundColor = [UIColor whiteColor];
     commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
     commentDetail.tabBarItem.title = @"评论";
-    commentDetail.ids = msg.m_id;
-    commentDetail.newsCategory = 3;
+    commentDetail.m_ids = msg.m_id;
+    commentDetail.m_newsCategory = 3;
     [commentDetail setMyDelegate:newTab];
 
 

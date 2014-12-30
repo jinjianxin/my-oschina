@@ -10,7 +10,7 @@
 
 @implementation NewDetailsControl
 
-@synthesize news;
+@synthesize m_news;
 
 - (void) viewDidLoad
 {

@@ -269,8 +269,8 @@
         newDetail.title = @"资讯";
         newDetail.tabBarItem.title = @"资讯";
         newDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
-        newDetail.newsCategory = 1;
-        newDetail.ids = msg.m_id;
+        newDetail.m_newsCategory = 1;
+        newDetail.m_ids = msg.m_id;
         [newDetail setMyDelegate:newTab];
 
         
@@ -280,8 +280,8 @@
         commentDetail.tabBarItem.title = @"评论";
         commentDetail.view.backgroundColor = [UIColor whiteColor];
         commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
-        commentDetail.newsCategory = 1;
-        commentDetail.ids = msg.m_id;
+        commentDetail.m_newsCategory = 1;
+        commentDetail.m_ids = msg.m_id;
         [commentDetail setMyDelegate:newTab];
         
         ShareDetail* shareDetail = [stroboard instantiateViewControllerWithIdentifier:@"ShareDetail"];

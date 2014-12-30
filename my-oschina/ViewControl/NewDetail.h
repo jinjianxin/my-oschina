@@ -24,14 +24,14 @@
 }
 
 
-@property (strong,nonatomic) UIWebView *webView;
+@property (strong,nonatomic) UIWebView *m_webView;
 
-@property (strong, nonatomic) IBOutlet UIView *myView;
-@property (nonatomic,strong) MsgDetail *msgDetail;
-@property (copy,nonatomic) NSString *ids;
-@property int newsCategory;
-@property (strong,nonatomic) SingleNews *singleNews;
+@property (strong, nonatomic) IBOutlet UIView *m_myView;
+@property (nonatomic,strong) MsgDetail *m_msgDetail;
+@property (copy,nonatomic) NSString *m_ids;
+@property int m_newsCategory;
+@property (strong,nonatomic) SingleNews *m_singleNews;
 
-- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+- (void) setMyDelegate:(id<TabBarProtocol>) m_delegate;
 
 @end

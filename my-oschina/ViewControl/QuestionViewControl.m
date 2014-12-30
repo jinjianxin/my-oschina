@@ -187,7 +187,7 @@
     newTab.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:newTab animated:YES]; */
     
-    [Helper pushQuestion:self.navigationController andIds:msg.ids andCategory:2];
+    [Helper pushQuestion:self.navigationController andIds:msg.m_ids andCategory:2];
 }
 
 - (IBAction)m_submitSender:(id)sender {

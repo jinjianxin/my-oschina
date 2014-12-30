@@ -21,17 +21,17 @@
 
 @interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,ViewProtocol>
 
-@property (nonatomic,weak) MsgDetail *msgDetail;
-@property (weak, nonatomic) IBOutlet PullTableView *pullTabView;
+@property (nonatomic,weak) MsgDetail *m_msgDetail;
+@property (weak, nonatomic) IBOutlet PullTableView *m_pullTabView;
 
-@property (copy,nonatomic) NSString *ids;
-@property int newsCategory;
-@property (nonatomic,strong) NSMutableArray *commentArray;
-@property int pageIndex;
-@property BOOL isLoadOver;
-- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
-@property int parentID;
-@property id body;
+@property (copy,nonatomic) NSString *m_ids;
+@property int m_newsCategory;
+@property (nonatomic,strong) NSMutableArray *m_commentArray;
+@property int m_pageIndex;
+@property BOOL m_isLoadOver;
+- (void) setMyDelegate:(id<TabBarProtocol>) m_delegate;
+@property int m_parentID;
+@property id m_body;
 
 
 

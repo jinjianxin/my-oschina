@@ -17,8 +17,8 @@
 {
     [super viewDidAppear:animated];
 
-    self.m_author.text = m_msg.cAuthor;
-    self.m_content.text = m_msg.cContent;
+    self.m_author.text = m_msg.m_author;
+    self.m_content.text = m_msg.m_content;
 
     self.m_textView.layer.borderColor = UIColor.grayColor.CGColor;
     self.m_textView.layer.borderWidth = 1;

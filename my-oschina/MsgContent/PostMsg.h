@@ -10,18 +10,18 @@
 
 @interface PostMsg : NSObject
 
-@property(strong, nonatomic) NSString *ids;
-@property(strong, nonatomic) NSString *title;
-@property(strong, nonatomic) NSString *url;
-@property(strong, nonatomic) NSString *portrait;
-@property(strong, nonatomic) NSString *body;
-@property(strong, nonatomic) NSString *author;
-@property(strong, nonatomic) NSString *authorid;
-@property(strong, nonatomic) NSString *answerCount;
-@property(strong, nonatomic) NSString *viewCount;
-@property(strong, nonatomic) NSString *pubDate;
-@property(strong, nonatomic) NSString *favorite;
-@property(strong, nonatomic) NSMutableArray *tagArray;
+@property(strong, nonatomic) NSString *m_ids;
+@property(strong, nonatomic) NSString *m_title;
+@property(strong, nonatomic) NSString *m_url;
+@property(strong, nonatomic) NSString *m_portrait;
+@property(strong, nonatomic) NSString *m_body;
+@property(strong, nonatomic) NSString *m_author;
+@property(strong, nonatomic) NSString *m_authorid;
+@property(strong, nonatomic) NSString *m_answerCount;
+@property(strong, nonatomic) NSString *m_viewCount;
+@property(strong, nonatomic) NSString *m_pubDate;
+@property(strong, nonatomic) NSString *m_favorite;
+@property(strong, nonatomic) NSMutableArray *m_tagArray;
 
 - (id)initWithContent:(NSString *)newid
              andTitle:(NSString *)ntitle

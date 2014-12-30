@@ -10,17 +10,17 @@
 
 @implementation BlogDetails
 
-@synthesize _id;
-@synthesize title;
-@synthesize where;
-@synthesize body;
-@synthesize author;
-@synthesize authorid;
-@synthesize documentType;
-@synthesize pubDate;
-@synthesize favorite;
-@synthesize url;
-@synthesize commentCount;
+@synthesize m_id;
+@synthesize m_title;
+@synthesize m_where;
+@synthesize m_body;
+@synthesize m_author;
+@synthesize m_authorid;
+@synthesize m_documentType;
+@synthesize m_pubDate;
+@synthesize m_favorite;
+@synthesize m_url;
+@synthesize m_commentCount;
 
 - (id)initWithParameters:(int)nid
                 andTitle:(NSString *)ntitle
@@ -35,17 +35,17 @@
          andCommentCount:(int)ncommentCount
 {
     BlogDetails * b = [[BlogDetails alloc] init];
-    b._id = nid;
-    b.title = ntitle;
-    b.where = nwhere;
-    b.body = nbody;
-    b.author = nauthor;
-    b.authorid = nauthorid;
-    b.documentType = nDocumentType;
-    b.pubDate = nPubDate;
-    b.favorite = nfavorite;
-    b.url = nurl;
-    b.commentCount = ncommentCount;
+    b.m_id = nid;
+    b.m_title = ntitle;
+    b.m_where = nwhere;
+    b.m_body = nbody;
+    b.m_author = nauthor;
+    b.m_authorid = nauthorid;
+    b.m_documentType = nDocumentType;
+    b.m_pubDate = nPubDate;
+    b.m_favorite = nfavorite;
+    b.m_url = nurl;
+    b.m_commentCount = ncommentCount;
     return b;
 }
 

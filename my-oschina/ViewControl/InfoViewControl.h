@@ -23,13 +23,13 @@
 }
 - (IBAction)searchSender:(id)sender;
 
-@property (strong,nonatomic) NSMutableArray *newsArray;
-@property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
+@property (strong,nonatomic) NSMutableArray *m_newsArray;
+@property (weak, nonatomic) IBOutlet PullTableView *m_pullTableView;
 - (IBAction)categorySender:(id)sender;
 
 
 
-@property int newsCategory;
-@property int pageIndex;
+@property int m_newsCategory;
+@property int m_pageIndex;
 
 @end

@@ -13,29 +13,29 @@
     id<TabBarProtocol> mydelegate;
 }
 
-@synthesize msgDetail;
-@synthesize pullTabView;
-@synthesize newsCategory;
-@synthesize commentArray;
-@synthesize ids;
-@synthesize pageIndex;
-@synthesize isLoadOver;
-@synthesize parentID;
-@synthesize body;
+@synthesize m_msgDetail;
+@synthesize m_pullTabView;
+@synthesize m_newsCategory;
+@synthesize m_commentArray;
+@synthesize m_ids;
+@synthesize m_pageIndex;
+@synthesize m_isLoadOver;
+@synthesize m_parentID;
+@synthesize m_body;
 
 
 -(void)loadView
 {
     [super loadView];
     
-    isLoadOver = NO;
+    m_isLoadOver = NO;
     
-    commentArray = [[NSMutableArray alloc] initWithCapacity:2];
+    m_commentArray = [[NSMutableArray alloc] initWithCapacity:2];
     
-    pullTabView.delegate = self;
-    pullTabView.dataSource = self;
+    m_pullTabView.delegate = self;
+    m_pullTabView.dataSource = self;
     
-    self.pullTabView.pullDelegate = self;
+    self.m_pullTabView.pullDelegate = self;
     
     if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
     {
@@ -52,7 +52,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [pullTabView reloadData];
+    [m_pullTabView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -75,8 +75,8 @@
         PubComments* pubComments = [[PubComments alloc] init];
         pubComments.view.backgroundColor = [UIColor whiteColor];
 
-        pubComments.m_id = ids;
-        pubComments.m_catalog = [NSString stringWithFormat:@"%d", newsCategory];
+        pubComments.m_id = m_ids;
+        pubComments.m_catalog = [NSString stringWithFormat:@"%d", m_newsCategory];
         pubComments.m_uid = uid;
         pubComments.m_parent = self;
 
@@ -96,20 +96,20 @@
 - (void) loadContent
 {
     
-    if(!isLoadOver)
+    if(!m_isLoadOver)
     {
     
-    int count = (int)[commentArray count]/20;
-    pageIndex = count;
+    int count = (int)[m_commentArray count]/20;
+    m_pageIndex = count;
     
     NSString *str= nil;
     
-    if(newsCategory ==5)
+    if(m_newsCategory ==5)
     {
-        str = [NSString stringWithFormat:@"%@?id=%d&pageIndex=%d&pageSize=%d", api_blogcomment_list, self.parentID, pageIndex, 20];
+        str = [NSString stringWithFormat:@"%@?id=%d&pageIndex=%d&pageSize=%d", api_blogcomment_list, self.m_parentID, m_pageIndex, 20];
     }
     else{
-        str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count,20];
+        str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.m_newsCategory,m_ids,count,20];
     }
 
     NSURL *url = [NSURL URLWithString:str];
@@ -125,14 +125,14 @@
 }
 
 - (void)refreshTable {
-    self.pullTabView.pullLastRefreshDate = [NSDate date];
-    self.pullTabView.pullTableIsRefreshing = NO;
+    self.m_pullTabView.pullLastRefreshDate = [NSDate date];
+    self.m_pullTabView.pullTableIsRefreshing = NO;
 }
 
 - (void)loadMoreDataToTable {
-    self.pullTabView.pullTableIsLoadingMore = NO;
+    self.m_pullTabView.pullTableIsLoadingMore = NO;
     
-    if(!isLoadOver)
+    if(!m_isLoadOver)
     {
         [self loadContent];
     }
@@ -157,12 +157,12 @@
     
     if(array.count <20)
     {
-        isLoadOver = YES;
+        m_isLoadOver = YES;
     }
     
-    [commentArray addObjectsFromArray:array];
+    [m_commentArray addObjectsFromArray:array];
     
-    [self.pullTabView reloadData];
+    [self.m_pullTabView reloadData];
 }
 
 
@@ -173,14 +173,14 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CommentMsgDetails *msg  = [commentArray objectAtIndex:[indexPath row]];
+    CommentMsgDetails *msg  = [m_commentArray objectAtIndex:[indexPath row]];
     
-    return msg.height;
+    return msg.m_height;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [commentArray count];
+    return [m_commentArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -193,7 +193,7 @@
         cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
     }
     
-    CommentMsgDetails *msg = [commentArray objectAtIndex:[indexPath row]];
+    CommentMsgDetails *msg = [m_commentArray objectAtIndex:[indexPath row]];
     [cell setContent:msg];
 
     return cell;
@@ -207,7 +207,7 @@
     repleControl.view.backgroundColor = [UIColor whiteColor];
    
     int index = (int)[indexPath row];
-    CommentMsgDetails *msg  = [commentArray objectAtIndex:index];
+    CommentMsgDetails *msg  = [m_commentArray objectAtIndex:index];
     repleControl.m_msg = msg;
     
     [self.navigationController pushViewController:repleControl animated:YES];

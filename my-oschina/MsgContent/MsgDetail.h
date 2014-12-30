@@ -10,11 +10,11 @@
 
 @interface MsgDetail : NSObject
 
-@property (nonatomic,copy) NSString *titile;
-@property (nonatomic,copy) NSString *author;
-@property (nonatomic,copy) NSString *ids;
-@property (nonatomic,copy) NSString *pullDate;
-@property (nonatomic,copy) NSString *url;
+@property (nonatomic,copy) NSString *m_titile;
+@property (nonatomic,copy) NSString *m_author;
+@property (nonatomic,copy) NSString *m_ids;
+@property (nonatomic,copy) NSString *m_pullDate;
+@property (nonatomic,copy) NSString *m_url;
 @property int newType;
 @property (nonatomic,copy) NSString *attachMent;
 @property BOOL favorite;

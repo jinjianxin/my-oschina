@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface MsgCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *m_title;
 
 
-@property (weak, nonatomic) IBOutlet UILabel *author;
+@property (weak, nonatomic) IBOutlet UILabel *m_author;
 
-@property (weak, nonatomic) IBOutlet UILabel *pullData;
+@property (weak, nonatomic) IBOutlet UILabel *m_pullData;
 
 @end
 

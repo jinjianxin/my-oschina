@@ -17,14 +17,14 @@
 
     if(self)
     {
-        self.avatorView.imageURL = [NSURL URLWithString:msg.portrait];
-        self.titleLabel.text = msg.title;
-        self.answerTitle.text = @"回帖";
-        self.answerCount.text = msg.answerCount;
+        self.m_avatorView.imageURL = [NSURL URLWithString:msg.m_portrait];
+        self.m_titleLabel.text = msg.m_title;
+        self.m_answerTitle.text = @"回帖";
+        self.m_answerCount.text = msg.m_answerCount;
         
-        NSString *time = [XmlParser intervalSinceNow:msg.pubDate];
+        NSString *time = [XmlParser intervalSinceNow:msg.m_pubDate];
         
-        self.author.text = [NSString stringWithFormat:@"%@        %@",msg.author,time ];
+        self.m_author.text = [NSString stringWithFormat:@"%@        %@",msg.m_author,time ];
     }
 }
 

@@ -12,12 +12,12 @@
 #import "XmlParser.h"
 
 @interface QuestionCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *avatorView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *m_avatorView;
+@property (weak, nonatomic) IBOutlet UILabel *m_titleLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *answerTitle;
-@property (weak, nonatomic) IBOutlet UILabel *answerCount;
-@property (weak, nonatomic) IBOutlet UILabel *author;
+@property (weak, nonatomic) IBOutlet UILabel *m_answerTitle;
+@property (weak, nonatomic) IBOutlet UILabel *m_answerCount;
+@property (weak, nonatomic) IBOutlet UILabel *m_author;
 
 /*
 @property (strong,nonatomic) UIImageView *avatorView;

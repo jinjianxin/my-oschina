@@ -10,15 +10,15 @@
 
 @interface QuestionMsg : NSObject
 
-@property (strong,nonatomic) NSString *ids;
-@property (strong,nonatomic) NSString *portrait;
-@property (strong,nonatomic) NSString *author;
-@property (strong,nonatomic) NSString *authorid ;
-@property (strong,nonatomic) NSString *title;
-@property (strong,nonatomic) NSString *answerCount ;
-@property (strong,nonatomic) NSString *viewCount ;
-@property (strong,nonatomic) NSString *pubDate ;
-@property (strong,nonatomic) NSString *name ;
+@property (strong,nonatomic) NSString *m_ids;
+@property (strong,nonatomic) NSString *m_portrait;
+@property (strong,nonatomic) NSString *m_author;
+@property (strong,nonatomic) NSString *m_authorid ;
+@property (strong,nonatomic) NSString *m_title;
+@property (strong,nonatomic) NSString *m_answerCount ;
+@property (strong,nonatomic) NSString *m_viewCount ;
+@property (strong,nonatomic) NSString *m_pubDate ;
+@property (strong,nonatomic) NSString *m_name ;
 
 - (id) initWithContent:(NSString*)andIds andPortrait:(NSString *)nPortrait andAuthor:(NSString *)nAuthor andAuthorid:(NSString*)nAuthorid andTitle:(NSString*)nTitle andAnswerCount:(NSString*)nAnswerCount  andViewCount:(NSString*) nViewCount andPubDate:(NSString*)nPubDate andName:(NSString*)nName;
 

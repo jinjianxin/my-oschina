@@ -16,11 +16,11 @@
     id<TabBarProtocol> mydelegate;
 }
 
-@synthesize msgDetail;
-@synthesize webView;
-@synthesize newsCategory;
-@synthesize ids;
-@synthesize singleNews;
+@synthesize m_msgDetail;
+@synthesize m_webView;
+@synthesize m_newsCategory;
+@synthesize m_ids;
+@synthesize m_singleNews;
 
 - (void) loadView
 {
@@ -28,12 +28,12 @@
 
     CGRect rect = self.view.bounds;
 
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
+    self.m_webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
     
-    self.webView.delegate =self;
+    self.m_webView.delegate =self;
 
     
-    [self.view addSubview:webView];
+    [self.view addSubview:m_webView];
     
 }
 
@@ -43,13 +43,13 @@
     
     NSString *str ;
     
-    if(newsCategory ==1)
+    if(m_newsCategory ==1)
     {
-        str = [NSString stringWithFormat:@"%@id=%@",new_detail,ids];
+        str = [NSString stringWithFormat:@"%@id=%@",new_detail,m_ids];
     }
-    else if(newsCategory ==2 || newsCategory ==3)
+    else if(m_newsCategory ==2 || m_newsCategory ==3)
     {
-        str = [NSString stringWithFormat:@"%@id=%@",blog_detail,ids];
+        str = [NSString stringWithFormat:@"%@id=%@",blog_detail,m_ids];
     }
 
     NSURL *url = [NSURL URLWithString:str];
@@ -75,12 +75,12 @@
        
         NSString* str = nil;
 
-        if(singleNews.favorite)
+        if(m_singleNews.m_favorite)
         {
-            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_delete,uid,ids];
+            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_delete,uid,m_ids];
         }
         else{
-            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_add,uid,ids];
+            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_add,uid,m_ids];
         }
         
         ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:str]];
@@ -105,9 +105,9 @@
                     int errorcode = [[TBXML textForElement:_errorCode] intValue];
                     if(errorcode ==1)
                     {
-                        singleNews.favorite = !singleNews.favorite;
+                        m_singleNews.m_favorite = !m_singleNews.m_favorite;
                         
-                        if(singleNews.favorite)
+                        if(m_singleNews.m_favorite)
                         {
                             [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"取消收藏" andProtocol:self];
                         }
@@ -158,36 +158,36 @@
     
     NSString *html ;
     
-    if(newsCategory ==1)
+    if(m_newsCategory ==1)
     {
     
-    singleNews = [XmlParser singleNewParser:responseString];
+    m_singleNews = [XmlParser singleNewParser:responseString];
     
-    NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%d'>%@</a> 发布于 %@",singleNews.authorid,singleNews.author,singleNews.pubDate];
+    NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%d'>%@</a> 发布于 %@",m_singleNews.m_authorid,m_singleNews.m_author,m_singleNews.m_pubDate];
     
     
     NSString *software = @"";
-    if ([singleNews.softwarename isEqualToString:@""] == NO) {
-        software = [NSString stringWithFormat:@"<div id='oschina_software' style='margin-top:8px;color:#FF0000;font-size:14px;font-weight:bold'>更多关于:&nbsp;<a href='%@'>%@</a>&nbsp;的详细信息</div>",singleNews.softwarelink, singleNews.softwarename];
+    if ([m_singleNews.m_softwarename isEqualToString:@""] == NO) {
+        software = [NSString stringWithFormat:@"<div id='oschina_software' style='margin-top:8px;color:#FF0000;font-size:14px;font-weight:bold'>更多关于:&nbsp;<a href='%@'>%@</a>&nbsp;的详细信息</div>",m_singleNews.m_softwarelink, m_singleNews.m_softwarename];
     }
     
-    html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@%@</body>",HTML_Style, singleNews.title,author_str, singleNews.body,software,[XmlParser generateRelativeNewsString:singleNews.relativies],HTML_Bottom];
+    html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@%@%@</body>",HTML_Style, m_singleNews.m_title,author_str, m_singleNews.m_body,software,[XmlParser generateRelativeNewsString:m_singleNews.m_relativies],HTML_Bottom];
     }
-    else if(newsCategory ==2 || newsCategory ==3)
+    else if(m_newsCategory ==2 || m_newsCategory ==3)
     {
         BlogDetails *blogDetails = [XmlParser blogDetailParser:responseString];
         
-        NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%d'>%@</a>&nbsp;发表于&nbsp;%@",blogDetails.authorid, blogDetails.author,  [XmlParser intervalSinceNow:blogDetails.pubDate]];
-        html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@</body>",HTML_Style, blogDetails.title,author_str,blogDetails.body,HTML_Bottom];
+        NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%d'>%@</a>&nbsp;发表于&nbsp;%@",blogDetails.m_authorid, blogDetails.m_author,  [XmlParser intervalSinceNow:blogDetails.m_pubDate]];
+        html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@</body>",HTML_Style, blogDetails.m_title,author_str,blogDetails.m_body,HTML_Bottom];
 
         
     }
     
     
-    [self.webView loadHTMLString:html baseURL:nil];
+    [self.m_webView loadHTMLString:html baseURL:nil];
     
     
-    if(singleNews.favorite)
+    if(m_singleNews.m_favorite)
     {
         [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"取消收藏" andProtocol:self];
     }
