@@ -38,12 +38,9 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     NSString *str ;
-
-//    http://www.oschina.net/action/api/post_detail?id=181346
     
     str = [NSString stringWithFormat:@"http://www.oschina.net/action/api/post_detail?id=%@",ids];
     
-    NSLog(@"str = %@",str);
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -58,6 +55,7 @@
 
 - (void)barButttonClick
 {
+    
     
 }
 

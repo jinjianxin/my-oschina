@@ -66,26 +66,26 @@
 
 - (void)barButttonClick
 {
-    NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
+ //   NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
 
-    NSString* uid = [userData stringForKey:@"uid"];
+    NSString* uid = [Helper getUid] ;//[userData stringForKey:@"uid"];
 
     if (uid != nil) {
         
+       
         NSString* str = nil;
 
         if(singleNews.favorite)
         {
-            str = [NSString stringWithFormat:@"%@?uid=%@&?type=4?&objid=%@", api_favorite_delete,uid,ids];
+            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_delete,uid,ids];
         }
         else{
-            str = [NSString stringWithFormat:@"%@?uid=%@&?type=4?&objid=%@", api_favorite_add,uid,ids];
+            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_add,uid,ids];
         }
-      
-        
-        NSLog(@"str = %@",str);
         
         ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:str]];
+        
+        [request setRequestMethod:@"GET"];
         
         [request setCompletionBlock:^{
             NSString *response = [request responseString ];
@@ -102,7 +102,7 @@
                     
                     TBXMLElement *_errorCode = [TBXML childElementNamed:@"errorCode" parentElement:_result];
                     
-                    int errorcode = [[TBXML textForElement:_result] intValue];
+                    int errorcode = [[TBXML textForElement:_errorCode] intValue];
                     if(errorcode ==1)
                     {
                         singleNews.favorite = !singleNews.favorite;
@@ -131,7 +131,14 @@
         }];
         
         [request startAsynchronous];
-    
+    }
+    else{
+      //  [self.view makeToast:@"请先登陆"];
+        
+        [self.view makeToast:@"请先登陆"
+                    duration:1.5
+                    position:CSToastPositionCenter
+                       image:nil];
     }
 }
 

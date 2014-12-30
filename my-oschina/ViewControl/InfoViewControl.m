@@ -72,6 +72,8 @@
         str = [NSString stringWithFormat:@"%@type=recommend&pageIndex=%d&pageSize=%d",
                                          blog_url, pageIndex, 20];
     }
+    
+    
 
     NSURL* url = [NSURL URLWithString:str];
     
