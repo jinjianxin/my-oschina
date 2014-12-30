@@ -14,6 +14,7 @@
 #import "XmlParser.h"
 #import "OwnMsg.h"
 #import "OwnCell.h"
+#import "OwnCellImg.h"
 
 @interface OwnViewControl : UIViewController <UIActionSheetDelegate,PullTableViewDelegate,UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate>
 
@@ -24,5 +25,7 @@
 @property int m_category;
 @property (strong,nonatomic) NSMutableArray *m_newsArray;
 @property int m_countPage;
+@property BOOL m_isLoadOver;
+
 
 @end

@@ -16,6 +16,7 @@
 #import "TweetMsg.h"
 #import "UserData.h"
 #import "OwnMsg.h"
+#import "ResultMsg.h"
 
 @interface XmlParser : NSObject
 
@@ -40,5 +41,7 @@
 + (UserData *) loginParser:(NSString *)response;
 
 + (NSMutableArray *) ownNewParser:(NSString*)response;
+
++ (NSMutableArray *) searchResultParser:(NSString*)response;
 
 @end

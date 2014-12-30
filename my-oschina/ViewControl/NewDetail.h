@@ -12,9 +12,13 @@
 #import "SingleNews.h"
 #import "prefix_define.h"
 #import "XmlParser.h"
+#import "CustomProtocol.h"
+#import "ASIFormDataRequest.h"
+#import "prefix_define.h"
+#import "Helper.h"
 
 
-@interface NewDetail : UIViewController <ASIHTTPRequestDelegate>
+@interface NewDetail : UIViewController <ASIHTTPRequestDelegate,ViewProtocol,ASIHTTPRequestDelegate,UIWebViewDelegate>
 {
   //  MsgDetail *msgDetail;
 }
@@ -26,5 +30,8 @@
 @property (nonatomic,strong) MsgDetail *msgDetail;
 @property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
+@property (strong,nonatomic) SingleNews *singleNews;
+
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
 
 @end

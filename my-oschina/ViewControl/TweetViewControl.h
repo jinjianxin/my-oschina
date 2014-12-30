@@ -12,14 +12,32 @@
 #import "ASIHTTPRequest.h"
 #import "XmlParser.h"
 #import "TweetCell.h"
+#import "TweetDetailViewControl.h"
+#import "CommentsDetail.h"
+#import "CustomProtocol.h"
+#import "MyUITabBarControl.h"
+#import "CustomProtocol.h"
+#import "SubmitTweet.h"
+#import "TweetCellImag.h"
+#import "UITip.h"
+#import "GGFullScreenImageViewController.h"
 
-@interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate>
+
+@interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate,ViewProtocol>
 
 @property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
 
 - (IBAction)segSender:(id)sender;
 @property int m_uid;
 @property NSMutableArray *m_newsArray;
+@property int m_countPage;
+@property BOOL isLoadOver;
+@property (nonatomic,strong) NSString *projectId;
+@property int  newsCategory ;
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+@property id body;
 
+- (IBAction)m_tweetSender:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_top;
 
 @end

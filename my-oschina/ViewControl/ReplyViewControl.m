@@ -6,9 +6,84 @@
 //  Copyright (c) 2014年 jjx. All rights reserved.
 //
 
-#import "ReplyCiewControl.h"
+#import "ReplyViewControl.h"
 
-@implementation ReplyCiewControl
+@implementation ReplyViewControl
+
+@synthesize m_msg;
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    self.m_author.text = m_msg.cAuthor;
+    self.m_content.text = m_msg.cContent;
+
+    self.m_textView.layer.borderColor = UIColor.grayColor.CGColor;
+    self.m_textView.layer.borderWidth = 1;
+    self.m_textView.layer.cornerRadius = 6;
+    self.m_textView.layer.masksToBounds = YES;
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(keyboadWillShow:)
+               name:UIKeyboardWillShowNotification
+             object:nil];
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(keyboardWillHide:)
+               name:UIKeyboardWillHideNotification
+             object:nil];
+    
+    
+    UITapGestureRecognizer* gesture =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(hideKeyboard)];
+    gesture.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:gesture];
+}
+
+-(void)hideKeyboard
+{
+    [self.m_textView resignFirstResponder];
+}
+
+- (void)keyboadWillShow:(NSNotification*)note
+{
+    NSDictionary* info = [note userInfo];
+    NSValue* kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    CGRect keyboardFrame = [kbFrame CGRectValue];
+
+    CGRect finalKeyboardFrame = [self.view convertRect:keyboardFrame fromView:self.view.window];
+
+    int kbHeight = finalKeyboardFrame.size.height;
+
+    int height = kbHeight + self.m_bottom.constant;
+
+    self.m_bottom.constant = height;
+
+    [UIView animateWithDuration:animationDuration animations:^{
+                 [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification*)note
+{
+    NSDictionary* info = [note userInfo];
+
+    NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+
+    self.m_bottom.constant = 30;
+
+    [UIView animateWithDuration:animationDuration animations:^{
+                 [self.view layoutIfNeeded];
+    }];
+}
+
+/*
 
 @synthesize author;
 @synthesize content;
@@ -27,9 +102,6 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    
-    
     
     author = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 360, 50)];
     author.font = [UIFont fontWithName:@"Arial" size:18];
@@ -94,7 +166,7 @@
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
 
-}
+}*/
 
 @end
 

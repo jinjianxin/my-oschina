@@ -9,14 +9,27 @@
 #import "TweetViewControl.h"
 
 @implementation TweetViewControl
+{
+    id<TabBarProtocol> mydelegate;
+    TweetCell *customCell;
+}
 
 @synthesize pullTableView;
 @synthesize m_uid;
 @synthesize m_newsArray;
+@synthesize m_countPage;
+@synthesize isLoadOver;
+@synthesize projectId;
+@synthesize newsCategory;
+@synthesize body;
 
-- (void)viewDidLoad
+- (void)loadView
 {
-    [super viewDidLoad];
+    [super loadView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getAttachmentCommentCount:) name:@"soft_count" object:nil];
+    
+    isLoadOver = NO;
     
     self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
     self.pullTableView.pullBackgroundColor = [UIColor whiteColor];
@@ -38,6 +51,32 @@
     m_newsArray = [[NSMutableArray alloc] initWithCapacity:2];
 }
 
+- (void)getAttachmentCommentCount:(NSNotification *)notification
+{
+    if (notification.object)
+    {
+        NSMutableArray *nc = (NSMutableArray *)notification.object;
+        if (nc)
+        {
+            
+            if([nc objectAtIndex:0] == self.body)
+            {
+                self.projectId = [nc objectAtIndex:2] ;
+            }
+        }
+    }
+}
+
+-(void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate =delegate;
+}
+
+-(void)barButttonClick
+{
+    
+}
+
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -48,9 +87,19 @@
 - (void) loadContent
 {
     int count = (int)[m_newsArray count]/20;
+    m_countPage = count;
     
-    NSString *str = [NSString stringWithFormat:@"%@uid=%d&pageIndex=%d&pageSize=%d", tweet_url,self.m_uid,count,20];
-    NSLog(@"str = %@",str);
+    NSString *str = nil;
+    
+    if(self.newsCategory ==100)
+    {
+        str = @"http://www.oschina.net/action/api/software_tweet_list?project=33477";
+    }
+    else{
+        str = [NSString stringWithFormat:@"%@uid=%d&pageIndex=%d&pageSize=%d", tweet_url,self.m_uid,count,20];
+    }
+
+    NSLog(@"%@",str);
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
     
@@ -66,6 +115,12 @@
    
     NSArray *array = [XmlParser tweetNewParser:responseString];
     
+
+    if(array.count<20)
+    {
+        isLoadOver = YES;
+    }
+
     [m_newsArray addObjectsFromArray:array];
   
     [self.pullTableView reloadData];
@@ -84,7 +139,10 @@
 - (void)loadMoreDataToTable {
     self.pullTableView.pullTableIsLoadingMore = NO;
     
-    [self loadContent];
+    if(!isLoadOver)
+    {
+        [self loadContent];
+    }
     
 }
 
@@ -107,6 +165,7 @@
 {
     TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
     
+    
     if(msg!=nil)
     {
         return msg.m_height;
@@ -116,23 +175,67 @@
     }
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 140;
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *tag = @"tag";
-    
-    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
-    
-    if(cell ==nil)
-    {
-        cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
-    }
+    static NSString *tag = @"tweetCell";
+    static NSString *tagImag  = @"tweetCellImg";
     
     TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
+    
+    if([msg.m_imgSmall length]!=0)
+    {
+        TweetCellImag *cell = [tableView dequeueReusableCellWithIdentifier:tagImag];
+        [cell setContent:msg];
+        
+        if([[cell.m_imageView gestureRecognizers] count]>0)
+        {
+            UITip *tip = [[cell.m_imageView gestureRecognizers] objectAtIndex:0];
+            tip.m_imageView = cell.m_imageView;
+            tip.m_imageUrl = msg.m_imgBig;
+            
+        }
+        else
+        {
+            cell.m_imageView.userInteractionEnabled = YES;
+            
+            UITip *tip =[[UITip alloc] initWithTarget:self action:@selector(clickImage:)];
+            tip.numberOfTapsRequired=1;
+            tip.m_imageView = cell.m_imageView;
+            tip.m_imageUrl = msg.m_imgBig;
+            
+            
+            [cell.m_imageView addGestureRecognizer:tip];
+        
+        }
+        
+        return cell;
+    }
+    else
+    {
+        TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
+        [cell setContent:msg];
+    
+        return cell;
+    }
+}
 
-    [cell setContent:msg];
+
+- (void)clickImage:(id)sender
+{
+    UITip *tip = (UITip*)sender;
     
-    return cell;
+    GGFullscreenImageViewController *viewControl = [[GGFullscreenImageViewController alloc] init];
+    viewControl.liftedImageView = tip.m_imageView;
+    viewControl.m_imageUrl = tip.m_imageUrl;
     
+    [self presentViewController:viewControl animated:YES completion:nil];
 }
 
 - (IBAction)segSender:(id)sender {
@@ -159,4 +262,49 @@
     [self loadContent];
     
 }
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath :(NSIndexPath *)indexPath
+{
+ 
+    TweetMsg *msg = [m_newsArray objectAtIndex:[indexPath row]];
+    
+    MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
+    newTab.title = @"动态详情";
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    TweetDetailViewControl *tweetDetail = [storyboard instantiateViewControllerWithIdentifier:@"TweetDetailViewControl"];
+    tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
+    tweetDetail.tabBarItem.title = @"咨询详情";
+    tweetDetail.m_uid = msg.m_id;
+    
+    CommentsDetail *commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
+    commentDetail.view.backgroundColor = [UIColor whiteColor];
+    commentDetail.tabBarItem.image = [UIImage imageNamed:@"commentlist"];
+    commentDetail.tabBarItem.title = @"评论";
+    commentDetail.ids = msg.m_id;
+    commentDetail.newsCategory = 3;
+    [commentDetail setMyDelegate:newTab];
+
+
+    [tweetDetail viewDidAppear:YES];
+    
+    newTab.viewControllers = [NSArray arrayWithObjects:tweetDetail,commentDetail,nil];
+    newTab.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:newTab animated:YES];
+    
+}
+
+- (IBAction)m_tweetSender:(id)sender {
+    
+    UIStoryboard *stroyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    SubmitTweet *submitTweet = [stroyboard instantiateViewControllerWithIdentifier:@"SubmitTweet"];
+    
+    submitTweet.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:submitTweet animated:YES];
+    
+}
+
 @end

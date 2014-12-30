@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "RTLabel.h"
 
 @interface OwnMsg : NSObject
 
@@ -26,6 +27,7 @@
 @property (strong,nonatomic) NSString *m_commentCount;
 @property (strong,nonatomic) NSString *m_pubDate;
 @property (strong,nonatomic) NSString *m_tweetimage;
+@property (strong,nonatomic) NSString *m_content;
 @property int m_height;
 
 - (void)calculateHeight;

@@ -19,6 +19,8 @@
 @synthesize m_commentCount;
 @synthesize m_pubDate;
 @synthesize m_height;
+@synthesize m_imgSmall;
+@synthesize m_imgBig;
 
 -(id)initWithContent:(NSString *)andId andPortrait:(NSString *)nPortrait andAuthor:(NSString *)nAuthor andAuthorid:(NSString *)nAuthorid andBody:(NSString *)nBody andAppclient:(NSString *)nAppclient andCommentCount:(NSString *)nCommentCount andPullDate:(NSString *)npubDate
 {
@@ -33,19 +35,34 @@
     msg.m_commentCount = nCommentCount;
     msg.m_pubDate = npubDate;
     
-    UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(157, 178, 236, 331)];
-    int height = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:14.0f] andText:msg.m_body]+40;
     
-    if(height<62)
+    return msg;
+}
+
+-(void)calculateHeight
+{
+    UITextView *txt = [[UITextView alloc] initWithFrame:CGRectMake(157, 178, 236, 331)];
+    
+    int height = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:17.0f] andText:m_body]+40;
+    
+    int pullHeight = [self getTextViewHeight:txt andUIFont:[UIFont fontWithName:@"arial" size:17.0f] andText:m_pubDate];
+    
+    int imageHeight = 0;
+    
+    if([m_imgSmall length] !=0)
     {
-        msg.m_height = 62;
+        imageHeight = 80;
+    }
+    
+    if(height+pullHeight<62)
+    {
+        m_height = 62;
     }
     else
     {
-        msg.m_height = height;
+        m_height = height+pullHeight+imageHeight;
     }
-    
-    return msg;
+
 }
 
 

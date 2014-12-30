@@ -19,9 +19,12 @@
 @property (copy,nonatomic) NSString *m_appclient;
 @property (copy,nonatomic) NSString *m_commentCount;
 @property (copy,nonatomic) NSString *m_pubDate;
+@property (copy,nonatomic) NSString *m_imgSmall;
+@property (copy,nonatomic) NSString *m_imgBig;
 @property int m_height;
 
 - (id)initWithContent:(NSString *)andId andPortrait:(NSString *)nPortrait andAuthor:(NSString *)nAuthor andAuthorid:(NSString *)nAuthorid andBody:(NSString *)nBody andAppclient:(NSString*)nAppclient andCommentCount:(NSString*)nCommentCount andPullDate:(NSString *) npubDate;
 
+-(void)calculateHeight;
 
 @end

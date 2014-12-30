@@ -9,6 +9,9 @@
 #import "CommentsDetail.h"
 
 @implementation CommentsDetail
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize msgDetail;
 @synthesize pullTabView;
@@ -16,16 +19,16 @@
 @synthesize commentArray;
 @synthesize ids;
 @synthesize pageIndex;
+@synthesize isLoadOver;
+@synthesize parentID;
+@synthesize body;
 
-- (void) viewDidLoad
+
+-(void)loadView
 {
-    [super viewDidLoad];
+    [super loadView];
     
-    CGRect rect = self.view.bounds;
-    
-    pullTabView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
-    
-    [self.view addSubview:pullTabView];
+    isLoadOver = NO;
     
     commentArray = [[NSMutableArray alloc] initWithCapacity:2];
     
@@ -34,6 +37,22 @@
     
     self.pullTabView.pullDelegate = self;
     
+    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [pullTabView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -41,23 +60,67 @@
     [super viewDidAppear:animated];
     
     [self loadContent];
+    
+    [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
 
+}
+
+- (void)barButttonClick
+{
+    NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
+    NSString* uid = [userData stringForKey:@"uid"];
+
+    if (uid != nil) {
+
+        PubComments* pubComments = [[PubComments alloc] init];
+        pubComments.view.backgroundColor = [UIColor whiteColor];
+
+        pubComments.m_id = ids;
+        pubComments.m_catalog = [NSString stringWithFormat:@"%d", newsCategory];
+        pubComments.m_uid = uid;
+        pubComments.m_parent = self;
+
+        [self.navigationController pushViewController:pubComments animated:YES];
+    }
+    else{
+        [self.view makeToast:@"请先登陆"];
+    }
+}
+
+
+-(void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
 }
 
 - (void) loadContent
 {
-    int count = (int)[commentArray count];
+    
+    if(!isLoadOver)
+    {
+    
+    int count = (int)[commentArray count]/20;
     pageIndex = count;
     
-    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count/20,20];
+    NSString *str= nil;
     
-    
+    if(newsCategory ==5)
+    {
+        str = [NSString stringWithFormat:@"%@?id=%d&pageIndex=%d&pageSize=%d", api_blogcomment_list, self.parentID, pageIndex, 20];
+    }
+    else{
+        str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.newsCategory,ids,count,20];
+    }
+
     NSURL *url = [NSURL URLWithString:str];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    //[self refreshTable];
+    }
     
 }
 
@@ -69,7 +132,10 @@
 - (void)loadMoreDataToTable {
     self.pullTabView.pullTableIsLoadingMore = NO;
     
-    [self loadContent];
+    if(!isLoadOver)
+    {
+        [self loadContent];
+    }
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
@@ -89,14 +155,9 @@
     
     NSArray *array =  [XmlParser commentsDetailParser:respose];
     
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:1];
-
-    [tempArray addObjectsFromArray:commentArray];
-    [tempArray addObjectsFromArray:array];
-    
-    if(pageIndex == [tempArray count]/20 )
+    if(array.count <20)
     {
-        [commentArray removeAllObjects];
+        isLoadOver = YES;
     }
     
     [commentArray addObjectsFromArray:array];
@@ -140,12 +201,14 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReplyCiewControl *repleControl = [[ReplyCiewControl alloc] init];
+    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    ReplyViewControl *repleControl = [stroboard instantiateViewControllerWithIdentifier:@"ReplyCiewControl"] ;
     repleControl.view.backgroundColor = [UIColor whiteColor];
    
     int index = (int)[indexPath row];
     CommentMsgDetails *msg  = [commentArray objectAtIndex:index];
-    repleControl.msg = msg;
+    repleControl.m_msg = msg;
     
     [self.navigationController pushViewController:repleControl animated:YES];
 }

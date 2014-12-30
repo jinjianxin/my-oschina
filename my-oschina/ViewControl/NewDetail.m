@@ -12,27 +12,35 @@
 //http://www.oschina.net/action/api/news_detail?id=10002487
 
 @implementation NewDetail
+{
+    id<TabBarProtocol> mydelegate;
+}
 
 @synthesize msgDetail;
 @synthesize webView;
 @synthesize newsCategory;
 @synthesize ids;
+@synthesize singleNews;
 
 - (void) loadView
 {
     [super loadView];
-    
 
     CGRect rect = self.view.bounds;
 
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width , rect.size.height)];
     
-    [self.view addSubview:webView];
+    self.webView.delegate =self;
 
+    
+    [self.view addSubview:webView];
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
+   // [super viewDidAppear:animated];
+    
     NSString *str ;
     
     if(newsCategory ==1)
@@ -46,11 +54,102 @@
 
     NSURL *url = [NSURL URLWithString:str];
     
+    NSLog(@"str = %@",str);
+    
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
     [request setDelegate:self];
-    [request startAsynchronous]; 
+    [request startAsynchronous];
     
+    //[mydelegate setBarTitle:@"咨询详情"];
+}
+
+- (void)barButttonClick
+{
+ //   NSUserDefaults* userData = [NSUserDefaults standardUserDefaults];
+
+    NSString* uid = [Helper getUid] ;//[userData stringForKey:@"uid"];
+
+    if (uid != nil) {
+        
+       
+        NSString* str = nil;
+
+        if(singleNews.favorite)
+        {
+            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_delete,uid,ids];
+        }
+        else{
+            str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_add,uid,ids];
+        }
+        
+        ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:str]];
+        
+        [request setRequestMethod:@"GET"];
+        
+        [request setCompletionBlock:^{
+            NSString *response = [request responseString ];
+           
+            TBXML *tbxml = [TBXML newTBXMLWithXMLString:response error:nil];
+            
+            if(tbxml !=nil)
+            {
+                TBXMLElement *root = tbxml.rootXMLElement;
+                 NSLog(@"");
+                if(root!=nil)
+                {
+                    TBXMLElement *_result = [TBXML childElementNamed:@"result" parentElement:root];
+                    
+                    TBXMLElement *_errorCode = [TBXML childElementNamed:@"errorCode" parentElement:_result];
+                    
+                    int errorcode = [[TBXML textForElement:_errorCode] intValue];
+                    if(errorcode ==1)
+                    {
+                        singleNews.favorite = !singleNews.favorite;
+                        
+                        if(singleNews.favorite)
+                        {
+                            [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"取消收藏" andProtocol:self];
+                        }
+                        else{
+                            [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"收藏此文" andProtocol:self];
+                        }
+
+                    }
+                    else{
+                        
+                    }
+                
+                }
+            }
+        }];
+        
+        [request setFailedBlock:^{
+            
+            NSLog(@"---");
+            
+        }];
+        
+        [request startAsynchronous];
+    }
+    else{
+      //  [self.view makeToast:@"请先登陆"];
+        
+        [self.view makeToast:@"请先登陆"
+                    duration:1.5
+                    position:CSToastPositionCenter
+                       image:nil];
+    }
+}
+
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
+}
+
+ -(void) viewDidLoad
+{
+    [super viewDidLoad];
 }
 
 - (void) requestFinished:(ASIHTTPRequest *)request
@@ -62,7 +161,7 @@
     if(newsCategory ==1)
     {
     
-    SingleNews *singleNews = [XmlParser singleNewParser:responseString];
+    singleNews = [XmlParser singleNewParser:responseString];
     
     NSString *author_str = [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%d'>%@</a> 发布于 %@",singleNews.authorid,singleNews.author,singleNews.pubDate];
     
@@ -87,6 +186,34 @@
     
     [self.webView loadHTMLString:html baseURL:nil];
     
+    
+    if(singleNews.favorite)
+    {
+        [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"取消收藏" andProtocol:self];
+    }
+    else{
+        [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"收藏此文" andProtocol:self];
+    }
+    
+    
+    
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    /*
+    [Tool analysis:[request.URL absoluteString] andNavController:self.parentViewController.navigationController];*/
+    
+    [Helper analysisDetail:[request.URL absoluteString] andNav:self.parentViewController.navigationController];
+    
+    if ([request.URL.absoluteString isEqualToString:@"about:blank"])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 

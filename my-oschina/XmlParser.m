@@ -45,7 +45,18 @@
                     TBXMLElement *dateEle = [TBXML childElementNamed:@"pubDate" parentElement:test];
                     NSString *pullData = [XmlParser intervalSinceNow:[TBXML textForElement:dateEle]] ;
                     
+                    TBXMLElement *newType = [TBXML childElementNamed:@"newstype" parentElement:test];
+                    TBXMLElement *type = [TBXML childElementNamed:@"type" parentElement:newType];
+                    TBXMLElement *attachment = [TBXML childElementNamed:@"attachment" parentElement:newType];
+                    
+                    
                     MsgDetail *news = [[MsgDetail alloc] initwithContent:content author:author ids:ids pullDate:pullData];
+                    
+                    news.newType = [[TBXML textForElement:type] intValue];
+                    if(attachment!=nil)
+                    {
+                        news.attachMent = [TBXML textForElement:attachment];
+                    }
                     
                     [newsArray addObject:news];
                     
@@ -147,16 +158,11 @@
                 TBXMLElement *_authorid = [TBXML childElementNamed:@"authorid"parentElement:news];
                 TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:news];
                 
-                
-                
                 TBXMLElement *_commentCount = [TBXML childElementNamed:@"commentCount" parentElement:news];
                 
                 TBXMLElement *_softwarelink = [TBXML childElementNamed:@"softwarelink" parentElement:news];
                 TBXMLElement *_softwarename = [TBXML childElementNamed:@"softwarename" parentElement:news];
                 TBXMLElement *_fav = [TBXML childElementNamed:@"favorite" parentElement:news];
-                
-                NSLog(@"%@",[TBXML textForElement:_fav]);
-
                 
                 TBXMLElement *_relativies = [TBXML childElementNamed:@"relativies" parentElement:news];
                 
@@ -180,7 +186,7 @@
                 }
           
             
-                singleNews = [[SingleNews alloc] initWithContent:[[TBXML textForElement:_id] intValue] andtitle:[TBXML textForElement:_title] andurl:[TBXML textForElement:_url] andbody:[TBXML textForElement:_body] andauthor:[TBXML textForElement:_author] andauthorid:[[TBXML textForElement:_authorid] intValue] andpubDate:[TBXML textForElement:_pubDate] andcommentCount:[[TBXML textForElement:_commentCount] intValue] andfavorite:_fav];
+                singleNews = [[SingleNews alloc] initWithContent:[[TBXML textForElement:_id] intValue] andtitle:[TBXML textForElement:_title] andurl:[TBXML textForElement:_url] andbody:[TBXML textForElement:_body] andauthor:[TBXML textForElement:_author] andauthorid:[[TBXML textForElement:_authorid] intValue] andpubDate:[TBXML textForElement:_pubDate] andcommentCount:[[TBXML textForElement:_commentCount] intValue] andfavorite:[[TBXML textForElement:_fav] intValue] ==1 ];
                 
                 singleNews.softwarelink = [TBXML textForElement:_softwarelink];
                 singleNews.softwarename = [TBXML textForElement:_softwarename];
@@ -306,10 +312,15 @@
         TBXMLElement *_appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
         TBXMLElement *_refers = [TBXML childElementNamed:@"refers" parentElement:first];
         
+        NSMutableArray *referenceArray =  nil;
+
+        
+        if(_refers!=nil)
+        {
+            referenceArray = [[NSMutableArray alloc] initWithCapacity:2];
+            
         TBXMLElement *_refersChild = [TBXML childElementNamed:@"refer" parentElement:_refers];
-        
-        NSMutableArray *referenceArray = [[NSMutableArray alloc] initWithCapacity:2];
-        
+            
         while (_refersChild!=nil) {
             
             TBXMLElement *_refertitle = [TBXML childElementNamed:@"refertitle" parentElement:_refersChild];
@@ -321,8 +332,16 @@
             
              _refersChild = [TBXML nextSiblingNamed:@"refer" searchFromElement:_refersChild];
         }
+        }
     
-        CommentMsgDetails *news = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:[TBXML textForElement:_appclient] andRefers:[TBXML textForElement:_refers]];
+        NSString *_refersContent = nil;
+        
+        if(_refers!=nil)
+        {
+            _refersContent = [TBXML textForElement:_refers];
+        }
+        
+        CommentMsgDetails *news = [[CommentMsgDetails alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andContent:[TBXML textForElement:_content] andPubDate:[TBXML textForElement:_pubDate] andAppClent:[TBXML textForElement:_appclient] andRefers:_refersContent];
         
         news.refrenceArray = referenceArray;
         [news calculateHeight];
@@ -453,9 +472,19 @@
         TBXMLElement *_appclient = [TBXML childElementNamed:@"appclient" parentElement:first];
         TBXMLElement *_commentCount = [TBXML childElementNamed:@"commentCount" parentElement:first];
         TBXMLElement *_pubDate = [TBXML childElementNamed:@"pubDate" parentElement:first];
+        TBXMLElement *_imgSmall = [TBXML childElementNamed:@"imgSmall" parentElement:first];
+        TBXMLElement *_imgBig = [TBXML childElementNamed:@"imgBig" parentElement:first];
     
         TweetMsg *msg = [[TweetMsg alloc] initWithContent:[TBXML textForElement:_id] andPortrait:[TBXML textForElement:_portrait] andAuthor:[TBXML textForElement:_author] andAuthorid:[TBXML textForElement:_authorid] andBody:[TBXML textForElement:_body] andAppclient:[TBXML textForElement:_appclient] andCommentCount:[TBXML textForElement:_commentCount] andPullDate:[TBXML textForElement:_pubDate]];
         
+        if(_imgSmall!=nil)
+        {
+            msg.m_imgSmall = [TBXML textForElement:_imgSmall];
+            msg.m_imgBig = [TBXML textForElement:_imgBig];
+        }
+        
+        [msg calculateHeight];
+
         [array addObject:msg];
         
         first = [TBXML nextSiblingNamed:@"tweet" searchFromElement:first];
@@ -522,6 +551,8 @@
         if (root != nil) {
             TBXMLElement *childElement = [TBXML childElementNamed:@"activies" parentElement:root];
             
+            if(childElement ==nil)
+                return nil;
             TBXMLElement *activie = [TBXML childElementNamed:@"active" parentElement:childElement];
             
             while (activie!=nil) {
@@ -550,6 +581,9 @@
                 msg.m_catalog = [TBXML textForElement:_catalog];
                 msg.m_objecttype = [TBXML textForElement:_objecttype];
                 msg.m_objectcatalog = [TBXML textForElement:_objectcatalog];
+                
+                NSLog(@"***%@",[TBXML textForElement:_objectcatalog]);
+                
                 msg.m_objecttitle = [TBXML textForElement:_objecttitle];
                 msg.m_appclient = [TBXML textForElement:_appclient];
                 msg.m_url = [TBXML textForElement:_url];
@@ -565,6 +599,43 @@
                 
                 activie = [TBXML nextSiblingNamed:@"active" searchFromElement:activie];
                 
+            }
+            
+        }
+    }
+    
+    return array;
+}
+
++ (NSMutableArray *) searchResultParser:(NSString*)response
+{
+    
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    TBXML *tbxml = [TBXML newTBXMLWithXMLString:response error:nil];
+
+    TBXMLElement *root = tbxml.rootXMLElement;
+    
+    if(root!=nil)
+    {
+        TBXMLElement *results = [TBXML childElementNamed:@"results" parentElement:root];
+        if(results!=nil)
+        {
+            TBXMLElement *result = [TBXML childElementNamed:@"result" parentElement:results];
+            
+            while (result!=nil) {
+                
+                TBXMLElement *_id = [TBXML childElementNamed:@"objid" parentElement:result];
+                TBXMLElement *_type = [TBXML childElementNamed:@"type" parentElement:result];
+                TBXMLElement *_title = [TBXML childElementNamed:@"title" parentElement:result];
+                TBXMLElement *_url = [TBXML childElementNamed:@"url" parentElement:result];
+                TBXMLElement *_author = [TBXML childElementNamed:@"author" parentElement:result];
+                
+                ResultMsg *msg = [[ResultMsg alloc] initContent:[TBXML textForElement:_id] andType:[TBXML textForElement:_type] andTitle:[TBXML textForElement:_title] andUrl:[TBXML textForElement:_url] andAuthor:[TBXML textForElement:_author]];
+                
+                [array addObject:msg];
+                
+                result = [TBXML nextSiblingNamed:@"result" searchFromElement:result];
             }
             
         }

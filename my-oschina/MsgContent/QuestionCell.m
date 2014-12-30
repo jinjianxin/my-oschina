@@ -10,12 +10,31 @@
 
 @implementation QuestionCell
 
+@synthesize tag;
+
+- (void) setContent:(QuestionMsg *)msg
+{
+
+    if(self)
+    {
+        self.avatorView.imageURL = [NSURL URLWithString:msg.portrait];
+        self.titleLabel.text = msg.title;
+        self.answerTitle.text = @"回帖";
+        self.answerCount.text = msg.answerCount;
+        
+        NSString *time = [XmlParser intervalSinceNow:msg.pubDate];
+        
+        self.author.text = [NSString stringWithFormat:@"%@        %@",msg.author,time ];
+    }
+}
+
+/*
 @synthesize avatorView;
 @synthesize titleLable;
 @synthesize authorLabel;
 @synthesize answerTitle;
 @synthesize answerCount;
-@synthesize tag;
+
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -62,6 +81,9 @@
         [self.answerTitle removeFromSuperview];
     }
     
+ 
+    
+
     avatorView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
     avatorView.image = [UIImage imageNamed:@"big_avatar_loading"];
     
@@ -90,13 +112,13 @@
         answerTitle.text = @"回帖";
     }
     answerTitle.font = [UIFont fontWithName:@"" size:10];
-    
+
     [self addSubview:avatorView];
     [self addSubview:titleLable];
     [self addSubview:authorLabel];
     [self addSubview:answerCount];
     [self addSubview:answerTitle];
 }
-
+ */
 
 @end

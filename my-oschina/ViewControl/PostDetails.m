@@ -9,6 +9,9 @@
 #import "PostDetails.h"
 
 @implementation PostDetails
+{
+     id<TabBarProtocol> mydelegate;
+}
 
 @synthesize webView;
 @synthesize newsCategory;
@@ -27,15 +30,17 @@
     
 }
 
+-(void)setMyDelegate:(id<TabBarProtocol>)delegate
+{
+    mydelegate = delegate;
+}
+
 - (void) viewDidAppear:(BOOL)animated
 {
     NSString *str ;
-
-//    http://www.oschina.net/action/api/post_detail?id=181346
     
     str = [NSString stringWithFormat:@"http://www.oschina.net/action/api/post_detail?id=%@",ids];
     
-    NSLog(@"str = %@",str);
     
     NSURL *url = [NSURL URLWithString:str];
     
@@ -43,6 +48,14 @@
     
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    [mydelegate setBarTitle:@"问答详情" andButtonTitle:@"收藏此贴" andProtocol:self];
+    
+}
+
+- (void)barButttonClick
+{
+    
     
 }
 

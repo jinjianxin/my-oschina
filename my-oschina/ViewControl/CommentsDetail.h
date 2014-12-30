@@ -14,16 +14,25 @@
 #import "XmlParser.h"
 #import "CommentsDetail.h"
 #import "CommentCell.h"
-#import "ReplyCiewControl.h"
+#import "ReplyViewControl.h"
+#import "CustomProtocol.h"
+#import "PubComments.h"
+#import "UIView+Toast.h"
 
-
-@interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface CommentsDetail : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDelegate,UITableViewDataSource,ViewProtocol>
 
 @property (nonatomic,weak) MsgDetail *msgDetail;
-@property (nonatomic ,strong) PullTableView *pullTabView;
+@property (weak, nonatomic) IBOutlet PullTableView *pullTabView;
+
 @property (copy,nonatomic) NSString *ids;
 @property int newsCategory;
 @property (nonatomic,strong) NSMutableArray *commentArray;
 @property int pageIndex;
+@property BOOL isLoadOver;
+- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+@property int parentID;
+@property id body;
+
+
 
 @end
