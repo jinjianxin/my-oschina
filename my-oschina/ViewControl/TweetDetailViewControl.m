@@ -74,7 +74,7 @@
     [request setDelegate:self];
     [request startAsynchronous];
 
-    [mydelegate setBarTitle:@"动态详情" andButtonTitle:@"发表" andProtocol:self];
+    //[mydelegate setBarTitle:@"动态详情" andButtonTitle:@"发表" andProtocol:self];
 }
 
 - (void)setMyDelegate:(id<TabBarProtocol>)delegate

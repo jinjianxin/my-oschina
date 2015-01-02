@@ -720,7 +720,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="tEO-vZ-FvJ"/>
                     <connections>
-                        <outlet property="bottomConstraint" destination="NaE-A9-m02" id="6F8-iW-xof"/>
                         <outlet property="m_bottomConstraint" destination="NaE-A9-m02" id="nc1-m3-P5r"/>
                         <outlet property="m_textField" destination="XFP-IF-atp" id="dgq-Ga-HE2"/>
                         <outlet property="m_webView" destination="aVx-pd-IZa" id="kYF-HG-EPJ"/>
@@ -757,7 +756,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dLe-Dd-GQi"/>
                     <connections>
-                        <outlet property="m_pullTabView" destination="1BI-1j-e8G" id="gVe-4U-rdp"/>
+                        <outlet property="m_pullTabView" destination="1BI-1j-e8G" id="6yn-lt-NtR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhR-1g-srP" userLabel="First Responder" sceneMemberID="firstResponder"/>

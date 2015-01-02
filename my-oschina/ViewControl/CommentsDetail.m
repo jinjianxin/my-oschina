@@ -8,8 +8,7 @@
 
 #import "CommentsDetail.h"
 
-@implementation CommentsDetail
-{
+@implementation CommentsDetail {
     id<TabBarProtocol> mydelegate;
 }
 
@@ -23,28 +22,26 @@
 @synthesize m_parentID;
 @synthesize m_body;
 
-
--(void)loadView
+- (void)loadView
 {
     [super loadView];
-    
+
     m_isLoadOver = NO;
-    
+
     m_commentArray = [[NSMutableArray alloc] initWithCapacity:2];
-    
+
     m_pullTabView.delegate = self;
     m_pullTabView.dataSource = self;
-    
+
     self.m_pullTabView.pullDelegate = self;
-    
-    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-    {
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
 }
 
-- (void) viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
 }
@@ -58,11 +55,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self loadContent];
-    
-    [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
 
+    [self loadContent];
+
+    [mydelegate setBarTitle:@"评论列表" andButtonTitle:@"发表评论" andProtocol:self];
 }
 
 - (void)barButttonClick
@@ -82,134 +78,128 @@
 
         [self.navigationController pushViewController:pubComments animated:YES];
     }
-    else{
+    else {
         [self.view makeToast:@"请先登陆"];
     }
 }
 
-
--(void)setMyDelegate:(id<TabBarProtocol>)delegate
+- (void)setMyDelegate:(id<TabBarProtocol>)delegate
 {
     mydelegate = delegate;
 }
 
-- (void) loadContent
+- (void)loadContent
 {
-    
-    if(!m_isLoadOver)
-    {
-    
-    int count = (int)[m_commentArray count]/20;
-    m_pageIndex = count;
-    
-    NSString *str= nil;
-    
-    if(m_newsCategory ==5)
-    {
-        str = [NSString stringWithFormat:@"%@?id=%d&pageIndex=%d&pageSize=%d", api_blogcomment_list, self.m_parentID, m_pageIndex, 20];
-    }
-    else{
-        str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d",comments_detail,self.m_newsCategory,m_ids,count,20];
-    }
 
-    NSURL *url = [NSURL URLWithString:str];
-    
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    
-    [request setDelegate:self];
-    [request startAsynchronous];
-    
-    //[self refreshTable];
+    if (!m_isLoadOver) {
+
+        int count = (int)[m_commentArray count] / 20;
+        m_pageIndex = count;
+
+        NSString* str = nil;
+
+        if (m_newsCategory == 5) {
+            str = [NSString stringWithFormat:@"%@?id=%d&pageIndex=%d&pageSize=%d", api_blogcomment_list, self.m_parentID, m_pageIndex, 20];
+        }
+        else {
+            str = [NSString stringWithFormat:@"%@catalog=%d&id=%@&pageIndex=%d&pageSize=%d", comments_detail, self.m_newsCategory, m_ids, count, 20];
+        }
+
+        NSURL* url = [NSURL URLWithString:str];
+
+        ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+
+        [request setDelegate:self];
+        [request startAsynchronous];
+
+        //[self refreshTable];
     }
-    
 }
 
-- (void)refreshTable {
+- (void)refreshTable
+{
     self.m_pullTabView.pullLastRefreshDate = [NSDate date];
     self.m_pullTabView.pullTableIsRefreshing = NO;
 }
 
-- (void)loadMoreDataToTable {
+- (void)loadMoreDataToTable
+{
     self.m_pullTabView.pullTableIsLoadingMore = NO;
-    
-    if(!m_isLoadOver)
-    {
+
+    if (!m_isLoadOver) {
         [self loadContent];
     }
 }
 
-- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView*)pullTableView
+{
     [self performSelector:@selector(loadMoreDataToTable)
                withObject:nil
                afterDelay:0.2f];
 }
 
-- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+- (void)pullTableViewDidTriggerRefresh:(PullTableView*)pullTableView
+{
     [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.2f];
 }
 
-
-- (void) requestFinished:(ASIHTTPRequest *)request
+- (void)requestFinished:(ASIHTTPRequest*)request
 {
-    NSString *respose = [request responseString];
-    
-    NSArray *array =  [XmlParser commentsDetailParser:respose];
-    
-    if(array.count <20)
-    {
+    NSString* respose = [request responseString];
+
+    NSArray* array = [XmlParser commentsDetailParser:respose];
+
+    if (array.count < 20) {
         m_isLoadOver = YES;
     }
-    
+
     [m_commentArray addObjectsFromArray:array];
-    
+
     [self.m_pullTabView reloadData];
 }
 
-
-- (void) requestFailed:(ASIHTTPRequest *)request
+- (void)requestFailed:(ASIHTTPRequest*)request
 {
-    
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    CommentMsgDetails *msg  = [m_commentArray objectAtIndex:[indexPath row]];
-    
+    CommentMsgDetails* msg = [m_commentArray objectAtIndex:[indexPath row]];
+
     return msg.m_height;
 }
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [m_commentArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *tag = @"cell";
-    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:tag];
-    
-    if(cell ==nil)
-    {
+    static NSString* tag = @"cell";
+    CommentCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
+
+    if (cell == nil) {
         cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
     }
-    
-    CommentMsgDetails *msg = [m_commentArray objectAtIndex:[indexPath row]];
+
+    CommentMsgDetails* msg = [m_commentArray objectAtIndex:[indexPath row]];
     [cell setContent:msg];
 
     return cell;
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
-    ReplyViewControl *repleControl = [stroboard instantiateViewControllerWithIdentifier:@"ReplyCiewControl"] ;
+    UIStoryboard* stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    ReplyViewControl* repleControl = [stroboard instantiateViewControllerWithIdentifier:@"ReplyCiewControl"];
     repleControl.view.backgroundColor = [UIColor whiteColor];
-   
+
     int index = (int)[indexPath row];
-    CommentMsgDetails *msg  = [m_commentArray objectAtIndex:index];
+    CommentMsgDetails* msg = [m_commentArray objectAtIndex:index];
     repleControl.m_msg = msg;
-    
+
     [self.navigationController pushViewController:repleControl animated:YES];
 }
 

@@ -251,6 +251,7 @@
     tweetDetail.tabBarItem.image = [UIImage imageNamed:@"detail"];
     tweetDetail.tabBarItem.title = @"咨询详情";
     tweetDetail.m_uid = msg.m_id;
+    [tweetDetail setMyDelegate:newTab];
 
     CommentsDetail* commentDetail = [storyboard instantiateViewControllerWithIdentifier:@"CommentsDetail"];
     commentDetail.view.backgroundColor = [UIColor whiteColor];
