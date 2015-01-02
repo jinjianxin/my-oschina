@@ -12,16 +12,15 @@
 #import "prefix_define.h"
 #import "TBXML.h"
 
-@interface SoftDetail : UIViewController<ASIHTTPRequestDelegate,ViewProtocol>
+@interface SoftDetail : UIViewController <ASIHTTPRequestDelegate, ViewProtocol>
 
-@property (strong,nonatomic) UIWebView *webView;
+@property (strong, nonatomic) UIWebView* m_webView;
 
-@property (strong, nonatomic) IBOutlet UIView *myView;
-@property int ids;
-@property int newsCategory;
-@property (nonatomic,strong) NSString *softwareName;
+@property (strong, nonatomic) IBOutlet UIView* m_myView;
+@property int m_ids;
+@property int m_newsCategory;
+@property (nonatomic, strong) NSString* m_softwareName;
 
-- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
-
+- (void)setMyDelegate:(id<TabBarProtocol>)delegate;
 
 @end

@@ -11,7 +11,7 @@
 @implementation OwnViewControl
 
 @synthesize m_uid;
-@synthesize pullTableView;
+@synthesize m_pullTableView;
 @synthesize m_category;
 @synthesize m_newsArray;
 @synthesize m_countPage;
@@ -20,15 +20,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 
-    self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
-    self.pullTableView.pullBackgroundColor = [UIColor whiteColor];
-    self.pullTableView.pullTextColor = [UIColor blackColor];
-    self.pullTableView.pullDelegate = self;
+    self.m_pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+    self.m_pullTableView.pullBackgroundColor = [UIColor whiteColor];
+    self.m_pullTableView.pullTextColor = [UIColor blackColor];
+    self.m_pullTableView.pullDelegate = self;
 
-    pullTableView.dataSource = self;
-    pullTableView.delegate = self;
+    m_pullTableView.dataSource = self;
+    m_pullTableView.delegate = self;
 
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -69,26 +68,25 @@
 
 - (void)loadContent
 {
-    if(!m_isLoadOver)
-    {
-    
-    if (m_uid != 0) {
-        int index = (int)[m_newsArray count] / 20;
-        m_countPage = index;
+    if (!m_isLoadOver) {
 
-        NSString* str = [NSString
-            stringWithFormat:@"%@?catalog=%d&pageIndex=%d&pageSize=%d&uid=%d",
-                             api_active_list, self.m_category, index, 20, m_uid];
-        
-        NSLog(@"str = %@",str);
+        if (m_uid != 0) {
+            int index = (int)[m_newsArray count] / 20;
+            m_countPage = index;
 
-        NSURL* url = [NSURL URLWithString:str];
+            NSString* str = [NSString
+                stringWithFormat:@"%@?catalog=%d&pageIndex=%d&pageSize=%d&uid=%d",
+                                 api_active_list, self.m_category, index, 20, m_uid];
 
-        ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+            NSLog(@"str = %@", str);
 
-        [request setDelegate:self];
-        [request startAsynchronous];
-    }
+            NSURL* url = [NSURL URLWithString:str];
+
+            ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+
+            [request setDelegate:self];
+            [request startAsynchronous];
+        }
     }
 }
 
@@ -98,14 +96,13 @@
 
     NSArray* array = [XmlParser ownNewParser:respose];
 
-    if(array.count<20)
-    {
+    if (array.count < 20) {
         m_isLoadOver = YES;
     }
-    
+
     [m_newsArray addObjectsFromArray:array];
 
-    [pullTableView reloadData];
+    [m_pullTableView reloadData];
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
@@ -114,13 +111,13 @@
 
 - (void)refreshTable
 {
-    self.pullTableView.pullLastRefreshDate = [NSDate date];
-    self.pullTableView.pullTableIsRefreshing = NO;
+    self.m_pullTableView.pullLastRefreshDate = [NSDate date];
+    self.m_pullTableView.pullTableIsRefreshing = NO;
 }
 
 - (void)loadMoreDataToTable
 {
-    self.pullTableView.pullTableIsLoadingMore = NO;
+    self.m_pullTableView.pullTableIsLoadingMore = NO;
 
     [self loadContent];
 }
@@ -150,14 +147,14 @@
 
 - (IBAction)segSender:(id)sender
 {
-    
+
     m_isLoadOver = NO;
     UISegmentedControl* seg = (UISegmentedControl*)sender;
 
     m_category = (int)seg.selectedSegmentIndex + 1;
 
     [m_newsArray removeAllObjects];
-    [pullTableView reloadData];
+    [m_pullTableView reloadData];
 
     [self loadContent];
 }
@@ -167,14 +164,13 @@
 {
     OwnMsg* msg = [m_newsArray objectAtIndex:[indexPath row]];
 
-    
     if (msg != nil) {
         return msg.m_height;
     }
     else {
         return 63;
     }
-    
+
     //return 220;
 }
 
@@ -187,40 +183,37 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView
         cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *tag = @"ownCell";
-    static NSString *tagImg = @"ownCellImg";
+    static NSString* tag = @"ownCell";
+    static NSString* tagImg = @"ownCellImg";
 
     OwnMsg* msg = [m_newsArray objectAtIndex:[indexPath row]];
-    
-    if([msg.m_tweetimage length]!=0)
-    {
+
+    if ([msg.m_tweetimage length] != 0) {
         OwnCellImg* cell = [tableView dequeueReusableCellWithIdentifier:tagImg];
         [cell setContent:msg];
-        
-        if(m_category==2)
-        {
+
+        if (m_category == 2) {
             cell.m_author.lineSpacing = 5.0;
         }
-        else{
-        cell.m_author.lineSpacing = 10.0;
-        }
-        
-        return cell;
-    }
-    else{
-    
-        OwnCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
-        [cell setContent:msg];
-        if(m_category==2)
-        {
-            cell.m_author.lineSpacing = 5.0;
-        }
-        else{
+        else {
             cell.m_author.lineSpacing = 10.0;
         }
-    
+
         return cell;
-    }  
+    }
+    else {
+
+        OwnCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
+        [cell setContent:msg];
+        if (m_category == 2) {
+            cell.m_author.lineSpacing = 5.0;
+        }
+        else {
+            cell.m_author.lineSpacing = 10.0;
+        }
+
+        return cell;
+    }
 }
 
 @end

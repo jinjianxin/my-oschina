@@ -12,8 +12,7 @@
 
 @end
 
-@implementation TweetDetailViewControl
-{
+@implementation TweetDetailViewControl {
     id<TabBarProtocol> mydelegate;
 }
 
@@ -25,27 +24,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
+
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
 
-    
     self.parentViewController.navigationController.title = @"***";
-   
+
     for (id v in m_webView.subviews) {
         if ([v isKindOfClass:[UIScrollView class]]) {
             [v setBounces:NO];
         }
     }
-    
+
     m_textField.layer.borderColor = UIColor.grayColor.CGColor;
     m_textField.layer.borderWidth = 1;
     m_textField.layer.cornerRadius = 6;
     m_textField.layer.masksToBounds = YES;
-    
+
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(keyboadWillShow:)
@@ -67,16 +64,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+
     NSString* str =
-    [NSString stringWithFormat:@"%@id=%@", api_tweet_detail, m_uid];
-    
+        [NSString stringWithFormat:@"%@id=%@", api_tweet_detail, m_uid];
+
     ASIHTTPRequest* request =
-    [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
-    
+        [ASIHTTPRequest requestWithURL:[NSURL URLWithString:str]];
+
     [request setDelegate:self];
     [request startAsynchronous];
-    
+
     [mydelegate setBarTitle:@"动态详情" andButtonTitle:@"发表" andProtocol:self];
 }
 
@@ -85,32 +82,30 @@
     mydelegate = delegate;
 }
 
--(void)barButttonClick
+- (void)barButttonClick
 {
-    
 }
 
-- (void)rightButtonClick:(id) sender
+- (void)rightButtonClick:(id)sender
 {
-    
 }
 
 - (void)keyboadWillShow:(NSNotification*)note
 {
-    NSDictionary *info = [note userInfo];
-    NSValue *kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-    
+    NSDictionary* info = [note userInfo];
+    NSValue* kbFrame = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect keyboardFrame = [kbFrame CGRectValue];
-    
+
     CGRect finalKeyboardFrame = [self.view convertRect:keyboardFrame fromView:self.view.window];
-    
+
     int kbHeight = finalKeyboardFrame.size.height;
-    
-    int height = kbHeight + self.bottomConstraint.constant;
-    
-    self.bottomConstraint.constant = height;
-    
+
+    int height = kbHeight + self.m_bottomConstraint.constant;
+
+    self.m_bottomConstraint.constant = height;
+
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
@@ -118,29 +113,27 @@
 
 - (void)keyboardWillHide:(NSNotification*)note
 {
-    NSDictionary *info = [note userInfo];
-    
+    NSDictionary* info = [note userInfo];
+
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    self.bottomConstraint.constant = 10;
-    
+
+    self.m_bottomConstraint.constant = 10;
+
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
 }
 
--(void)hideKeyboard
+- (void)hideKeyboard
 {
     [m_textField resignFirstResponder];
-} 
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 - (void)requestFinished:(ASIHTTPRequest*)request
 {

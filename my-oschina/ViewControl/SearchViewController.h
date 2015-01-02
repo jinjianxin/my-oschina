@@ -16,16 +16,14 @@
 #import "MyUITabBarControl.h"
 #import "CustomProtocol.h"
 
-@interface SearchViewController : UIViewController  <UITabBarDelegate,UITableViewDataSource,UISearchBarDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
+@interface SearchViewController : UIViewController <UITabBarDelegate, UITableViewDataSource, UISearchBarDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
-
-@property (weak, nonatomic) IBOutlet UITableView *m_tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *m_searchBar;
+@property (weak, nonatomic) IBOutlet UITableView* m_tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar* m_searchBar;
 
 @property int m_category;
 
-
-@property (strong,nonatomic) NSMutableArray *m_resultArray;
+@property (strong, nonatomic) NSMutableArray* m_resultArray;
 @property BOOL m_isLoading;
 @property BOOL m_isLoadOver;
 

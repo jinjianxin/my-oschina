@@ -14,138 +14,137 @@
 
 @implementation QuestionViewControl
 
-@synthesize newsCategory;
-@synthesize newsArray;
-@synthesize pullTableView;
+@synthesize m_newsCategory;
+@synthesize m_newsArray;
+@synthesize m_pullTableView;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
-    {
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
-    self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
-    self.pullTableView.pullBackgroundColor = [UIColor whiteColor];
-    self.pullTableView.pullTextColor = [UIColor blackColor];
-    self.pullTableView.pullDelegate = self;
-    
-    self.pullTableView.delegate = self;
-    self.pullTableView.dataSource = self;
-    
-    newsArray = [[NSMutableArray alloc] initWithCapacity:2];
+
+    self.m_pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+    self.m_pullTableView.pullBackgroundColor = [UIColor whiteColor];
+    self.m_pullTableView.pullTextColor = [UIColor blackColor];
+    self.m_pullTableView.pullDelegate = self;
+
+    self.m_pullTableView.delegate = self;
+    self.m_pullTableView.dataSource = self;
+
+    m_newsArray = [[NSMutableArray alloc] initWithCapacity:2];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+
     [self loadContent];
-    
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)refreshTable {
-    self.pullTableView.pullLastRefreshDate = [NSDate date];
-    self.pullTableView.pullTableIsRefreshing = NO;
+- (void)refreshTable
+{
+    self.m_pullTableView.pullLastRefreshDate = [NSDate date];
+    self.m_pullTableView.pullTableIsRefreshing = NO;
 }
 
-- (void)loadMoreDataToTable {
-    self.pullTableView.pullTableIsLoadingMore = NO;
-    
+- (void)loadMoreDataToTable
+{
+    self.m_pullTableView.pullTableIsLoadingMore = NO;
+
     [self loadContent];
 }
 
-- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView*)pullTableView
+{
     [self performSelector:@selector(loadMoreDataToTable)
                withObject:nil
                afterDelay:0.2f];
 }
 
-- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+- (void)pullTableViewDidTriggerRefresh:(PullTableView*)pullTableView
+{
     [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.2f];
 }
 
-- (void) loadContent
+- (void)loadContent
 {
-    int count = (int)[newsArray count];
-    
-    NSString *str = [NSString stringWithFormat:@"%@catalog=%d&pageIndex=%d&pageSize=20",question_url,newsCategory,count/20];
-    
-    
-    NSLog(@"str = %@",str);
-    
-    NSURL *url = [NSURL URLWithString:str];
-    
-    
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    
+    int count = (int)[m_newsArray count];
+
+    NSString* str = [NSString stringWithFormat:@"%@catalog=%d&pageIndex=%d&pageSize=20", question_url, m_newsCategory, count / 20];
+
+    NSLog(@"str = %@", str);
+
+    NSURL* url = [NSURL URLWithString:str];
+
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+
     [request setDelegate:self];
     [request startAsynchronous];
-    
 }
 
-- (void) requestFinished:(ASIHTTPRequest *)request
+- (void)requestFinished:(ASIHTTPRequest*)request
 {
-    NSString *responseString = [request responseString];
-    NSArray *array= [XmlParser questionNewParser:responseString];
-    
-    [newsArray addObjectsFromArray:array];
-    
-    [self.pullTableView reloadData];
-    
+    NSString* responseString = [request responseString];
+    NSArray* array = [XmlParser questionNewParser:responseString];
+
+    [m_newsArray addObjectsFromArray:array];
+
+    [self.m_pullTableView reloadData];
 }
 
--(void) requestFailed:(ASIHTTPRequest *)request
+- (void)requestFailed:(ASIHTTPRequest*)request
 {
-    
 }
 
-- (IBAction)questionSelect:(id)sender {
-    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+- (IBAction)questionSelect:(id)sender
+{
+    UISegmentedControl* segmentedControl = (UISegmentedControl*)sender;
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
-    
-    newsCategory = (int)selectedSegment+1;
-    
-    [newsArray removeAllObjects];
-    [self.pullTableView reloadData];
-    
+
+    m_newsCategory = (int)selectedSegment + 1;
+
+    [m_newsArray removeAllObjects];
+    [self.m_pullTableView reloadData];
+
     [self loadContent];
-    
 }
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [newsArray count];
+    return [m_newsArray count];
 }
 
--(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString *tag = @"tag";
-    
-    QuestionCell *cell  = [tableView dequeueReusableCellWithIdentifier:tag];
-    
+    static NSString* tag = @"tag";
+
+    QuestionCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
+
     int index = (int)[indexPath row];
-   
-    QuestionMsg *msg = [newsArray objectAtIndex:index];
-    cell.tag = [self newsCategory];
-    
+
+    QuestionMsg* msg = [m_newsArray objectAtIndex:index];
+    cell.tag = [self m_newsCategory];
+
     [cell setContent:msg];
-    
+
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    QuestionMsg *msg  = [newsArray objectAtIndex:[indexPath row]];
-   
+    QuestionMsg* msg = [m_newsArray objectAtIndex:[indexPath row]];
+
     /*
     MyUITabBarControl *newTab = [[MyUITabBarControl alloc] init];
     newTab.title = @"问答详情";
@@ -186,17 +185,18 @@
     newTab.viewControllers = [NSArray arrayWithObjects:postDetail,commentDetail,shareDetail,reportView, nil];
     newTab.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:newTab animated:YES]; */
-    
+
     [Helper pushQuestion:self.navigationController andIds:msg.m_ids andCategory:2];
 }
 
-- (IBAction)m_submitSender:(id)sender {
-    
-    UIStoryboard *stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    SubmitQuestion *submitQuestion = [stroboard instantiateViewControllerWithIdentifier:@"SubmitQuestion"];
-    
+- (IBAction)m_submitSender:(id)sender
+{
+
+    UIStoryboard* stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    SubmitQuestion* submitQuestion = [stroboard instantiateViewControllerWithIdentifier:@"SubmitQuestion"];
+
     submitQuestion.view.backgroundColor = [UIColor whiteColor];
-    
+
     submitQuestion.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:submitQuestion animated:YES];
 }

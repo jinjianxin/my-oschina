@@ -284,7 +284,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="pullTableView" destination="7cT-px-omT" id="F3O-2b-Nn2"/>
+                        <outlet property="m_pullTableView" destination="7cT-px-omT" id="kO6-r3-jji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xed-D5-QLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -525,8 +525,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="m_pullTableView" destination="Ayj-vc-7ce" id="Hkm-JA-9kP"/>
                         <outlet property="m_top" destination="LgS-LL-tOa" id="XO1-SJ-57d"/>
-                        <outlet property="pullTableView" destination="Ayj-vc-7ce" id="r8S-9g-5fM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBl-II-UX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -677,7 +677,7 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="pullTableView" destination="WbJ-pb-bBA" id="qXP-s6-lEm"/>
+                        <outlet property="m_pullTableView" destination="WbJ-pb-bBA" id="XKF-TF-Cgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUQ-yT-rEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -721,6 +721,7 @@
                     <navigationItem key="navigationItem" id="tEO-vZ-FvJ"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="NaE-A9-m02" id="6F8-iW-xof"/>
+                        <outlet property="m_bottomConstraint" destination="NaE-A9-m02" id="nc1-m3-P5r"/>
                         <outlet property="m_textField" destination="XFP-IF-atp" id="dgq-Ga-HE2"/>
                         <outlet property="m_webView" destination="aVx-pd-IZa" id="kYF-HG-EPJ"/>
                     </connections>

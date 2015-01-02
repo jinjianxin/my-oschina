@@ -14,14 +14,14 @@
 #import "XmlParser.h"
 #import "CustomProtocol.h"
 
-@interface PostDetails : UIViewController <ASIHTTPRequestDelegate,ViewProtocol>
+@interface PostDetails : UIViewController <ASIHTTPRequestDelegate, ViewProtocol>
 
-@property (strong,nonatomic) UIWebView *webView;
+@property (strong, nonatomic) UIWebView* m_webView;
 
-@property (strong, nonatomic) IBOutlet UIView *myView;
-@property (copy,nonatomic) NSString *ids;
-@property int newsCategory;
+@property (strong, nonatomic) IBOutlet UIView* m_myView;
+@property (copy, nonatomic) NSString* m_ids;
+@property int m_newsCategory;
 
-- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+- (void)setMyDelegate:(id<TabBarProtocol>)delegate;
 
 @end

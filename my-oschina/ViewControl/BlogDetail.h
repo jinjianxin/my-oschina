@@ -13,14 +13,14 @@
 #import "TBXML.h"
 #import "XmlParser.h"
 
-@interface BlogDetail : UIViewController <ASIHTTPRequestDelegate,ViewProtocol>
+@interface BlogDetail : UIViewController <ASIHTTPRequestDelegate, ViewProtocol>
 
-@property (strong,nonatomic) UIWebView *webView;
+@property (strong, nonatomic) UIWebView* m_webView;
 
-@property (strong, nonatomic) IBOutlet UIView *myView;
-@property int ids;
-@property int newsCategory;
+@property (strong, nonatomic) IBOutlet UIView* m_myView;
+@property int m_ids;
+@property int m_newsCategory;
 
-- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
+- (void)setMyDelegate:(id<TabBarProtocol>)delegate;
 
 @end

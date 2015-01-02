@@ -16,16 +16,15 @@
 #import "OwnCell.h"
 #import "OwnCellImg.h"
 
-@interface OwnViewControl : UIViewController <UIActionSheetDelegate,PullTableViewDelegate,UITableViewDataSource,UITableViewDelegate,ASIHTTPRequestDelegate>
+@interface OwnViewControl : UIViewController <UIActionSheetDelegate, PullTableViewDelegate, UITableViewDataSource, UITableViewDelegate, ASIHTTPRequestDelegate>
 
 @property int m_uid;
-@property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
+@property (weak, nonatomic) IBOutlet PullTableView* m_pullTableView;
 - (IBAction)segSender:(id)sender;
 
 @property int m_category;
-@property (strong,nonatomic) NSMutableArray *m_newsArray;
+@property (strong, nonatomic) NSMutableArray* m_newsArray;
 @property int m_countPage;
 @property BOOL m_isLoadOver;
-
 
 @end

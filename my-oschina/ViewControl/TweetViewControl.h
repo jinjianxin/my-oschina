@@ -22,22 +22,21 @@
 #import "UITip.h"
 #import "GGFullScreenImageViewController.h"
 
+@interface TweetViewControl : UIViewController <PullTableViewDelegate, UITableViewDelegate, UITableViewDataSource, ASIHTTPRequestDelegate, ViewProtocol>
 
-@interface TweetViewControl : UIViewController <PullTableViewDelegate,UITableViewDelegate,UITableViewDataSource,ASIHTTPRequestDelegate,ViewProtocol>
+@property (weak, nonatomic) IBOutlet PullTableView* m_pullTableView;
 
-@property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
-
-- (IBAction)segSender:(id)sender;
+- (IBAction)segSender:(id)m_sender;
 @property int m_uid;
-@property NSMutableArray *m_newsArray;
+@property NSMutableArray* m_newsArray;
 @property int m_countPage;
-@property BOOL isLoadOver;
-@property (nonatomic,strong) NSString *projectId;
-@property int  newsCategory ;
-- (void) setMyDelegate:(id<TabBarProtocol>)delegate;
-@property id body;
+@property BOOL m_isLoadOver;
+@property (nonatomic, strong) NSString* m_projectId;
+@property int m_newsCategory;
+- (void)setMyDelegate:(id<TabBarProtocol>)delegate;
+@property id m_body;
 
 - (IBAction)m_tweetSender:(id)sender;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_top;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* m_top;
 
 @end

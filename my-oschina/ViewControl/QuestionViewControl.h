@@ -23,17 +23,15 @@
 #import "SubmitQuestion.h"
 #import "Helper.h"
 
-
-@interface QuestionViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
-{
+@interface QuestionViewControl : UIViewController <PullTableViewDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate> {
     BOOL _reloading;
 }
 - (IBAction)m_submitSender:(id)sender;
 
-@property (weak, nonatomic) IBOutlet PullTableView *pullTableView;
+@property (weak, nonatomic) IBOutlet PullTableView* m_pullTableView;
 
 - (IBAction)questionSelect:(id)sender;
 
-@property int newsCategory;
-@property (strong,nonatomic) NSMutableArray *newsArray;
+@property int m_newsCategory;
+@property (strong, nonatomic) NSMutableArray* m_newsArray;
 @end
