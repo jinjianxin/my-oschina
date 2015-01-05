@@ -34,6 +34,7 @@
     m_pullTabView.dataSource = self;
 
     self.m_pullTabView.pullDelegate = self;
+    self.m_pullTabView.pullTableIsRefreshing = NO;
 
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -49,7 +50,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [m_pullTabView reloadData];
+    // [m_pullTabView reloadData];
+    /*
+    self.m_pullTabView.pullLastRefreshDate = [NSDate date];
+    self.m_pullTabView.pullTableIsRefreshing = NO;*/
+
+    if (!self.m_pullTabView.pullTableIsRefreshing) {
+        self.m_pullTabView.pullTableIsRefreshing = YES;
+        [self performSelector:@selector(refreshTable)
+                   withObject:nil
+                   afterDelay:0.1f];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -191,6 +202,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+
     UIStoryboard* stroboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 
     ReplyViewControl* repleControl = [stroboard instantiateViewControllerWithIdentifier:@"ReplyCiewControl"];
