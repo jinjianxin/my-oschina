@@ -13,8 +13,8 @@
 #import "TBXML.h"
 #import "MyThread.h"
 
-@interface SubmitTweet : UIViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ASIHTTPRequestDelegate>
+@interface SubmitTweet : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ASIHTTPRequestDelegate, UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
-@property (weak, nonatomic) IBOutlet UITextView *m_contentView;
+@property (weak, nonatomic) IBOutlet UIImageView* m_imageView;
+@property (weak, nonatomic) IBOutlet UITextView* m_contentView;
 @end

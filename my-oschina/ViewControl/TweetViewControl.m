@@ -11,6 +11,7 @@
 @implementation TweetViewControl {
     id<TabBarProtocol> mydelegate;
     TweetCell* customCell;
+    MBProgressHUD* m_progressHUD;
 }
 
 @synthesize m_pullTableView;
@@ -97,6 +98,19 @@
 
     [request setDelegate:self];
     [request startAsynchronous];
+
+    m_progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:m_progressHUD];
+
+    m_progressHUD.labelText = @"Loading";
+
+    [m_progressHUD show:YES];
+}
+
+- (void)hudWasHidden:(MBProgressHUD*)hud
+{
+    [m_progressHUD removeFromSuperview];
+    m_progressHUD = nil;
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
@@ -112,9 +126,25 @@
     [m_newsArray addObjectsFromArray:array];
 
     [self.m_pullTableView reloadData];
+
+    [m_progressHUD hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
+{
+
+    [m_progressHUD hide:YES];
+
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:
+                                                      @"Title"
+                                                        message:@""
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 }
 
@@ -178,6 +208,7 @@
     if ([msg.m_imgSmall length] != 0) {
         TweetCellImag* cell = [tableView dequeueReusableCellWithIdentifier:tagImag];
         [cell setContent:msg];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         if ([[cell.m_imageView gestureRecognizers] count] > 0) {
             UITip* tip = [[cell.m_imageView gestureRecognizers] objectAtIndex:0];
@@ -200,6 +231,7 @@
     else {
         TweetCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
         [cell setContent:msg];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         return cell;
     }

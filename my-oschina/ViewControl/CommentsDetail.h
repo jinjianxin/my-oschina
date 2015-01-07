@@ -18,8 +18,9 @@
 #import "CustomProtocol.h"
 #import "PubComments.h"
 #import "UIView+Toast.h"
+#import "MBProgressHUD.h"
 
-@interface CommentsDetail : UIViewController <PullTableViewDelegate, ASIHTTPRequestDelegate, UITableViewDelegate, UITableViewDataSource, ViewProtocol>
+@interface CommentsDetail : UIViewController <PullTableViewDelegate, ASIHTTPRequestDelegate, UITableViewDelegate, UITableViewDataSource, ViewProtocol, MBProgressHUDDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) MsgDetail* m_msgDetail;
 @property (weak, nonatomic) IBOutlet PullTableView* m_pullTabView;

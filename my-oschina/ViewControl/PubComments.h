@@ -13,14 +13,14 @@
 #import "CommentMsgDetails.h"
 #import "CommentsDetail.h"
 
-@interface PubComments : UIViewController <ASIHTTPRequestDelegate>
+@interface PubComments : UIViewController <ASIHTTPRequestDelegate, UIAlertViewDelegate>
 
-@property (strong,nonatomic) UILabel *m_title;
-@property (strong,nonatomic) UITextView *m_commentView;
+@property (strong, nonatomic) UILabel* m_title;
+@property (strong, nonatomic) UITextView* m_commentView;
 
-@property (strong,nonatomic) NSString *m_id;
-@property (strong,nonatomic) NSString *m_catalog;
-@property (strong,nonatomic) NSString *m_uid;
+@property (strong, nonatomic) NSString* m_id;
+@property (strong, nonatomic) NSString* m_catalog;
+@property (strong, nonatomic) NSString* m_uid;
 @property id m_parent;
 
 @end

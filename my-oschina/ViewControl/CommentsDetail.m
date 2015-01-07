@@ -10,6 +10,7 @@
 
 @implementation CommentsDetail {
     id<TabBarProtocol> mydelegate;
+    MBProgressHUD* m_progressHUD;
 }
 
 @synthesize m_msgDetail;
@@ -123,8 +124,19 @@
         [request setDelegate:self];
         [request startAsynchronous];
 
+        m_progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:m_progressHUD];
+        m_progressHUD.delegate = self;
+        [m_progressHUD show:YES];
+
         //[self refreshTable];
     }
+}
+
+- (void)hudWasHidden:(MBProgressHUD*)hud
+{
+    [m_progressHUD removeFromSuperview];
+    m_progressHUD = nil;
 }
 
 - (void)refreshTable
@@ -167,9 +179,25 @@
     [m_commentArray addObjectsFromArray:array];
 
     [self.m_pullTabView reloadData];
+
+    [m_progressHUD hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
+{
+
+    [m_progressHUD hide:YES];
+
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:
+                                                      @"警告"
+                                                        message:@"网络连接错误"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 }
 
@@ -194,6 +222,7 @@
         cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tag];
     }
 
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     CommentMsgDetails* msg = [m_commentArray objectAtIndex:[indexPath row]];
     [cell setContent:msg];
 

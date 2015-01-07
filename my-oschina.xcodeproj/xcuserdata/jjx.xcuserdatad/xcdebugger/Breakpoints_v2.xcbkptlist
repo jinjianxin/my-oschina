@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "my-oschina/ViewControl/QuestionViewControl.h"
-            timestampString = "441875635.269805"
+            timestampString = "442326144.988736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47">
+            startingLineNumber = "48"
+            endingLineNumber = "48">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -81,13 +81,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "my-oschina/EGORefreshTableHeaderView.m"
-            timestampString = "442154973.79497"
+            filePath = "my-oschina/ViewControl/OwnViewControl.m"
+            timestampString = "442326620.72408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "-egoRefreshScrollViewDataSourceDidFinishedLoading:"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-hudWasHidden:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

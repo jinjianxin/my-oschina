@@ -15,8 +15,9 @@
 #import "OwnMsg.h"
 #import "OwnCell.h"
 #import "OwnCellImg.h"
+#import "MBProgressHUD.h"
 
-@interface OwnViewControl : UIViewController <UIActionSheetDelegate, PullTableViewDelegate, UITableViewDataSource, UITableViewDelegate, ASIHTTPRequestDelegate>
+@interface OwnViewControl : UIViewController <UIActionSheetDelegate, PullTableViewDelegate, UITableViewDataSource, UITableViewDelegate, ASIHTTPRequestDelegate, MBProgressHUDDelegate, UIAlertViewDelegate>
 
 @property int m_uid;
 @property (weak, nonatomic) IBOutlet PullTableView* m_pullTableView;

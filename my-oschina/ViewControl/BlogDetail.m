@@ -87,6 +87,18 @@
 
 - (void)requestFailed:(ASIHTTPRequest*)request
 {
+
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:
+                                                      @"警告"
+                                                        message:@"网络连接错误"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 }
 
 - (void)barButttonClick

@@ -8,7 +8,9 @@
 
 #import "OwnViewControl.h"
 
-@implementation OwnViewControl
+@implementation OwnViewControl {
+    MBProgressHUD* m_progressHUD;
+}
 
 @synthesize m_uid;
 @synthesize m_pullTableView;
@@ -86,8 +88,21 @@
 
             [request setDelegate:self];
             [request startAsynchronous];
+
+            m_progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:m_progressHUD];
+
+            m_progressHUD.labelText = @"Loading";
+
+            [m_progressHUD show:YES];
         }
     }
+}
+
+- (void)hudWasHidden:(MBProgressHUD*)hud
+{
+    [m_progressHUD removeFromSuperview];
+    m_progressHUD = nil;
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
@@ -103,9 +118,25 @@
     [m_newsArray addObjectsFromArray:array];
 
     [m_pullTableView reloadData];
+
+    [m_progressHUD hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
+{
+
+    [m_progressHUD hide:YES];
+
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:
+                                                      @"警告"
+                                                        message:@"网络连接错误"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 }
 
@@ -190,6 +221,7 @@
 
     if ([msg.m_tweetimage length] != 0) {
         OwnCellImg* cell = [tableView dequeueReusableCellWithIdentifier:tagImg];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setContent:msg];
 
         if (m_category == 2) {
@@ -204,6 +236,7 @@
     else {
 
         OwnCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setContent:msg];
         if (m_category == 2) {
             cell.m_author.lineSpacing = 5.0;

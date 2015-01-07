@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <netinet/in.h>
+#import "MBProgressHUD.h"
+#import "Reachability.h"
 
 @interface ViewController : UITabBarController
 
 @end
-

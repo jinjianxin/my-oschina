@@ -21,8 +21,9 @@
 #import "TweetCellImag.h"
 #import "UITip.h"
 #import "GGFullScreenImageViewController.h"
+#import "MBProgressHUD.h"
 
-@interface TweetViewControl : UIViewController <PullTableViewDelegate, UITableViewDelegate, UITableViewDataSource, ASIHTTPRequestDelegate, ViewProtocol>
+@interface TweetViewControl : UIViewController <PullTableViewDelegate, UITableViewDelegate, UITableViewDataSource, ASIHTTPRequestDelegate, ViewProtocol, MBProgressHUDDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet PullTableView* m_pullTableView;
 

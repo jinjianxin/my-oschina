@@ -20,17 +20,18 @@
 #import "PostDetails.h"
 #import "SoftDetail.h"
 
-@interface Helper : NSObject
+@interface Helper : NSObject <UIAlertViewDelegate>
 
-+ (void)pushNewsDetail:(UINavigationController *)navigationController andMag:(MsgDetail *)msg andCategory:(int) category;
++ (void)pushNewsDetail:(UINavigationController*)navigationController andMag:(MsgDetail*)msg andCategory:(int)category;
 
-+ (void)analysisDetail:(NSString *)url andNav:(UINavigationController *)navigationController;
++ (void)analysisDetail:(NSString*)url andNav:(UINavigationController*)navigationController;
 
-+ (void)pushNews:(UINavigationController *)navigationController andIds:(NSString *)ids andCategory:(int)category;
++ (void)pushNews:(UINavigationController*)navigationController andIds:(NSString*)ids andCategory:(int)category;
 
-+ (void)pushQuestion:(UINavigationController *)navigationController andIds:(NSString*)ids andCategory:(int)category;
++ (void)pushQuestion:(UINavigationController*)navigationController andIds:(NSString*)ids andCategory:(int)category;
 
-+ (void)pushSoft:(UINavigationController *)navigationController andIds:(NSString*)ids andCategory:(int)category;
++ (void)pushSoft:(UINavigationController*)navigationController andIds:(NSString*)ids andCategory:(int)category;
 
-+ (NSString *)getUid;
++ (NSString*)getUid;
+
 @end

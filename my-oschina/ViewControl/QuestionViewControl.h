@@ -22,8 +22,9 @@
 #import "MyUITabBarControl.h"
 #import "SubmitQuestion.h"
 #import "Helper.h"
+#import "MBProgressHUD.h"
 
-@interface QuestionViewControl : UIViewController <PullTableViewDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface QuestionViewControl : UIViewController <PullTableViewDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> {
     BOOL _reloading;
 }
 - (IBAction)m_submitSender:(id)sender;

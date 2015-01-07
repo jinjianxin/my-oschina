@@ -16,7 +16,7 @@
 #import "MyUITabBarControl.h"
 #import "CustomProtocol.h"
 
-@interface SearchViewController : UIViewController <UITabBarDelegate, UITableViewDataSource, UISearchBarDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface SearchViewController : UIViewController <UITabBarDelegate, UITableViewDataSource, UISearchBarDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView* m_tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar* m_searchBar;

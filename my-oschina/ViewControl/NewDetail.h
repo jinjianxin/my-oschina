@@ -16,22 +16,20 @@
 #import "ASIFormDataRequest.h"
 #import "prefix_define.h"
 #import "Helper.h"
+#import "MBProgressHUD.h"
 
-
-@interface NewDetail : UIViewController <ASIHTTPRequestDelegate,ViewProtocol,ASIHTTPRequestDelegate,UIWebViewDelegate>
-{
-  //  MsgDetail *msgDetail;
+@interface NewDetail : UIViewController <ASIHTTPRequestDelegate, ViewProtocol, ASIHTTPRequestDelegate, UIWebViewDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> {
+    //  MsgDetail *msgDetail;
 }
 
+@property (strong, nonatomic) UIWebView* m_webView;
 
-@property (strong,nonatomic) UIWebView *m_webView;
-
-@property (strong, nonatomic) IBOutlet UIView *m_myView;
-@property (nonatomic,strong) MsgDetail *m_msgDetail;
-@property (copy,nonatomic) NSString *m_ids;
+@property (strong, nonatomic) IBOutlet UIView* m_myView;
+@property (nonatomic, strong) MsgDetail* m_msgDetail;
+@property (copy, nonatomic) NSString* m_ids;
 @property int m_newsCategory;
-@property (strong,nonatomic) SingleNews *m_singleNews;
+@property (strong, nonatomic) SingleNews* m_singleNews;
 
-- (void) setMyDelegate:(id<TabBarProtocol>) m_delegate;
+- (void)setMyDelegate:(id<TabBarProtocol>)m_delegate;
 
 @end

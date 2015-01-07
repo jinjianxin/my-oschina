@@ -12,7 +12,7 @@
 #import "prefix_define.h"
 #import "TBXML.h"
 
-@interface SoftDetail : UIViewController <ASIHTTPRequestDelegate, ViewProtocol>
+@interface SoftDetail : UIViewController <ASIHTTPRequestDelegate, ViewProtocol, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWebView* m_webView;
 

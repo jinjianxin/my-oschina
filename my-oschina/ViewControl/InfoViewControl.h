@@ -16,18 +16,16 @@
 #import "MyUITabBarControl.h"
 #import "SearchViewController.h"
 #import "Helper.h"
+#import "MBProgressHUD.h"
 
-@interface InfoViewControl : UIViewController <PullTableViewDelegate,ASIHTTPRequestDelegate,UITableViewDataSource,UITableViewDelegate>
-{
-   // PullTableView *pullTableView;
+@interface InfoViewControl : UIViewController <PullTableViewDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> {
+    // PullTableView *pullTableView;
 }
 - (IBAction)searchSender:(id)sender;
 
-@property (strong,nonatomic) NSMutableArray *m_newsArray;
-@property (weak, nonatomic) IBOutlet PullTableView *m_pullTableView;
+@property (strong, nonatomic) NSMutableArray* m_newsArray;
+@property (weak, nonatomic) IBOutlet PullTableView* m_pullTableView;
 - (IBAction)categorySender:(id)sender;
-
-
 
 @property int m_newsCategory;
 @property int m_pageIndex;

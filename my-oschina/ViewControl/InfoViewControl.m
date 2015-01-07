@@ -12,7 +12,10 @@
 #import "MsgDetail.h"
 #import "prefix_define.h"
 
-@implementation InfoViewControl
+@implementation InfoViewControl {
+
+    MBProgressHUD* m_progressHUD;
+}
 
 @synthesize m_pullTableView;
 @synthesize m_newsArray;
@@ -72,17 +75,20 @@
         str = [NSString stringWithFormat:@"%@type=recommend&pageIndex=%d&pageSize=%d",
                                          blog_url, m_pageIndex, 20];
     }
-    
-    
 
     NSURL* url = [NSURL URLWithString:str];
-    
-    NSLog(@"%@",url);
 
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
 
     [request setDelegate:self];
     [request startAsynchronous];
+
+    m_progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:m_progressHUD];
+
+    m_progressHUD.labelText = @"Loading";
+
+    [m_progressHUD show:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -119,11 +125,33 @@
     }
 
     [m_pullTableView reloadData];
+
+    [m_progressHUD hide:YES];
+}
+
+- (void)hudWasHidden:(MBProgressHUD*)hud
+{
+    // Remove HUD from screen when the HUD was hidded
+    [m_progressHUD removeFromSuperview];
+    m_progressHUD = nil;
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
 {
-    
+
+    [m_progressHUD hide:YES];
+
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:
+                                                      @"警告"
+                                                        message:@"网络连接错误"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 }
 
 - (CGFloat)tableView:(UITableView*)tableView
@@ -144,6 +172,7 @@
     static NSString* tag = @"NewCell";
 
     MsgCell* cell = [tableView dequeueReusableCellWithIdentifier:tag];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     MsgDetail* news = [m_newsArray objectAtIndex:[indexPath row]];
 
@@ -151,7 +180,7 @@
     cell.m_author.text = news.m_author;
 
     cell.m_pullData.text = news.m_pullDate;
-   
+
     return cell;
 }
 
@@ -208,22 +237,14 @@
     [m_pullTableView reloadData];
 }
 
-- (IBAction)searchSender:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
-    SearchViewController *searchControl =[storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
+- (IBAction)searchSender:(id)sender
+{
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    SearchViewController* searchControl = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
     searchControl.view.backgroundColor = [UIColor whiteColor];
-    
+
     searchControl.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:searchControl animated:YES];
-    
-    /*
-    
-    SearchViewController *searchControl = [[SearchViewController alloc] init];
-    searchControl.view.backgroundColor = [UIColor whiteColor];
-    
-    searchControl.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:searchControl animated:YES];*/
-    
 }
 @end

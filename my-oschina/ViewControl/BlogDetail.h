@@ -13,7 +13,7 @@
 #import "TBXML.h"
 #import "XmlParser.h"
 
-@interface BlogDetail : UIViewController <ASIHTTPRequestDelegate, ViewProtocol>
+@interface BlogDetail : UIViewController <ASIHTTPRequestDelegate, ViewProtocol, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWebView* m_webView;
 

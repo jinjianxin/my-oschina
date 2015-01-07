@@ -13,7 +13,7 @@
 #import "XmlParser.h"
 #import "CustomProtocol.h"
 
-@interface TweetDetailViewControl : UIViewController <ASIHTTPRequestDelegate, ViewProtocol>
+@interface TweetDetailViewControl : UIViewController <ASIHTTPRequestDelegate, ViewProtocol, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView* m_webView;
 @property (weak, nonatomic) IBOutlet UITextView* m_textField;
 @property (strong, nonatomic) NSString* m_uid;

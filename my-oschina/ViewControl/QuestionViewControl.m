@@ -12,7 +12,10 @@
 
 @end
 
-@implementation QuestionViewControl
+@implementation QuestionViewControl {
+
+    MBProgressHUD* m_progressHUD;
+}
 
 @synthesize m_newsCategory;
 @synthesize m_newsArray;
@@ -91,6 +94,19 @@
 
     [request setDelegate:self];
     [request startAsynchronous];
+
+    m_progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:m_progressHUD];
+
+    m_progressHUD.labelText = @"Loading";
+
+    [m_progressHUD show:YES];
+}
+
+- (void)hudWasHidden:(MBProgressHUD*)hud
+{
+    [m_progressHUD removeFromSuperview];
+    m_progressHUD = nil;
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
@@ -101,9 +117,25 @@
     [m_newsArray addObjectsFromArray:array];
 
     [self.m_pullTableView reloadData];
+
+    [m_progressHUD hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
+{
+
+    [m_progressHUD hide:YES];
+
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:
+                                                      @"警告"
+                                                        message:@"网络连接错误"
+                                                       delegate:self
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 }
 
@@ -137,6 +169,7 @@
     cell.tag = [self m_newsCategory];
 
     [cell setContent:msg];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
 }
