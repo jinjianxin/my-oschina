@@ -40,6 +40,8 @@
 
     NSURL* url = [NSURL URLWithString:str];
 
+    NSLog(@"URL = %@", url);
+
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
 
     [request setDelegate:self];

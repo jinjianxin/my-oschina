@@ -120,6 +120,7 @@
 		747EC8D51A0114F70087B269 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D21A0114F70087B269 /* TBXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		747EC8D61A0114F70087B269 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D31A0114F70087B269 /* TBXML+Compression.m */; };
 		747EC8D71A0114F70087B269 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 747EC8D41A0114F70087B269 /* TBXML+HTTP.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		749A8EFF1A5F5D770050FE87 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 749A8EFE1A5F5D770050FE87 /* test@2x.png */; };
 		74A1855D1A236FD900ED1741 /* SubmitQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1855C1A236FD900ED1741 /* SubmitQuestion.m */; };
 		74A185601A23797700ED1741 /* SubmitTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1855F1A23797700ED1741 /* SubmitTweet.m */; };
 		74AAE2B01A1B7C7A00730759 /* PubComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AAE2AF1A1B7C7900730759 /* PubComments.m */; };
@@ -350,6 +351,7 @@
 		747EC8D81A0115020087B269 /* TBXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
 		747EC8D91A0115020087B269 /* TBXML+Compression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML+Compression.h"; sourceTree = "<group>"; };
 		747EC8DA1A0115020087B269 /* TBXML+HTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
+		749A8EFE1A5F5D770050FE87 /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
 		74A1855B1A236FD900ED1741 /* SubmitQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmitQuestion.h; path = ViewControl/SubmitQuestion.h; sourceTree = "<group>"; };
 		74A1855C1A236FD900ED1741 /* SubmitQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubmitQuestion.m; path = ViewControl/SubmitQuestion.m; sourceTree = "<group>"; };
 		74A1855E1A23797700ED1741 /* SubmitTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SubmitTweet.h; path = ViewControl/SubmitTweet.h; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 				74DF81E51A123B1D00E8BD8F /* jquery-1.7.1.min.js */,
 				744BF9C11A5D5868008036EC /* 37x-Checkmark.png */,
 				744BF9C21A5D5868008036EC /* 37x-Checkmark@2x.png */,
+				749A8EFE1A5F5D770050FE87 /* test@2x.png */,
 				744BF9C31A5D5868008036EC /* Default-568h@2x.png */,
 				744BF9C41A5D5868008036EC /* Default-iOS7-568h@2x.png */,
 				744BF9C51A5D5868008036EC /* Default-iOS7@2x.png */,
@@ -1022,6 +1025,7 @@
 				744BF9CF1A5D5868008036EC /* Default-568h@2x.png in Resources */,
 				747EC80A1A00D0110087B269 /* whiteArrow.png in Resources */,
 				744BF9D11A5D5868008036EC /* Default-iOS7@2x.png in Resources */,
+				749A8EFF1A5F5D770050FE87 /* test@2x.png in Resources */,
 				747EC7C21A00B9020087B269 /* more@2x.png in Resources */,
 				74DF81E41A123ACC00E8BD8F /* audio.html in Resources */,
 				747EC7CC1A00BF560087B269 /* searchBlue@2x.png in Resources */,

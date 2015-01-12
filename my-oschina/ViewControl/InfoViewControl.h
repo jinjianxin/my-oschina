@@ -19,7 +19,6 @@
 #import "MBProgressHUD.h"
 
 @interface InfoViewControl : UIViewController <PullTableViewDelegate, ASIHTTPRequestDelegate, UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> {
-    // PullTableView *pullTableView;
 }
 - (IBAction)searchSender:(id)sender;
 

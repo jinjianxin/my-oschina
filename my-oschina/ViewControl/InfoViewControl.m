@@ -76,6 +76,8 @@
                                          blog_url, m_pageIndex, 20];
     }
 
+    NSLog(@"url = %@", str);
+
     NSURL* url = [NSURL URLWithString:str];
 
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
@@ -222,8 +224,16 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+
     MsgDetail* msg = [m_newsArray objectAtIndex:[indexPath row]];
-    [Helper pushNewsDetail:self.navigationController andMag:msg andCategory:m_newsCategory];
+
+    if (msg.m_url.length == 0) {
+        [Helper pushNewsDetail:self.navigationController andMag:msg andCategory:m_newsCategory];
+    }
+    else {
+        //[Helper pushNewsDetail:self.navigationController andMag:msg andCategory:m_newsCategory];
+        [Helper analysisDetail:msg.m_url andNav:self.navigationController];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

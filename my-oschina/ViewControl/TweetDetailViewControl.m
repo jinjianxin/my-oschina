@@ -102,7 +102,7 @@
 
     int kbHeight = finalKeyboardFrame.size.height;
 
-    int height = kbHeight + self.m_bottomConstraint.constant;
+    int height = kbHeight + 30;
 
     self.m_bottomConstraint.constant = height;
 
@@ -117,7 +117,7 @@
 
     NSTimeInterval animationDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
 
-    self.m_bottomConstraint.constant = 10;
+    self.m_bottomConstraint.constant = 30;
 
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];

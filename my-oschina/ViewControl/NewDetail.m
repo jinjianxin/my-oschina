@@ -80,9 +80,21 @@
 
         if (m_singleNews.m_favorite) {
             str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_delete, uid, m_ids];
+
+            m_progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+            m_progressHUD.labelText = @"取消收藏中";
+            [self.view addSubview:m_progressHUD];
+
+            m_progressHUD.delegate = self;
+            [m_progressHUD show:YES];
         }
         else {
             str = [NSString stringWithFormat:@"%@?uid=%@&type=4&objid=%@", api_favorite_add, uid, m_ids];
+            m_progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+            m_progressHUD.labelText = @"正在收藏中";
+            [self.view addSubview:m_progressHUD];
+            m_progressHUD.delegate = self;
+            [m_progressHUD show:YES];
         }
 
         ASIFormDataRequest* request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:str]];
@@ -112,30 +124,38 @@
                         if(m_singleNews.m_favorite)
                         {
                             [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"取消收藏" andProtocol:self];
+                             [m_progressHUD hide:YES];
+                
                         }
                         else{
                             [mydelegate setBarTitle:@"资讯详情" andButtonTitle:@"收藏此文" andProtocol:self];
+                             [m_progressHUD hide:YES];
                         }
 
                     }
                     else{
-                        
+                        [m_progressHUD hide:YES];
                     }
-                
+                }
+                else{
+                     [m_progressHUD hide:YES];
                 }
             }
+            else{
+                 [m_progressHUD hide:YES];
+            }
+
         }];
 
         [request setFailedBlock:^{
             
-            NSLog(@"---");
+             [m_progressHUD hide:YES];
 
         }];
 
         [request startAsynchronous];
     }
     else {
-        //  [self.view makeToast:@"请先登陆"];
 
         [self.view makeToast:@"请先登陆"
                     duration:1.5
