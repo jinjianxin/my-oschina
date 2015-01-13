@@ -85,12 +85,13 @@
     [request setDelegate:self];
     [request startAsynchronous];
 
+    /*
     m_progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:m_progressHUD];
 
     m_progressHUD.labelText = @"Loading";
 
-    [m_progressHUD show:YES];
+    [m_progressHUD show:YES]; */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,6 +108,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
+
     NSString* responseString = [request responseString];
 
     if (m_newsCategory == 1) {
@@ -128,7 +130,7 @@
 
     [m_pullTableView reloadData];
 
-    [m_progressHUD hide:YES];
+    //    [m_progressHUD hide:YES];
 }
 
 - (void)hudWasHidden:(MBProgressHUD*)hud
@@ -140,6 +142,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest*)request
 {
+    /*
 
     [m_progressHUD hide:YES];
 
@@ -149,7 +152,7 @@
                                                        delegate:self
                                               cancelButtonTitle:@"确定"
                                               otherButtonTitles:nil, nil];
-    [alertView show];
+    [alertView show]; */
 }
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

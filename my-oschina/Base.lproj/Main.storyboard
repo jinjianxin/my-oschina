@@ -700,35 +700,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFP-IF-atp">
-                                <rect key="frame" x="16" y="517" width="410" height="53"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="RVD-JD-vjX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVx-pd-IZa">
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVx-pd-IZa">
                                 <rect key="frame" x="0.0" y="20" width="600" height="256"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZO-PB-EXR">
+                                <rect key="frame" x="0.0" y="513" width="538" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="25m-Df-ODX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XFP-IF-atp" firstAttribute="leading" secondItem="6CJ-u9-e5U" secondAttribute="leading" constant="16" id="23p-WD-iwS"/>
                             <constraint firstItem="aVx-pd-IZa" firstAttribute="top" secondItem="6CJ-u9-e5U" secondAttribute="topMargin" constant="80" id="KXp-n0-XQq"/>
-                            <constraint firstItem="XFP-IF-atp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="aVx-pd-IZa" secondAttribute="bottom" constant="20" id="NWq-Vy-zNA"/>
-                            <constraint firstAttribute="bottom" secondItem="XFP-IF-atp" secondAttribute="bottom" constant="30" id="NaE-A9-m02"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XFP-IF-atp" secondAttribute="trailing" id="YPr-Ch-729"/>
+                            <constraint firstItem="cZO-PB-EXR" firstAttribute="leading" secondItem="6CJ-u9-e5U" secondAttribute="leading" constant="10" id="P0A-6a-qVc"/>
                             <constraint firstItem="aVx-pd-IZa" firstAttribute="leading" secondItem="6CJ-u9-e5U" secondAttribute="leadingMargin" id="a9y-uV-UpS"/>
+                            <constraint firstAttribute="trailing" secondItem="cZO-PB-EXR" secondAttribute="trailing" constant="10" id="bjR-cD-TnD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aVx-pd-IZa" secondAttribute="trailing" id="c6x-w9-h38"/>
+                            <constraint firstAttribute="bottom" secondItem="cZO-PB-EXR" secondAttribute="bottom" constant="10" id="iTN-5U-mqy"/>
+                            <constraint firstItem="cZO-PB-EXR" firstAttribute="top" secondItem="aVx-pd-IZa" secondAttribute="bottom" constant="30" id="n6c-nJ-n7x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tEO-vZ-FvJ"/>
                     <connections>
-                        <outlet property="m_bottomConstraint" destination="NaE-A9-m02" id="nc1-m3-P5r"/>
-                        <outlet property="m_textField" destination="XFP-IF-atp" id="dgq-Ga-HE2"/>
+                        <outlet property="m_textField" destination="cZO-PB-EXR" id="xhp-vS-YT9"/>
                         <outlet property="m_webView" destination="aVx-pd-IZa" id="kYF-HG-EPJ"/>
                     </connections>
                 </viewController>

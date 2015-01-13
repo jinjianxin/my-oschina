@@ -43,7 +43,7 @@
     m_textField.layer.cornerRadius = 6;
     m_textField.layer.masksToBounds = YES;
 
-    [[NSNotificationCenter defaultCenter]
+    /*  [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(keyboadWillShow:)
                name:UIKeyboardWillShowNotification
@@ -52,7 +52,7 @@
         addObserver:self
            selector:@selector(keyboardWillHide:)
                name:UIKeyboardWillHideNotification
-             object:nil];
+             object:nil];*/
 
     UITapGestureRecognizer* gesture =
         [[UITapGestureRecognizer alloc] initWithTarget:self

@@ -12,7 +12,6 @@
 
 @synthesize m_msg;
 
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -25,6 +24,7 @@
     self.m_textView.layer.cornerRadius = 6;
     self.m_textView.layer.masksToBounds = YES;
 
+    /*
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(keyboadWillShow:)
@@ -34,17 +34,16 @@
         addObserver:self
            selector:@selector(keyboardWillHide:)
                name:UIKeyboardWillHideNotification
-             object:nil];
-    
-    
+             object:nil]; */
+
     UITapGestureRecognizer* gesture =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(hideKeyboard)];
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(hideKeyboard)];
     gesture.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:gesture];
 }
 
--(void)hideKeyboard
+- (void)hideKeyboard
 {
     [self.m_textView resignFirstResponder];
 }
@@ -169,4 +168,3 @@
 }*/
 
 @end
-
